@@ -191,9 +191,7 @@ body.page-service .service--01 {
 body.page-service .service--02 {
   min-height: 1000px;
   width: 1440px;
-  margin-top: -40px;
   position: relative;
-  z-index: 1;
 }
 
 body.page-service .sp-section-badge {
@@ -494,14 +492,13 @@ body.page-about .company-section {
 }
 body.page-about .company-bg-outer {
   position: absolute;
-  inset: -141px 0 141px 0;
+  inset: 0;
 }
 body.page-about .company-bg-inner {
   position: absolute;
   background-color: #476b4a;
   border-top: 1px solid #0e2349;
   inset: 0;
-  border-radius: 40px 40px 0 0;
 }
 
 body.page-about .location-section {
@@ -510,15 +507,12 @@ body.page-about .location-section {
   width: 1440px;
   background-color: #546895;
   flex-shrink: 0;
-  margin-top: -100px;
-  z-index: 1;
 }
 body.page-about .location-bg {
   position: absolute;
   background-color: #c3a369;
   border-top: 1px solid #0e2349;
   inset: 0;
-  border-radius: 40px 40px 0 0;
 }
 
 /* ===== body.page-recruit 固有クラス（PCのみ）===== */
@@ -543,7 +537,7 @@ body.page-recruit .vertical-label {
 }
 body.page-recruit .vertical-label-inner {
   font-family: 'Yesteryear', cursive;
-  font-size: 120px;
+  font-size: 90px;
   line-height: 1;
   color: #0e2349;
   opacity: 0.2;
@@ -769,6 +763,71 @@ body.page-recruit .ojt-step-label {
 }
 
 body.page-recruit .sp-section-badge { display: none; }
+
+/* ===== 中間ブレークポイント（769px〜1439px）=====
+   PC版フローティングナビ(nav.site-nav)はページ本体が1440px固定幅のまま
+   横スクロールする狭いウィンドウ幅でコンテンツに重なって隠れてしまうため、
+   この幅帯だけ先にSP版と同じ折りたたみメニュー（sp-nav-bar）へ切り替える。
+   ページ本体のレイアウト自体はPC版のまま（横スクロールは残る）。 */
+@media (min-width: 769px) and (max-width: 1439px) {
+  nav.site-nav, div.site-nav, nav#site-nav, #site-nav { display: none !important; }
+  body { padding-top: 100px; }
+
+  .sp-nav-bar {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    width: calc(100% - 32px);
+    background: #fff;
+    border: 1px solid #0e2349;
+    border-radius: 16px;
+    padding: 10px 24px;
+    z-index: 300;
+    box-sizing: border-box;
+  }
+  .sp-nav-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .sp-nav-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: none;
+    display: block;
+  }
+  .sp-nav-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 8px;
+    border-radius: 8px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #0e2349;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    height: 43px;
+    box-sizing: border-box;
+  }
+  .sp-nav-item.active {
+    background-color: #0e2349;
+    color: #fff;
+  }
+}
 
 /* ===== SP（max-width: 768px）===== */
 @media (max-width: 768px) {
@@ -1062,10 +1121,8 @@ body.page-recruit .sp-section-badge { display: none; }
     width: 100% !important; border-radius: 0 !important; padding: 24px 20px !important; min-height: unset !important;
   }
   body.page-about .concept-section > div[style*="left:245px"] > div { width: 100% !important; padding: 24px 20px !important; }
-  body.page-about .concept-section > div[style*="left:245px"] > div > div { width: 100% !important; }
-  body.page-about .concept-section > div[style*="left:777"],
-  body.page-about .concept-section > div[style*="left:697px"],
-  body.page-about .concept-section > div[style*="left:628px"] { display: none !important; }
+  body.page-about .concept-section > div[style*="left:245px"] > div > div { width: 100% !important; padding: 0 !important; }
+  body.page-about .concept-section > div[style*="left:245px"] div[style*="width:275.951px"] { display: none !important; }
   body.page-about .company-section { width: 100% !important; min-height: unset !important; }
   body.page-about .company-bg-outer { inset: 0 !important; }
   body.page-about .company-section > div[style*="left:0; top:-24px; width:240px"] {
@@ -1191,7 +1248,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit .quote-card-wrap { flex: none !important; width: 100% !important; min-width: 0; align-self: auto !important; }
   body.page-recruit .quote-card { flex: none !important; min-height: 60px !important; }
   body.page-recruit #culture div[style*="display:flex; gap:16px; align-items:flex-start; width:100%"] { flex-direction: column !important; gap: 16px !important; }
-  body.page-recruit #culture div[style*="min-height:326px"] { display: none !important; }
+  body.page-recruit #culture div[style*="min-height:526px"] { display: none !important; }
   body.page-recruit #culture div[style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; gap: 24px !important; }
   body.page-recruit #culture div[style*="grid-column:2"] { grid-column: 1 !important; }
   body.page-recruit #culture div[style*="background-color:#c3a369"] { padding: 24px 16px !important; }
@@ -1216,11 +1273,6 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit #apply > div[style*="width:1040px"] { width: 100% !important; padding: 32px 20px 48px !important; }
   body.page-recruit #apply div[style*="width:800px"] { width: 100% !important; flex-direction: column !important; gap: 16px !important; }
   body.page-recruit .btn-m { flex: none !important; width: 100% !important; height: 56px !important; }
-  body.page-recruit #footer { padding: 60px 20px 40px !important; gap: 24px !important; }
-  body.page-recruit #footer div[style*="border:19.2px solid #0e2349"] { border-width: 4px !important; width: 80px !important; height: 80px !important; border-radius: 40px !important; }
-  body.page-recruit #footer div[style*="border:19.2px solid #0e2349"] > img { width: 73px !important; height: 73px !important; }
-  body.page-recruit #footer > div[style*="white-space:nowrap"][style*="letter-spacing:1.28px"] { white-space: normal !important; text-align: center !important; width: 100% !important; }
-  body.page-recruit #footer > div[style*="white-space:nowrap"][style*="text-align:right"] { white-space: normal !important; text-align: center !important; align-self: center !important; width: 100% !important; }
 
   /* ===== body.page-index SP ===== */
   /* KVをページ最上部(y:0)から敷き、ヘッダー分の空間をKV内部に確保する */
@@ -1286,9 +1338,4 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#contact div[style*="white-space:nowrap"] { white-space: normal !important; }
   body.page-index section#contact > div:last-child > div:last-child { width: 100% !important; flex-shrink: unset !important; }
   body.page-index section#contact button.btn-m { align-self: center !important; }
-  body.page-index footer#footer { width: 100% !important; padding: 80px 16px 40px !important; gap: 24px !important; }
-  body.page-index footer#footer > div[style*="white-space:nowrap"],
-  body.page-index footer#footer > div[style*="white-space: nowrap"] { white-space: normal !important; text-align: center !important; }
-  body.page-index footer#footer > div:last-of-type[style*="align-self:flex-end"] { align-self: center !important; text-align: center !important; }
-  body.page-index footer#footer > div[style*="overflow:hidden; height:97px"] { display: none !important; }
 }
