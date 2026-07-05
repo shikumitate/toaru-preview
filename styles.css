@@ -14,6 +14,7 @@ nav.site-nav {
 }
 
 .sp-nav-bar { display: none; }
+.sp-header-backdrop { display: none; }
 
 .site-footer {
   background-color: #0e2349;
@@ -781,6 +782,23 @@ body.page-recruit .sp-section-badge { display: none; }
   .site-footer > div[style*="white-space:nowrap"][style*="letter-spacing:1.28px"] { white-space: normal !important; text-align: center !important; width: 100% !important; }
   .site-footer > div[style*="white-space:nowrap"][style*="text-align:right"] { white-space: normal !important; text-align: center !important; width: 100% !important; }
   .loop-animation-static { display: none !important; }
+
+  /* SP ヘッダー背景（固定navの裏にページ本体と同じ背景パターンを敷く） */
+  .sp-header-backdrop {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 290;
+    background-size: 220px 220px;
+    background-position: top left;
+  }
+  body.page-index .sp-header-backdrop { background-image: url('images/0e428730-22e1-40f2-a932-715a91df63ec.png'); }
+  body.page-about .sp-header-backdrop { background-image: url('images/9d16024b-061c-409c-ab12-bcc9005783fd.png'); }
+  body.page-service .sp-header-backdrop { background-image: url('images/27c9c291-befa-49d3-b434-7775b901db75.png'); }
+  body.page-recruit .sp-header-backdrop { background-image: url('images/a30a9ef5-8fe8-434d-a7b7-3be72c279341.png'); background-size: 110px 110px; }
 
   /* SP navバー */
   .sp-nav-bar {
