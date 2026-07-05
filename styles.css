@@ -133,7 +133,7 @@ body.page-service .services-root {
   display: flex;
   flex-direction: column;
   position: relative;
-  background-image: url("https://www.figma.com/api/mcp/asset/27c9c291-befa-49d3-b434-7775b901db75");
+  background-image: url("images/27c9c291-befa-49d3-b434-7775b901db75.png");
   background-size: 220px 220px;
   background-position: top left;
 }
@@ -306,7 +306,7 @@ body.page-service .s02-intro-text {
 }
 
 body.page-service .s02-message-box {
-  background-image: url('https://www.figma.com/api/mcp/asset/f8cabe11-f9d6-40be-b35d-9b5cad4b4a53');
+  background-image: url('images/f8cabe11-f9d6-40be-b35d-9b5cad4b4a53.png');
   background-size: 16px 16px;
   background-position: top left;
   border: 1px solid #0e2349;
@@ -416,7 +416,7 @@ body.page-about .page-root {
   display: flex;
   flex-direction: column;
   position: relative;
-  background-image: url("https://www.figma.com/api/mcp/asset/9d16024b-061c-409c-ab12-bcc9005783fd");
+  background-image: url("images/9d16024b-061c-409c-ab12-bcc9005783fd.png");
   background-size: 220px 220px;
   background-position: top left;
 }
@@ -941,7 +941,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-service .header-bg-wave-wrap { height: 32px !important; }
   body.page-service .header-bg-wave {
     height: 32px !important;
-    background-image: url('https://www.figma.com/api/mcp/asset/ca096ee1-71a7-4428-91e7-c54bfc843d84');
+    background-image: url('images/ca096ee1-71a7-4428-91e7-c54bfc843d84.svg');
     background-size: 1440px 32px;
     background-repeat: no-repeat;
     background-position: right top;
@@ -952,7 +952,7 @@ body.page-recruit .sp-section-badge { display: none; }
     top: 0 !important;
   }
   body.page-service .activities-outer div[style*="height:24px; left:0; top:1px"] > div {
-    background-image: url('https://www.figma.com/api/mcp/asset/f4d9e285-2dce-4824-9c9f-2003498f094e');
+    background-image: url('images/f4d9e285-2dce-4824-9c9f-2003498f094e.svg');
     background-size: 1440px 32px;
     background-repeat: no-repeat;
     background-position: left top;
