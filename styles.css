@@ -870,9 +870,13 @@ body.page-recruit .sp-section-badge { display: none; }
   }
 
   /* ===== body.page-service SP ===== */
-  body.page-service { min-width: unset; overflow-x: hidden; padding-top: 100px; }
+  /* KVをページ最上部(y:0)から敷き、ヘッダー分の空間をKV内部に確保する */
+  body.page-service { min-width: unset; overflow-x: hidden; padding-top: 0 !important; }
+  body.page-service .sp-header-backdrop { display: none !important; }
+  body.page-service .main-title-header { height: 220px !important; }
+  body.page-service .main-title-header .header-bg { height: 184px !important; }
   body.page-service .services-root { width: 100% !important; overflow-x: hidden !important; background-size: 220px 220px; }
-  body.page-service .main-title-header .header-title { left: 50% !important; transform: translateX(-50%) !important; }
+  body.page-service .main-title-header .header-title { left: 50% !important; top: 110px !important; transform: translateX(-50%) !important; }
   body.page-service .fv-inner {
     width: 100% !important;
     height: auto !important;
@@ -1019,15 +1023,18 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-service .services-root div[style*="flex:1 0 0; height:0; min-width:1px"] { display: none !important; }
 
   /* ===== body.page-about SP ===== */
+  /* KVをページ最上部(y:0)から敷き、ヘッダー分の空間をKV内部に確保する */
+  body.page-about { padding-top: 0 !important; }
+  body.page-about .sp-header-backdrop { display: none !important; }
   body.page-about .page-root { width: 100% !important; overflow-x: hidden; background-size: 220px 220px; }
   body.page-about .page-root * { white-space: normal !important; max-width: 100%; box-sizing: border-box; }
   body.page-about .nav-links a span,
   body.page-about .nav-links .menu-btn span { white-space: nowrap !important; max-width: none; }
   body.page-about .page-root [style*="flex-shrink:0"] { flex-shrink: 1 !important; min-width: 0 !important; }
-  body.page-about .main-title-header { width: 100% !important; }
-  body.page-about .header-bg { width: 100% !important; }
+  body.page-about .main-title-header { width: 100% !important; height: 220px !important; }
+  body.page-about .header-bg { width: 100% !important; height: 184px !important; }
   body.page-about .header-bg-rect { right: 0 !important; }
-  body.page-about .header-title { left: 50% !important; transform: translateX(-50%) !important; text-align: center !important; }
+  body.page-about .header-title { left: 50% !important; top: 110px !important; transform: translateX(-50%) !important; text-align: center !important; }
   body.page-about .fv-inner { flex-direction: column !important; width: 100% !important; gap: 0 !important; padding: 0 !important; }
   body.page-about .fv-inner > div:first-child { width: 100% !important; padding: 24px 20px !important; order: 2; }
   body.page-about .fv-inner > div:first-child > div:first-child { width: 100% !important; font-size: 28px !important; }
@@ -1127,6 +1134,12 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .location-section iframe { width: 100% !important; height: 300px !important; }
 
   /* ===== body.page-recruit SP ===== */
+  /* KVをページ最上部(y:0)から敷き、ヘッダー分の空間をKV内部に確保する */
+  body.page-recruit { padding-top: 0 !important; }
+  body.page-recruit .sp-header-backdrop { display: none !important; }
+  body.page-recruit #main-title-bar { height: 225px !important; }
+  body.page-recruit #main-title-bar > div[style*="height:104px"] { height: 189px !important; }
+  body.page-recruit #main-title-bar > div[style*="top:40px"] { top: 125px !important; }
   body.page-recruit #page-root { width: 100% !important; overflow-x: hidden; background-size: 110px 110px; }
   body.page-recruit #page-root * { white-space: normal !important; max-width: 100%; box-sizing: border-box; }
   body.page-recruit .nav-links .menu-btn span,
@@ -1139,7 +1152,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit #fv > div[style*="top:173px"] {
     position: relative !important; top: 0 !important; left: 0 !important; right: 0 !important;
     width: 100% !important; height: 220px !important; border-radius: 0 !important;
-    border-left: none !important; border-right: none !important; margin-top: 140px;
+    border-left: none !important; border-right: none !important; margin-top: 225px;
   }
   body.page-recruit #fv > div[style*="left:640px"] {
     position: relative !important; top: 0 !important; left: 0 !important; right: 0 !important;
@@ -1210,6 +1223,9 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit #footer > div[style*="white-space:nowrap"][style*="text-align:right"] { white-space: normal !important; text-align: center !important; align-self: center !important; width: 100% !important; }
 
   /* ===== body.page-index SP ===== */
+  /* KVをページ最上部(y:0)から敷き、ヘッダー分の空間をKV内部に確保する */
+  body.page-index { padding-top: 0 !important; }
+  body.page-index .sp-header-backdrop { display: none !important; }
   body.page-index .page-root [style*="width:1440px"] { width: 100% !important; max-width: 100% !important; }
   body.page-index section#mv { width: 100% !important; }
   body.page-index .page-root > section,
@@ -1220,7 +1236,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index .nav-links .menu-btn span,
   body.page-index .btn-s span,
   body.page-index .btn-m span { white-space: nowrap !important; max-width: none; }
-  body.page-index section#mv { width: 100% !important; height: auto !important; min-height: 220px !important; overflow: hidden !important; position: relative !important; padding: 32px 16px 40px !important; }
+  body.page-index section#mv { width: 100% !important; height: auto !important; min-height: 220px !important; overflow: hidden !important; position: relative !important; padding: 110px 16px 40px !important; }
   body.page-index section#mv > div:first-child { display: none !important; }
   body.page-index section#mv > div:last-child { position: relative !important; left: auto !important; top: auto !important; transform: none !important; width: 100% !important; height: auto !important; }
   body.page-index section#mv > div:last-child > div { position: relative !important; width: 100% !important; height: auto !important; overflow: visible !important; }
