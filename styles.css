@@ -3,6 +3,18 @@ body { min-width: 1440px; background-color: #fff; font-family: 'Noto Sans JP', s
 img { display: block; max-width: 100%; }
 p { margin: 0; }
 
+/* 背景パターンはbodyに敷き、幅1440px固定のpage-rootより外側（左右）にも途切れず続くようにする */
+body.page-index {
+  background-image: url("images/0e428730-22e1-40f2-a932-715a91df63ec.png");
+  background-size: 220px 220px;
+  background-position: top left;
+}
+body.page-recruit {
+  background-image: url("images/a30a9ef5-8fe8-434d-a7b7-3be72c279341.png");
+  background-size: 220px 220px;
+  background-position: top left;
+}
+
 nav.site-nav {
   position: fixed;
   height: 591px;
@@ -23,7 +35,8 @@ nav.site-nav {
   gap: 32px;
   align-items: center;
   padding-top: 140px;
-  width: 1440px;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   position: relative;
   flex-shrink: 0;
 }
@@ -128,15 +141,17 @@ nav.site-nav {
 
 /* ===== body.page-service 固有クラス（PCのみ）===== */
 
+body.page-service {
+  background-image: url("images/27c9c291-befa-49d3-b434-7775b901db75.png");
+  background-size: 220px 220px;
+  background-position: top left;
+}
 body.page-service .services-root {
   width: 1440px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   position: relative;
-  background-image: url("images/27c9c291-befa-49d3-b434-7775b901db75.png");
-  background-size: 220px 220px;
-  background-position: top left;
 }
 
 body.page-service .fv-inner {
@@ -501,7 +516,11 @@ body.page-about .company-bg-inner {
   position: absolute;
   background-color: #476b4a;
   border-top: 1px solid #0e2349;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
 }
 
 body.page-about .location-section {
@@ -515,7 +534,11 @@ body.page-about .location-bg {
   position: absolute;
   background-color: #c3a369;
   border-top: 1px solid #0e2349;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
 }
 
 /* ===== body.page-recruit 固有クラス（PCのみ）===== */
@@ -838,7 +861,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body { min-width: unset; overflow-x: hidden; padding-top: 100px; }
   nav.site-nav, div.site-nav, nav#site-nav, #site-nav { display: none !important; }
   /* ===== site-footer SP（全ページ共通）===== */
-  .site-footer { width: 100% !important; padding-top: 80px !important; padding-left: 20px !important; padding-right: 20px !important; gap: 24px !important; align-items: center !important; }
+  .site-footer { width: 100% !important; margin-left: 0 !important; padding-top: 80px !important; padding-left: 20px !important; padding-right: 20px !important; gap: 24px !important; align-items: center !important; }
   .site-footer > div[style*="border:19.2px solid #0e2349"] { border-width: 4px !important; width: 80px !important; height: 80px !important; border-radius: 40px !important; }
   .site-footer > div[style*="opacity:0.2"] { display: none !important; }
   .site-footer > div[style*="white-space:nowrap"][style*="letter-spacing:1.28px"] { white-space: normal !important; text-align: center !important; width: 100% !important; }
@@ -1193,12 +1216,12 @@ body.page-recruit .sp-section-badge { display: none; }
 
   /* ===== body.page-recruit SP ===== */
   /* KVをページ最上部(y:0)から敷き、ヘッダー分の空間をKV内部に確保する */
-  body.page-recruit { padding-top: 0 !important; }
+  body.page-recruit { padding-top: 0 !important; background-size: 110px 110px !important; }
   body.page-recruit .sp-header-backdrop { display: none !important; }
   body.page-recruit #main-title-bar { height: 225px !important; }
   body.page-recruit #main-title-bar > div[style*="height:104px"] { height: 189px !important; }
   body.page-recruit #main-title-bar > div[style*="top:20px"] { top: 125px !important; }
-  body.page-recruit #page-root { width: 100% !important; overflow-x: hidden; background-size: 110px 110px; }
+  body.page-recruit #page-root { width: 100% !important; overflow-x: hidden; }
   body.page-recruit #page-root * { white-space: normal !important; max-width: 100%; box-sizing: border-box; }
   body.page-recruit .nav-links .menu-btn span,
   body.page-recruit .btn-m span,
@@ -1338,7 +1361,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#recruit-top div[style*="top:14px; left:23px"] { left: 0 !important; }
   body.page-index section#recruit-top a.btn-s { align-self: center !important; }
   body.page-index section#contact { width: 100% !important; }
-  body.page-index section#contact div[style*="background-color:#c3a369; inset:25px"] { inset: 0 !important; }
+  body.page-index section#contact div[style*="background-color:#c3a369; top:25px"] { top: 0 !important; }
   body.page-index section#contact > div:last-child { flex-direction: column !important; padding: 60px 16px 40px !important; gap: 40px !important; }
   body.page-index section#contact > div:last-child > div:first-child { width: 100% !important; flex: unset !important; min-width: unset !important; }
   body.page-index section#contact div[style*="white-space:nowrap"] { white-space: normal !important; }
