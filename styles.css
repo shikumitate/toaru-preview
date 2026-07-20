@@ -493,14 +493,17 @@ body.page-about .concept-section {
 }
 body.page-about .concept-bg-outer {
   position: absolute;
-  inset: -5px -19px -62px 19px;
+  inset: 0;
 }
 body.page-about .concept-bg-inner {
   position: absolute;
   background-color: #546895;
   border-top: 1px solid #0e2349;
-  inset: 0 4px 0 -4px;
-  border-radius: 40px 40px 0 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
 }
 
 body.page-about .company-section {
@@ -528,7 +531,6 @@ body.page-about .location-section {
   position: relative;
   height: 777px;
   width: 1440px;
-  background-color: #546895;
   flex-shrink: 0;
 }
 body.page-about .location-bg {
