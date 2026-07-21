@@ -1235,7 +1235,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit #main-title-bar > div:first-child { right: 0 !important; width: 100% !important; }
   body.page-recruit #fv > div[style*="top:173px"] {
     position: relative !important; top: 0 !important; left: 0 !important; right: 0 !important;
-    width: 100% !important; height: 220px !important; border-radius: 0 !important;
+    width: 100% !important; height: auto !important; aspect-ratio: 375 / 220 !important; border-radius: 0 !important;
     border-left: none !important; border-right: none !important; margin-top: 225px;
   }
   body.page-recruit #fv > div[style*="left:640px"] {
