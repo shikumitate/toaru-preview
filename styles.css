@@ -27,6 +27,7 @@ nav.site-nav {
 
 .sp-nav-bar { display: none; }
 .sp-header-backdrop { display: none; }
+.sp-inline-photo { display: none; }
 
 .site-footer {
   background-color: #0e2349;
@@ -35,8 +36,8 @@ nav.site-nav {
   gap: 32px;
   align-items: center;
   padding-top: 140px;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  margin-left: min(0px, calc(50% - 50vw));
+  margin-right: min(0px, calc(50% - 50vw));
   position: relative;
   flex-shrink: 0;
 }
@@ -448,9 +449,8 @@ body.page-about .header-bg {
   position: absolute;
   height: 104px;
   top: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
+  left: min(0px, calc(50% - 50vw));
+  right: min(0px, calc(50% - 50vw));
 }
 body.page-about .header-bg-wave-wrap {
   position: absolute;
@@ -465,7 +465,7 @@ body.page-about .header-bg-wave-wrap {
 body.page-about .header-bg-rect {
   position: absolute;
   background-color: #c55c47;
-  inset: 0 -2px 24px 0;
+  inset: 0 0 24px 0;
 }
 body.page-about .header-title {
   position: absolute;
@@ -501,9 +501,8 @@ body.page-about .concept-bg-inner {
   border-top: 1px solid #0e2349;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
+  left: min(0px, calc(50% - 50vw));
+  right: min(0px, calc(50% - 50vw));
 }
 
 body.page-about .company-section {
@@ -522,9 +521,8 @@ body.page-about .company-bg-inner {
   border-top: 1px solid #0e2349;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
+  left: min(0px, calc(50% - 50vw));
+  right: min(0px, calc(50% - 50vw));
 }
 
 body.page-about .location-section {
@@ -539,9 +537,8 @@ body.page-about .location-bg {
   border-top: 1px solid #0e2349;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
+  left: min(0px, calc(50% - 50vw));
+  right: min(0px, calc(50% - 50vw));
 }
 
 /* ===== body.page-recruit 固有クラス（PCのみ）===== */
@@ -982,27 +979,38 @@ body.page-recruit .sp-section-badge { display: none; }
     width: 100% !important;
   }
   body.page-service .fv-headline { font-size: 26px !important; white-space: normal !important; }
+  /* FVコラージュ: 固定サイズの2枚（縦横比1:1維持・ビューポート幅に依存しない） */
   body.page-service .fv-media {
     position: relative !important;
     right: auto !important;
     top: auto !important;
-    width: 100% !important;
-    height: 220px !important;
-    overflow: hidden !important;
+    width: 340px !important;
+    height: 260px !important;
+    overflow: visible !important;
+    margin: 0 auto;
+    flex-shrink: 0;
   }
   body.page-service .fv-patern { display: none !important; }
-  body.page-service .fv-img-1, body.page-service .fv-img-2 {
-    position: relative !important;
-    right: auto !important; bottom: auto !important;
-    left: auto !important; top: auto !important;
-    width: 100% !important;
-    height: 180px !important;
+  body.page-service .fv-img-1 {
+    position: absolute !important;
+    top: 0 !important; right: 0 !important;
+    left: auto !important; bottom: auto !important;
+    width: 160px !important;
+    height: 160px !important;
+  }
+  body.page-service .fv-img-2 {
+    position: absolute !important;
+    bottom: 0 !important; left: 0 !important;
+    top: auto !important; right: auto !important;
+    width: 200px !important;
+    height: 200px !important;
   }
   body.page-service .service-section { width: 100% !important; min-height: unset !important; }
   body.page-service .service--02 { margin-top: 0 !important; }
   body.page-service .service-sidebar { display: none !important; }
   body.page-service .sp-section-badge {
     display: block !important;
+    position: relative; /* 絶対配置の帯背景divより上に描画する（非positionedだと背景に隠れる） */
     background-color: #edebbf;
     border: 3px solid #0e2349;
     box-shadow: 3px 3px 0px #0e2349;
@@ -1040,6 +1048,27 @@ body.page-recruit .sp-section-badge { display: none; }
     flex: none !important;
     height: auto !important;
     min-height: unset !important;
+  }
+  /* 写真カード: 絶対配置imgのみ内包するためheight:autoだと高さ0に潰れる。高さを明示する */
+  body.page-service .photo-card { height: 200px !important; }
+  /* SPでは写真2・3を段落ごとの .sp-inline-photo 側で表示する（1枚目だけ説明文直後に残す） */
+  body.page-service .photo-card-2, body.page-service .photo-card-3 { display: none !important; }
+  .sp-inline-photo {
+    display: block !important;
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: white;
+  }
+  .sp-inline-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+    max-width: none;
   }
   body.page-service .photo-label { width: 160px !important; text-align: center !important; }
   body.page-service .answer-box { height: auto !important; padding: 16px !important; min-height: 60px !important; }
@@ -1123,11 +1152,15 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .header-bg { width: 100% !important; height: 184px !important; left: 0 !important; margin-left: 0 !important; }
   body.page-about .header-bg-rect { right: 0 !important; }
   body.page-about .header-title { left: 50% !important; top: 110px !important; transform: translateX(-50%) !important; text-align: center !important; }
-  body.page-about .fv-inner { flex-direction: column !important; width: 100% !important; gap: 0 !important; padding: 0 !important; }
-  body.page-about .fv-inner > div:first-child { width: 100% !important; padding: 24px 20px !important; order: 2; }
+  /* FV: コピー（文章）→ 画像の順。写真はビューポート幅に依存しない固定サイズ */
+  body.page-about .fv-inner { flex-direction: column !important; width: 100% !important; gap: 0 !important; padding: 0 !important; align-items: center !important; }
+  body.page-about .fv-inner > div:first-child { width: 100% !important; padding: 24px 20px 8px !important; order: 1; }
   body.page-about .fv-inner > div:first-child > div:first-child { width: 100% !important; font-size: 28px !important; }
   body.page-about .fv-inner > div:first-child > div:last-child { width: 100% !important; }
-  body.page-about .fv-inner > div:last-child { width: 100% !important; height: 280px !important; border-radius: 0 !important; order: 1; }
+  body.page-about .fv-inner > div:last-child {
+    width: 320px !important; height: 320px !important; flex-shrink: 0 !important;
+    border-radius: 16px !important; order: 2; margin: 0 auto 32px !important;
+  }
   body.page-about .fv-inner > div:last-child img { width: 100% !important; height: 100% !important; max-width: none !important; }
   body.page-about .concept-section { width: 100% !important; min-height: unset !important; }
   body.page-about .concept-bg-outer { inset: 0 !important; }
@@ -1147,11 +1180,23 @@ body.page-recruit .sp-section-badge { display: none; }
   }
   body.page-about .concept-section > div[style*="left:245px"] {
     position: relative !important; left: auto !important; top: auto !important;
+    margin: 0 !important;
     width: 100% !important; border-radius: 0 !important; padding: 24px 20px !important; min-height: unset !important;
   }
   body.page-about .concept-section > div[style*="left:245px"] > div { width: 100% !important; padding: 24px 20px !important; }
   body.page-about .concept-section > div[style*="left:245px"] > div > div { width: 100% !important; padding: 0 !important; }
-  body.page-about .concept-section > div[style*="left:245px"] div[style*="width:275.951px"] { display: none !important; }
+  /* コンセプト: 文章→画像→文章→画像の交互構造。写真は固定サイズのまま中央寄せで表示する */
+  body.page-about .concept-section > div[style*="left:245px"] div[style*="width:275.951px"] {
+    display: flex !important; margin: 8px auto !important; max-width: 100% !important;
+  }
+  body.page-about .concept-section div[style*="justify-content:space-between; width:100%"] {
+    flex-direction: column !important; gap: 8px !important; align-items: center !important;
+  }
+  body.page-about .concept-section div[style*="display:flex; gap:16px; align-items:center; width:100%"] {
+    flex-direction: column !important; gap: 8px !important; align-items: center !important;
+  }
+  body.page-about .concept-section div[style*="display:flex; gap:16px; align-items:center; width:100%"] > div[style*="width:275.951px"] { order: 2; }
+  body.page-about .concept-section div[style*="display:flex; gap:16px; align-items:center; width:100%"] > div[style*="flex:1 0 0"] { order: 1; width: 100% !important; }
   body.page-about .company-section { width: 100% !important; min-height: unset !important; }
   body.page-about .company-bg-outer { inset: 0 !important; }
   body.page-about .company-section > div[style*="left:0; top:-24px; width:240px"] {
@@ -1174,10 +1219,14 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .company-section div[style*="background-image:url('images/008ed006"] {
     width: 100% !important; margin-top: 0 !important; padding: 24px 20px !important;
   }
+  /* 人物パート: 説明文→写真の縦積み（大悟側の親はflex rowなので縦に落とす） */
+  body.page-about .company-section div[style*="position:relative; flex-shrink:0; width:100%"] {
+    display: flex !important; flex-direction: column !important; justify-content: flex-start !important;
+  }
   body.page-about .company-section div[style*="right:-13.56px"],
   body.page-about .company-section div[style*="left:-13.56px"] {
     position: relative !important; left: auto !important; right: auto !important; top: auto !important;
-    width: 100% !important; height: auto !important; display: flex !important; justify-content: center !important; margin-bottom: 16px !important;
+    width: 100% !important; height: auto !important; display: flex !important; justify-content: center !important; margin: 16px 0 0 !important;
   }
   body.page-about .company-section div[style*="right:-13.56px"] > div,
   body.page-about .company-section div[style*="left:-13.56px"] > div { transform: none !important; }

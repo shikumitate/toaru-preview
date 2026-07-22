@@ -19,7 +19,7 @@
 
     <!-- mainTitle (header) -->
     <div class="main-title-header" style="height:140px; width:100%; position:relative; flex-shrink:0;">
-      <div class="header-bg" style="position:absolute; height:104px; top:0; left:50%; width:100vw; margin-left:-50vw;">
+      <div class="header-bg" style="position:absolute; height:104px; top:0; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw));">
         <div class="header-bg-wave-wrap" style="position:absolute; bottom:0; display:flex; height:24px; align-items:center; justify-content:center; left:0; width:100%;">
           <div style="transform:rotate(180deg); width:100%;">
             <div class="header-bg-wave" style="height:24px; position:relative; width:100%;">
@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <div style="position:absolute; background-color:#476b4a; top:0; bottom:24px; left:50%; width:100vw; margin-left:-50vw;"></div>
+        <div style="position:absolute; background-color:#476b4a; top:0; bottom:24px; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw));"></div>
       </div>
       <div class="header-title" style="position:absolute; height:100px; left:80px; top:40px; width:240px;">
         <div style="position:absolute; background-color:#b4b6a7; border:1px solid #0e2349; height:28px; left:0; border-radius:16px; top:0; width:122px;">
@@ -82,7 +82,7 @@
 
     <!-- Service 01 -->
     <div class="service-section service--01">
-      <div style="position:absolute; background-color:#c3a369; border-top:1px solid #0e2349; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw;"></div>
+      <div style="position:absolute; background-color:#c3a369; border-top:1px solid #0e2349; top:0; bottom:0; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw));"></div>
 
       <!-- SP badge -->
       <div class="sp-section-badge">ここある・くらしば</div>
@@ -117,13 +117,13 @@
             </div>
           </div>
           <div class="card-list" style="align-items:center;">
-            <div class="card-item" style="background-color:white; height:200px; min-width:1px; position:relative; border-radius:16px; overflow:hidden;">
+            <div class="card-item photo-card photo-card-1" style="background-color:white; height:200px; min-width:1px; position:relative; border-radius:16px; overflow:hidden;">
               <img alt="" src="images/photo-service-kokoaru1.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:16px;" />
             </div>
-            <div class="card-item" style="background-color:white; height:200px; min-width:1px; position:relative; border-radius:16px; overflow:hidden;">
+            <div class="card-item photo-card photo-card-2" style="background-color:white; height:200px; min-width:1px; position:relative; border-radius:16px; overflow:hidden;">
               <img alt="" src="images/photo-service-kokoaru2.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:16px;" />
             </div>
-            <div class="card-item" style="background-color:white; height:200px; min-width:1px; position:relative; border-radius:16px; overflow:hidden;">
+            <div class="card-item photo-card photo-card-3" style="background-color:white; height:200px; min-width:1px; position:relative; border-radius:16px; overflow:hidden;">
               <img alt="" src="images/photo-service-kokoaru3.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; object-position:68% 30%; transform:scale(1.7); transform-origin:68% 30%; border-radius:16px;" />
             </div>
           </div>
@@ -156,6 +156,8 @@
             </div>
           </div>
         </div>
+
+                <div class="sp-inline-photo"><img alt="" src="images/photo-service-kokoaru2.jpg" /></div>
 
         <!-- value / 大切にしていること -->
         <div style="display:flex; flex-direction:column; gap:24px; align-items:flex-start; position:relative; flex-shrink:0; width:100%;">
@@ -226,6 +228,8 @@
             </div>
           </div>
         </div>
+
+                <div class="sp-inline-photo"><img alt="" src="images/photo-service-kokoaru3.jpg" style="object-position:68% 30%; transform:scale(1.7); transform-origin:68% 30%;" /></div>
 
         <!-- やっていること -->
         <div style="background-color:#c55c47; display:flex; flex-direction:column; gap:12px; align-items:flex-start; padding:16px 24px 24px; position:relative; border-radius:16px; flex-shrink:0; width:100%;">
@@ -299,7 +303,7 @@
 
     <!-- Service 02 -->
     <div class="service-section service--02">
-      <div style="position:absolute; background-color:#546895; border-top:1px solid #0e2349; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw;"></div>
+      <div style="position:absolute; background-color:#546895; border-top:1px solid #0e2349; top:0; bottom:0; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw));"></div>
 
       <!-- SP badge -->
       <div class="sp-section-badge">研修・講義・トレーニング</div>
@@ -401,8 +405,8 @@
 
     <!-- Activities -->
     <div class="activities-outer" style="position:relative; min-height:1371px; width:100%; flex-shrink:0;">
-      <div style="position:absolute; top:0; bottom:0; left:50%; width:100vw; margin-left:-50vw; background-color:#546895;"></div>
-      <div style="position:absolute; bottom:0; top:0; left:50%; width:100vw; margin-left:-50vw;">
+      <div style="position:absolute; top:0; bottom:0; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw)); background-color:#546895;"></div>
+      <div style="position:absolute; bottom:0; top:0; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw));">
         <div style="position:absolute; background-color:#c55c47; top:25px; bottom:0; left:0; width:100%;"></div>
         <div style="position:absolute; height:24px; left:0; top:1px; width:100%;">
           <div style="position:absolute; inset:-2.08% 0 0 0;">
@@ -591,7 +595,7 @@
       <div style="word-break:break-word; display:flex; flex-direction:column; font-family:'Noto Sans JP',sans-serif; font-weight:400; justify-content:center; opacity:0.7; flex-shrink:0; font-size:11px; text-align:right; color:white; letter-spacing:0.88px; white-space:nowrap; font-feature-settings:'pkna' 1;">
         <p style="line-height:1;">© 2026 とある株式会社 All Rights Reserved.</p>
       </div>
-      <div style="display:flex; gap:16px; align-items:center; opacity:0.2; position:relative; flex-shrink:0; width:100%;">
+      <div style="display:flex; gap:16px; align-items:center; opacity:0.2; position:relative; flex-shrink:0; width:100%; overflow:hidden;">
         <div style="height:97px; overflow:clip; position:relative; flex-shrink:0; width:452px;">
           <div style="position:absolute; inset:0.12% 0.11% 0.08% 0.02%;">
             <div style="position:absolute; inset:0.12% 34.95% 0.08% 0.02%;">
