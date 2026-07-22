@@ -242,10 +242,8 @@
           <!-- subtitle badge -->
           <div style="position:relative; background-color:#c3a369; border:1px solid #0e2349; border-radius:24px; padding:8px 24px; display:inline-flex; align-items:center; justify-content:center; gap:10px; align-self:center;">
             <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; color:#0e2349; letter-spacing:1.44px; white-space:nowrap; line-height:1.8; font-feature-settings:'pkna' 1,'palt' 1;">経歴も、きっかけも、みんな違う。</div>
-            <!-- fukidashi -->
-            <div style="position:absolute; bottom:-13px; left:50%; transform:translateX(-50%); width:24px; height:16px;">
-              <img alt="" src="images/f322aa68-0615-4073-a4e3-c3757640466b.png" style="position:absolute; inset:-3.13% -2.08% -5.21% -2.08%; width:calc(100% + 4.16%); height:calc(100% + 8.34%); max-width:none;" />
-            </div>
+            <!-- fukidashi（CSS三角形。旧PNGは矩形背景が焼き込まれ▽周りに色が乗るため置換） -->
+            <div class="fukidashi-tail" style="position:absolute; bottom:-12px; left:50%; transform:translateX(-50%);"></div>
           </div>
 
           <!-- 自分らしくいられるようになった -->
@@ -254,7 +252,7 @@
             <div style="display:flex; gap:16px; align-items:center; width:100%;">
               <div style="display:flex; gap:4px; align-items:center; flex-shrink:0;">
                 <div style="width:32px; height:32px; position:relative; flex-shrink:0;">
-                  <img alt="" src="images/c61f050d-f5cf-4fcc-b74d-cc6824c7e5a5.png" style="position:absolute; inset:0; width:100%; height:100%; max-width:none;" />
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute; inset:0; width:100%; height:100%;"><path d="M12 20.5C12 20.5 3 15 3 8.75C3 5.85 5.35 3.5 8.25 3.5C10 3.5 11.35 4.35 12 5.5C12.65 4.35 14 3.5 15.75 3.5C18.65 3.5 21 5.85 21 8.75C21 15 12 20.5 12 20.5Z" stroke="#0e2349" stroke-width="1.8" stroke-linejoin="round"/></svg>
                 </div>
                 <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:20px; color:#0e2349; letter-spacing:0.8px; white-space:nowrap; line-height:1.6; font-feature-settings:'pkna' 1,'palt' 1;">自分らしくいられるようになった</div>
               </div>
@@ -269,9 +267,7 @@
                 <div class="quote-card" style="min-height:80px;">
                   <div style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:#0e2349; line-height:1.8; letter-spacing:1.28px; font-feature-settings:'pkna' 1,'palt' 1;">服装も髪も、ピアスもタトゥーも自由。高齢者の中だからこそ、自分らしくいていい。</div>
                   <!-- fikidashi bottom right -->
-                  <div style="position:absolute; bottom:-13px; right:38.67px; width:16px; height:16px;">
-                    <img alt="" src="images/dd7f2725-2e12-4559-a946-38d48595d30f.png" style="position:absolute; inset:-3.13% -3.13% -7.54% -3.13%; width:calc(100% + 6.26%); height:calc(100% + 10.67%); max-width:none;" />
-                  </div>
+                  <div class="quote-card-tail" style="position:absolute; bottom:-12px; right:38.67px;"></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center; flex-shrink:0;">
                   <div style="display:flex; flex-direction:column; gap:2px; align-items:flex-end; text-align:right; white-space:nowrap; color:#0e2349;">
@@ -285,9 +281,7 @@
               <div class="quote-card-wrap">
                 <div class="quote-card" style="min-height:80px;">
                   <div style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:#0e2349; line-height:1.8; letter-spacing:1.28px; font-feature-settings:'pkna' 1,'palt' 1;">"完璧であるべき"が抜けて、素のままで動けるようになった。</div>
-                  <div style="position:absolute; bottom:-13px; right:38.67px; width:16px; height:16px;">
-                    <img alt="" src="images/dd7f2725-2e12-4559-a946-38d48595d30f.png" style="position:absolute; inset:-3.13% -3.13% -7.54% -3.13%; width:calc(100% + 6.26%); height:calc(100% + 10.67%); max-width:none;" />
-                  </div>
+                  <div class="quote-card-tail" style="position:absolute; bottom:-12px; right:38.67px;"></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center; flex-shrink:0;">
                   <div style="display:flex; flex-direction:column; gap:2px; align-items:flex-end; text-align:right; white-space:nowrap; color:#0e2349;">
@@ -301,9 +295,7 @@
               <div class="quote-card-wrap">
                 <div class="quote-card" style="min-height:80px;">
                   <div style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:#0e2349; line-height:1.8; letter-spacing:1.28px; font-feature-settings:'pkna' 1,'palt' 1;">見学したら事務所に犬がいて、"連れてきてもいい"って。</div>
-                  <div style="position:absolute; bottom:-13px; right:38.67px; width:16px; height:16px;">
-                    <img alt="" src="images/dd7f2725-2e12-4559-a946-38d48595d30f.png" style="position:absolute; inset:-3.13% -3.13% -7.54% -3.13%; width:calc(100% + 6.26%); height:calc(100% + 10.67%); max-width:none;" />
-                  </div>
+                  <div class="quote-card-tail" style="position:absolute; bottom:-12px; right:38.67px;"></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center; flex-shrink:0;">
                   <div style="display:flex; flex-direction:column; gap:2px; align-items:flex-end; text-align:right; white-space:nowrap; color:#0e2349;">
@@ -321,7 +313,7 @@
             <div style="display:flex; gap:16px; align-items:center; width:100%;">
               <div style="display:flex; gap:4px; align-items:center; flex-shrink:0;">
                 <div style="width:32px; height:32px; position:relative; flex-shrink:0;">
-                  <img alt="" src="images/c61f050d-f5cf-4fcc-b74d-cc6824c7e5a5.png" style="position:absolute; inset:0; width:100%; height:100%; max-width:none;" />
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute; inset:0; width:100%; height:100%;"><path d="M12 20.5C12 20.5 3 15 3 8.75C3 5.85 5.35 3.5 8.25 3.5C10 3.5 11.35 4.35 12 5.5C12.65 4.35 14 3.5 15.75 3.5C18.65 3.5 21 5.85 21 8.75C21 15 12 20.5 12 20.5Z" stroke="#0e2349" stroke-width="1.8" stroke-linejoin="round"/></svg>
                 </div>
                 <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:20px; color:#0e2349; letter-spacing:0.8px; white-space:nowrap; line-height:1.6; font-feature-settings:'pkna' 1,'palt' 1;">学びの面白さに気づいた</div>
               </div>
@@ -335,9 +327,7 @@
               <div class="quote-card-wrap">
                 <div class="quote-card">
                   <div style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:#0e2349; line-height:1.8; letter-spacing:1.28px; font-feature-settings:'pkna' 1,'palt' 1;">"なぜそのケアをするのか"を問われて、初めて自分の介護を考えた。うまく導かれたな、と思っている。</div>
-                  <div style="position:absolute; bottom:-13px; right:38.67px; width:16px; height:16px;">
-                    <img alt="" src="images/dd7f2725-2e12-4559-a946-38d48595d30f.png" style="position:absolute; inset:-3.13% -3.13% -7.54% -3.13%; width:calc(100% + 6.26%); height:calc(100% + 10.67%); max-width:none;" />
-                  </div>
+                  <div class="quote-card-tail" style="position:absolute; bottom:-12px; right:38.67px;"></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center; flex-shrink:0;">
                   <div style="display:flex; flex-direction:column; gap:2px; align-items:flex-end; text-align:right; white-space:nowrap; color:#0e2349;">
@@ -351,9 +341,7 @@
               <div class="quote-card-wrap" style="align-self:stretch;">
                 <div class="quote-card" style="flex:1 0 0; min-height:1px;">
                   <div style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:#0e2349; line-height:1.8; letter-spacing:1.28px; font-feature-settings:'pkna' 1,'palt' 1;">手伝いすぎると、本人ができなくなる。やってみて、初めて腑に落ちた。</div>
-                  <div style="position:absolute; bottom:-13px; right:38.67px; width:16px; height:16px;">
-                    <img alt="" src="images/dd7f2725-2e12-4559-a946-38d48595d30f.png" style="position:absolute; inset:-3.13% -3.13% -7.54% -3.13%; width:calc(100% + 6.26%); height:calc(100% + 10.67%); max-width:none;" />
-                  </div>
+                  <div class="quote-card-tail" style="position:absolute; bottom:-12px; right:38.67px;"></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center; flex-shrink:0;">
                   <div style="display:flex; flex-direction:column; gap:2px; align-items:flex-end; text-align:right; white-space:nowrap; color:#0e2349;">
@@ -367,9 +355,7 @@
               <div class="quote-card-wrap" style="align-self:stretch;">
                 <div class="quote-card" style="flex:1 0 0; min-height:1px;">
                   <div style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:#0e2349; line-height:1.8; letter-spacing:1.28px; font-feature-settings:'pkna' 1,'palt' 1;">14年やっても、ここでさらに学べる。</div>
-                  <div style="position:absolute; bottom:-13px; right:38.67px; width:16px; height:16px;">
-                    <img alt="" src="images/dd7f2725-2e12-4559-a946-38d48595d30f.png" style="position:absolute; inset:-3.13% -3.13% -7.54% -3.13%; width:calc(100% + 6.26%); height:calc(100% + 10.67%); max-width:none;" />
-                  </div>
+                  <div class="quote-card-tail" style="position:absolute; bottom:-12px; right:38.67px;"></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center; flex-shrink:0;">
                   <div style="display:flex; flex-direction:column; gap:2px; align-items:flex-end; text-align:right; white-space:nowrap; color:#0e2349;">
@@ -388,10 +374,8 @@
           <!-- subtitle -->
           <div style="position:relative; background-color:#c55c47; border:1px solid #0e2349; border-radius:24px; padding:8px 24px; display:inline-flex; align-items:center; justify-content:center; gap:10px; align-self:center;">
             <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; color:#0e2349; letter-spacing:1.44px; white-space:nowrap; line-height:1.8; font-feature-settings:'pkna' 1,'palt' 1;">それでも、ここであなたの物語もはじまる。</div>
-            <!-- fukidashi -->
-            <div style="position:absolute; bottom:-13px; left:50%; transform:translateX(-50%); width:24px; height:16px;">
-              <img alt="" src="images/8c071244-a9d3-40f0-ad32-0bfb4ad744e9.png" style="position:absolute; inset:-3.13% -2.08% -5.21% -2.08%; width:calc(100% + 4.16%); height:calc(100% + 8.34%); max-width:none;" />
-            </div>
+            <!-- fukidashi（CSS三角形。赤バッジ #c55c47 と同色。旧PNGは矩形背景焼き込みのため置換） -->
+            <div class="fukidashi-tail" style="--tail-color:#c55c47; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%);"></div>
           </div>
 
           <!-- OJT content box -->

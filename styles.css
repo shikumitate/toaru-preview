@@ -29,6 +29,46 @@ nav.site-nav {
 .sp-header-backdrop { display: none; }
 .sp-inline-photo { display: none; }
 
+/* 吹き出しの尻尾（CSS三角形）。バッジと同色（--tail-color）・枠線 #0e2349 を再現 */
+.fukidashi-tail {
+  --tail-color: #c3a369;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 13px solid var(--tail-color);
+  filter: drop-shadow(0 1px 0 #0e2349);
+}
+
+/* 証言カードの尻尾（白背景＋紺枠 #0e2349 の三角）。旧PNGは背景が焼き込まれ▽周りに色が乗るため置換 */
+.quote-card-tail {
+  width: 16px;
+  height: 12px;
+}
+.quote-card-tail::before,
+.quote-card-tail::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+/* 下地の紺三角（枠線） */
+.quote-card-tail::before {
+  top: 0;
+  border-top: 12px solid #0e2349;
+}
+/* 上に白三角を1px内側に重ねて枠だけ残す */
+.quote-card-tail::after {
+  top: -1px;
+  left: 1px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 11px solid #ffffff;
+}
+
 .site-footer {
   background-color: #0e2349;
   display: flex;
@@ -749,28 +789,38 @@ body.page-recruit .value-num {
 body.page-recruit .value-num .vn-label { font-size: 20px; line-height: 1; font-feature-settings: "pkna" 1, "palt" 1; }
 body.page-recruit .value-num .vn-num { font-size: 32px; line-height: 1; letter-spacing: 1.28px; font-feature-settings: "pkna" 1, "palt" 1; }
 
+/* 吹き出し尻尾（横向き◁）。旧PNGは緑背景が焼き込まれ縦位置もカード上寄りでズレるため、CSS三角形で縦中央に配置 */
 body.page-recruit .fikidashi-wrap {
   position: absolute;
-  left: -17px;
-  top: 23px;
-  width: 20px;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
   height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-body.page-recruit .fikidashi-inner {
-  width: 20px;
-  height: 20px;
-  position: relative;
-  transform: rotate(90deg);
-}
-body.page-recruit .fikidashi-inner img {
+body.page-recruit .fikidashi-inner { display: none; }
+/* 下地の紺三角（枠線） */
+body.page-recruit .fikidashi-wrap::before,
+body.page-recruit .fikidashi-wrap::after {
+  content: "";
   position: absolute;
-  inset: -2.5% -2.5% -6.04% -2.5%;
-  width: calc(100% + 5%);
-  height: calc(100% + 8.54%);
-  max-width: none;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+body.page-recruit .fikidashi-wrap::before {
+  left: 0;
+  border-right: 12px solid #0e2349;
+}
+/* 上に灰三角（カード色 #ececec）を1px内側に重ねて枠だけ残す */
+body.page-recruit .fikidashi-wrap::after {
+  left: 1px;
+  top: 1px;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-right: 11px solid #ececec;
 }
 
 body.page-recruit .ojt-step-label {
@@ -1049,15 +1099,15 @@ body.page-recruit .sp-section-badge { display: none; }
     height: auto !important;
     min-height: unset !important;
   }
-  /* 写真カード: 絶対配置imgのみ内包するためheight:autoだと高さ0に潰れる。高さを明示する */
-  body.page-service .photo-card { height: 200px !important; }
+  /* 写真カード: 絶対配置imgのみ内包するためheight:autoだと高さ0に潰れる。縦横比固定で幅に追従させる */
+  body.page-service .photo-card { height: auto !important; aspect-ratio: 5 / 3; }
   /* SPでは写真2・3を段落ごとの .sp-inline-photo 側で表示する（1枚目だけ説明文直後に残す） */
   body.page-service .photo-card-2, body.page-service .photo-card-3 { display: none !important; }
   .sp-inline-photo {
     display: block !important;
     position: relative;
     width: 100%;
-    height: 200px;
+    aspect-ratio: 5 / 3;
     border-radius: 16px;
     overflow: hidden;
     background-color: white;
@@ -1340,7 +1390,41 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit .qa-row { flex-direction: column !important; gap: 8px !important; }
   body.page-recruit .qa-avatar { flex-direction: row !important; gap: 12px !important; align-items: center !important; }
   body.page-recruit .qa-bubble { flex: none !important; width: 100% !important; padding: 16px 20px !important; }
-  body.page-recruit .fikidashi-wrap { display: none !important; }
+  /* SPはアバターがカード上に縦積みになるので、尻尾を上向き△にしてカード上辺左からアバターを指す（PNG尻尾は非表示にしCSS三角形で描く） */
+  body.page-recruit .fikidashi-wrap {
+    display: block !important;
+    position: absolute !important;
+    left: 22px !important;
+    top: -10px !important;
+    width: 20px !important;
+    height: 11px !important;
+    transform: none !important;
+  }
+  body.page-recruit .fikidashi-inner { display: none !important; }
+  body.page-recruit .fikidashi-wrap::before,
+  body.page-recruit .fikidashi-wrap::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 0 !important;
+    border-right: 10px solid transparent !important;
+    border-left: 10px solid transparent !important;
+  }
+  /* 下地の紺三角（枠線・上向き） */
+  body.page-recruit .fikidashi-wrap::before {
+    top: 0;
+    border-bottom: 12px solid #0e2349 !important;
+  }
+  /* 上に灰三角（カード色 #ececec）を1px内側に重ねて枠だけ残す */
+  body.page-recruit .fikidashi-wrap::after {
+    top: 1px;
+    left: 1px;
+    border-right: 9px solid transparent !important;
+    border-left: 9px solid transparent !important;
+    border-bottom: 11px solid #ececec !important;
+  }
   body.page-recruit .qa-avatar div[style*="align-items:center; text-align:center"] { align-items: flex-start !important; text-align: left !important; }
   body.page-recruit .qa-avatar div[style*="width:75px"] { width: auto !important; }
   body.page-recruit #want > div[style*="flex:1"],
@@ -1405,7 +1489,8 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#services div[style*="height:64px"][style*="border-left"] { display: none !important; }
   body.page-index section#services p[style*="flex:1 0 0"] { flex: 0 0 100% !important; white-space: normal !important; font-size: 15px !important; }
   body.page-index section#services div[style*="width:130px"] { width: auto !important; }
-  body.page-index section#recruit-top { height: auto !important; width: 100% !important; }
+  /* SPでもPCと同じ青背景を出す（bg wrapを消すと地模様が透けて黄色く見えるため、セクション自体に青を付与） */
+  body.page-index section#recruit-top { height: auto !important; width: 100% !important; background-color: #546895 !important; border-top: 1px solid #0e2349 !important; }
   body.page-index section#recruit-top > div:first-child { position: relative !important; inset: unset !important; width: 100% !important; height: auto !important; display: none !important; }
   body.page-index section#recruit-top > div:last-child { position: relative !important; left: 0 !important; top: 0 !important; width: 100% !important; padding: 60px 16px 40px !important; border-radius: 0 !important; align-items: center !important; }
   body.page-index section#recruit-top div[style*="white-space:nowrap"],
