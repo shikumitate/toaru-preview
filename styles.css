@@ -661,6 +661,7 @@ body.page-recruit .avatar-placeholder {
   position: relative;
   overflow: hidden;
 }
+body.page-recruit .avatar-placeholder img { object-position: center top; }
 body.page-recruit .avatar-placeholder-text {
   position: absolute;
   top: 50%;
@@ -685,6 +686,7 @@ body.page-recruit .avatar-sm {
   position: relative;
   overflow: hidden;
 }
+body.page-recruit .avatar-sm img { object-position: center top; }
 body.page-recruit .avatar-sm-text {
   position: absolute;
   top: 50%;
