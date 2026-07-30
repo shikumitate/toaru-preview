@@ -654,9 +654,9 @@ body.page-recruit .staff-card {
 
 body.page-recruit .avatar-placeholder {
   background-color: #ccc;
-  border-radius: 32px;
-  width: 64px;
-  height: 64px;
+  border-radius: 42px;
+  width: 84px;
+  height: 84px;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
@@ -678,9 +678,9 @@ body.page-recruit .avatar-placeholder-text {
 
 body.page-recruit .avatar-sm {
   background-color: #ccc;
-  border-radius: 24px;
-  width: 48px;
-  height: 48px;
+  border-radius: 32px;
+  width: 64px;
+  height: 64px;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
