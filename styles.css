@@ -1239,14 +1239,14 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .concept-section > div[style*="left:245px"] div[style*="width:275.951px"] {
     display: flex !important; margin: 8px auto !important; max-width: 100% !important;
   }
-  body.page-about .concept-section div[style*="justify-content:space-between; width:100%"] {
+  body.page-about .concept-section div[style*="justify-content:space-between; gap:32px; width:100%"] {
     flex-direction: column !important; gap: 8px !important; align-items: center !important;
   }
-  body.page-about .concept-section div[style*="display:flex; gap:16px; align-items:center; width:100%"] {
+  body.page-about .concept-section div[style*="display:flex; gap:32px; align-items:center; width:100%"] {
     flex-direction: column !important; gap: 8px !important; align-items: center !important;
   }
-  body.page-about .concept-section div[style*="display:flex; gap:16px; align-items:center; width:100%"] > div[style*="width:275.951px"] { order: 2; }
-  body.page-about .concept-section div[style*="display:flex; gap:16px; align-items:center; width:100%"] > div[style*="flex:1 0 0"] { order: 1; width: 100% !important; }
+  body.page-about .concept-section div[style*="display:flex; gap:32px; align-items:center; width:100%"] > div[style*="width:275.951px"] { order: 2; }
+  body.page-about .concept-section div[style*="display:flex; gap:32px; align-items:center; width:100%"] > div[style*="flex:1 0 0"] { order: 1; width: 100% !important; }
   body.page-about .company-section { width: 100% !important; min-height: unset !important; }
   body.page-about .company-bg-outer { inset: 0 !important; }
   body.page-about .company-section > div[style*="left:0; top:-24px; width:240px"] {
