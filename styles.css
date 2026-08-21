@@ -1499,6 +1499,29 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#news p[style*="white-space:nowrap"],
   body.page-index section#news p[style*="white-space: nowrap"] { white-space: normal !important; overflow: visible !important; text-overflow: unset !important; }
   body.page-index section#news div[style*="font-size:10px"] { font-size: 13px !important; }
+  /* ===== 「とあるの今」SP軽量化（2026-08-22）=====
+     SP直列表示でこの塊が重くファーストビューを侵食していたため、位置は変えず中身を削る。
+     写真をなくし、日付＋タイトルだけのプレーンな1枚に絞る。 */
+  /* PC用の min-height:897px がSPでも下限として効き、中身を削っても高さが縮まないため解除する */
+  body.page-index section#news { min-height: 0 !important; }
+  body.page-index section#news .news-list { height: auto !important; width: 100% !important; }
+  body.page-index section#news .news-card-thumb { display: none !important; }
+  body.page-index section#news .news-card:nth-of-type(n+2) { display: none !important; }
+  /* 本文を削ったぶんタイトルの高さ固定（Figma由来）が余白として残るので解除する */
+  body.page-index section#news .news-card p[data-note-title] { height: auto !important; }
+  /* 記事一覧リンクはボタンの重量感を抜いてテキストリンクにする */
+  body.page-index section#news .btn-s {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: auto !important;
+    padding: 0 !important;
+    width: auto !important;
+    text-decoration: underline !important;
+    text-underline-offset: 4px !important;
+  }
+  body.page-index section#news .btn-s .btn-icon { display: none !important; }
   body.page-index section#about { height: auto !important; width: 100% !important; margin-top: 40px !important; margin-bottom: 40px !important; overflow: visible !important; }
   body.page-index section#about > div:first-child { display: none !important; }
   body.page-index section#about > div:last-child { position: relative !important; height: auto !important; left: 0 !important; top: 0 !important; width: 100% !important; padding: 0 16px !important; }
