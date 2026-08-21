@@ -1447,10 +1447,13 @@ body.page-recruit .sp-section-badge { display: none; }
     white-space: normal !important;
     font-size: 18px !important;
   }
-  /* OJTボックス内の見出し（入社後のイメージ） */
+  /* OJTボックス内の見出し（入社後のイメージ）。
+     セクション見出しと同じ字送りに揃える。ただし茶色ボックスの中にいるため
+     section-heading のような上の区切り線は付けない（箱自体が区切りになっている） */
   body.page-recruit .box-heading {
     white-space: normal !important;
-    font-size: 18px !important;
+    font-size: 24px !important;
+    line-height: 1.5 !important;
     width: 100% !important;
   }
   body.page-recruit #staff-voice { flex-direction: column !important; padding: 40px 16px 60px !important; }
