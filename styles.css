@@ -1440,12 +1440,27 @@ body.page-recruit .sp-section-badge { display: none; }
     border-top: 2px solid currentColor !important;
     margin-bottom: 4px !important;
   }
+  /* グループ見出し（自分らしくいられるようになった／学びの面白さに気づいた）。
+     ハートアイコンと横並びの入れ子（flex-shrink:0）の中にいるため、
+     色帯を足すとアイコンの隣に出て意図とずれる。折り返し許可と字上げのみに留める */
   body.page-recruit .group-heading {
     white-space: normal !important;
     font-size: 18px !important;
+  }
+  /* 吹き出しバッジの見出し（経歴も、きっかけも、みんな違う。）。
+     SPでは nowrap のままだと画面幅に収まらないため折り返しを許可し、
+     バッジの丸みを保ったまま中央寄せで2行に落とす */
+  body.page-recruit .badge-heading {
+    white-space: normal !important;
+    text-align: center !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+  /* OJTボックス内の見出し（入社後のイメージ） */
+  body.page-recruit .box-heading {
+    white-space: normal !important;
+    font-size: 18px !important;
     width: 100% !important;
-    padding-left: 12px !important;
-    border-left: 4px solid #c55c47 !important;
   }
   body.page-recruit #staff-voice { flex-direction: column !important; padding: 40px 16px 60px !important; }
   body.page-recruit #staff-voice div[style*="display:flex; gap:16px; align-items:flex-start; width:100%"] { flex-direction: column !important; gap: 16px !important; }
