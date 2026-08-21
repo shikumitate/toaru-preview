@@ -1426,6 +1426,27 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit #culture div[style*="background-color:#c3a369"] { padding: 24px 16px !important; }
   body.page-recruit #culture div[style*="align-items:center; justify-content:center"] img { width: 20px !important; height: 20px !important; }
   body.page-recruit #culture div[style*="height:0; min-width:1px"] { display: none !important; }
+  /* ===== 見出しの階層を立てる（2026-08-22）=====
+     SPで直列スクロールすると各エリアのくくりが判別できないという指摘への対応。
+     文言は変えず、L1（セクション）とL2（グループ）の差を余白と装飾で作る。
+     L1: 上に区切り線＋大きめの余白で「ここから別の話」を示す
+     L2: 左の色帯でL1に従属していることを示す */
+  body.page-recruit .section-heading {
+    white-space: normal !important;
+    font-size: 24px !important;
+    line-height: 1.5 !important;
+    width: 100% !important;
+    padding-top: 24px !important;
+    border-top: 2px solid currentColor !important;
+    margin-bottom: 4px !important;
+  }
+  body.page-recruit .group-heading {
+    white-space: normal !important;
+    font-size: 18px !important;
+    width: 100% !important;
+    padding-left: 12px !important;
+    border-left: 4px solid #c55c47 !important;
+  }
   body.page-recruit #staff-voice { flex-direction: column !important; padding: 40px 16px 60px !important; }
   body.page-recruit #staff-voice div[style*="display:flex; gap:16px; align-items:flex-start; width:100%"] { flex-direction: column !important; gap: 16px !important; }
   body.page-recruit .staff-card { flex: none !important; width: 100% !important; min-width: 0; }
