@@ -1447,15 +1447,6 @@ body.page-recruit .sp-section-badge { display: none; }
     white-space: normal !important;
     font-size: 18px !important;
   }
-  /* 吹き出しバッジの見出し（経歴も、きっかけも、みんな違う。）。
-     SPでは nowrap のままだと画面幅に収まらないため折り返しを許可し、
-     バッジの丸みを保ったまま中央寄せで2行に落とす */
-  body.page-recruit .badge-heading {
-    white-space: normal !important;
-    text-align: center !important;
-    font-size: 16px !important;
-    line-height: 1.6 !important;
-  }
   /* OJTボックス内の見出し（入社後のイメージ） */
   body.page-recruit .box-heading {
     white-space: normal !important;
