@@ -1209,6 +1209,22 @@ body.page-recruit .sp-section-badge { display: none; }
     justify-content: flex-start !important;
   }
   body.page-service .note-article { width: 100% !important; height: auto !important; }
+  /* ===== 「最新のこころみ」SP軽量化（2026-08-22）=====
+     トップの「とあるの今」と同じ扱いに揃える（同じデータ源・同じdata-noteフックだが
+     ガワが2実装のため、片方だけ直すと見え方が食い違う）。 */
+  body.page-service .note-thumb-frame { display: none !important; }
+  body.page-service .note-article:nth-of-type(n+2) { display: none !important; }
+  body.page-service .note-article p[data-note-title] { height: auto !important; }
+  body.page-service .note-list-link {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 4px !important;
+  }
+  body.page-service .note-list-link > div:last-child { display: none !important; }
   body.page-service .activities-inner div[style*="align-items:flex-end"] { align-items: center !important; }
   body.page-service .activities-inner div[style*="border-radius:32px"] { align-self: center !important; }
   body.page-service .info-row { flex-direction: column; align-items: flex-start; gap: 4px; }
