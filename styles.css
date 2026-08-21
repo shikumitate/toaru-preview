@@ -652,6 +652,34 @@ body.page-recruit .staff-card {
   box-shadow: 4px 4px 0px 0px #0e2349;
 }
 
+/* 採用担当者からのメッセージ（横長カード）。
+   入社後の声の3枚並びの「外」に兄弟として置き、末尾で締める役割。
+   .staff-card を継承しつつ横並びに組み替える（flex:1 0 0 を打ち消して全幅を取る）。 */
+body.page-recruit .staff-card-wide {
+  flex: none;
+  width: 100%;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 24px;
+}
+body.page-recruit .staff-card-wide-media {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 260px;
+  flex-shrink: 0;
+}
+body.page-recruit .staff-card-wide-body {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-left: 1px solid #0e2349;
+  padding-left: 24px;
+}
+
 body.page-recruit .avatar-placeholder {
   background-color: #ccc;
   border-radius: 42px;
@@ -1385,6 +1413,10 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit #staff-voice { flex-direction: column !important; padding: 40px 16px 60px !important; }
   body.page-recruit #staff-voice div[style*="display:flex; gap:16px; align-items:flex-start; width:100%"] { flex-direction: column !important; gap: 16px !important; }
   body.page-recruit .staff-card { flex: none !important; width: 100% !important; min-width: 0; }
+  /* 横長カードはSPでは縦積みに戻す（写真行→本文の順）。左の仕切り線も横罫に置き換える */
+  body.page-recruit .staff-card-wide { flex-direction: column !important; gap: 16px !important; padding: 16px 24px !important; }
+  body.page-recruit .staff-card-wide-media { width: 100% !important; }
+  body.page-recruit .staff-card-wide-body { border-left: none !important; border-top: 1px solid #0e2349 !important; padding-left: 0 !important; padding-top: 16px !important; }
   body.page-recruit #staff-voice > div:last-child { flex: none !important; width: 100% !important; padding: 0 !important; align-items: flex-start !important; }
   body.page-recruit #staff-voice .btn-s { align-self: center !important; }
   body.page-recruit #want { flex-direction: column !important; padding: 40px 16px 60px !important; }
