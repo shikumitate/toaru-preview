@@ -1295,17 +1295,17 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .concept-section div[style*="display:flex; gap:32px; align-items:center; width:100%"] > div[style*="flex:1 0 0"] { order: 1; width: 100% !important; }
   body.page-about .company-section { width: 100% !important; min-height: unset !important; }
   body.page-about .company-bg-outer { inset: 0 !important; }
-  body.page-about .company-section > div[style*="left:0; top:-24px; width:240px"] {
+  body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] {
     display: flex !important; position: relative !important; left: auto !important; top: auto !important;
     width: 100% !important; height: auto !important; padding: 20px 20px 0 !important;
     justify-content: flex-start !important; align-items: flex-start !important;
   }
-  body.page-about .company-section > div[style*="left:0; top:-24px; width:240px"] > div:first-child { display: none !important; }
-  body.page-about .company-section > div[style*="left:0; top:-24px; width:240px"] > div:last-child {
+  body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] > div:first-child { display: none !important; }
+  body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] > div:last-child {
     position: relative !important; left: auto !important; top: auto !important;
     width: auto !important; height: auto !important; padding: 10px 20px !important; flex-direction: row !important;
   }
-  body.page-about .company-section > div[style*="left:0; top:-24px; width:240px"] > div:last-child p {
+  body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] > div:last-child p {
     writing-mode: horizontal-tb !important; font-size: 20px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
   }
   body.page-about .company-section > div[style*="margin-left:240px"] {
