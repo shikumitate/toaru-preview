@@ -7,31 +7,17 @@
 // フォールバック: 取得失敗・記事不足時はHTMLの静的カードをそのまま残す。
 //
 // サムネイル: note の RSS は記事によって <media:thumbnail> を持たない。
-//   その場合、HTMLベタ書きの静的画像（＝過去の別記事の絵）が残ると
-//   「最新記事なのに絵だけ古い」状態になるため、とあるのロゴに差し替える。
+//   その場合はロゴで穴埋めせず、写真欄ごと非表示にしてテキストだけのカードにする
+//   （2026-08-25・カズキタレビュー「写真ないことがあるなら削るの方が結局いい」）。
 // ============================================
 (function () {
   var cards = document.querySelectorAll('[data-note-card]');
   if (!cards.length) return;
 
-  // サムネなし記事用のプレースホルダ（ヘッダーと同じロゴマーク）
-  var LOGO_SRC = 'images/045fe9c1-6d6a-4776-a452-a813eab86640.jpg';
-  var LOGO_BG = '#ffffff'; // ロゴjpgが透過を持たず白地なので、余白も白で揃える
-
-  // 静的カードの img は「横長枠に合わせて絶対配置＋107%幅」で切り抜く前提。
-  // 正方形ロゴをその指定のまま入れると引き伸ばされるので、枠内に収める指定へ切り替える。
-  function showLogo(thumb) {
-    thumb.setAttribute('src', LOGO_SRC);
-    thumb.setAttribute('alt', 'とある株式会社');
-    thumb.style.position = 'absolute';
-    thumb.style.left = '0';
-    thumb.style.top = '0';
-    thumb.style.width = '100%';
-    thumb.style.height = '100%';
-    thumb.style.objectFit = 'contain';
-    thumb.style.padding = '8px';
-    thumb.style.boxSizing = 'border-box';
-    thumb.style.backgroundColor = LOGO_BG;
+  // サムネなし記事は写真欄（トップ=.news-card-thumb／事業案内=.note-thumb-frame）ごと消す
+  function hideThumbArea(thumb) {
+    var frame = thumb.closest('.news-card-thumb, .note-thumb-frame');
+    if (frame) frame.style.display = 'none';
   }
 
   fetch('/api/news')
@@ -53,11 +39,11 @@
         if (excerpt && item.excerpt) excerpt.textContent = item.excerpt + '…';
         if (thumb) {
           if (item.thumbnail) {
-            // 画像URLが死んでいた場合もロゴに退避する
-            thumb.onerror = function () { thumb.onerror = null; showLogo(thumb); };
+            // 画像URLが死んでいた場合も写真欄ごと畳む
+            thumb.onerror = function () { thumb.onerror = null; hideThumbArea(thumb); };
             thumb.setAttribute('src', item.thumbnail);
           } else {
-            showLogo(thumb); // サムネなし記事は古い静的画像を残さずロゴを出す
+            hideThumbArea(thumb); // サムネなし記事は写真欄ごと非表示（ロゴ穴埋めはしない）
           }
         }
 
