@@ -220,6 +220,26 @@ body.page-service .note-list {
   line-height: 1.6 !important;
 }
 
+/* 記事一覧リンクはPC・SPともテキストリンクにする（2026-08-30・Saori指示）。
+   カズキタレビュー「サイト内コンテンツはボタン、外部に飛ぶものはテキストリンクでもいい」。
+   noteは外部サイトなのでボタンの重量感を持たせない */
+body.page-index section#news .btn-s,
+body.page-service .note-list-link {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  height: auto !important;
+  padding: 0 !important;
+  width: auto !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+}
+body.page-index section#news .btn-s .btn-icon,
+body.page-service .note-list-link > div:last-child {
+  display: none !important;
+}
+
 /* ===== body.page-service 固有クラス（PCのみ）===== */
 
 body.page-service {
@@ -1267,16 +1287,7 @@ body.page-recruit .sp-section-badge { display: none; }
   /* 写真欄の非表示は共通ルール（上部 noteカードの軽量化）へ集約した（2026-08-30） */
   body.page-service .note-article:nth-of-type(n+2) { display: none !important; }
   body.page-service .note-article p[data-note-title] { height: auto !important; }
-  body.page-service .note-list-link {
-    background-color: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    height: auto !important;
-    padding: 0 !important;
-    text-decoration: underline !important;
-    text-underline-offset: 4px !important;
-  }
-  body.page-service .note-list-link > div:last-child { display: none !important; }
+  /* note-list-link のテキストリンク化は共通ルールへ移設した（2026-08-30） */
   body.page-service .activities-inner div[style*="align-items:flex-end"] { align-items: center !important; }
   body.page-service .activities-inner div[style*="border-radius:32px"] { align-self: center !important; }
   body.page-service .info-row { flex-direction: column; align-items: flex-start; gap: 4px; }
@@ -1588,15 +1599,32 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#news { width: 100% !important; }
   body.page-index section#news > div:first-child { width: 100% !important; }
   body.page-index section#news > div:first-child > div { width: 100% !important; }
-  body.page-index section#news > div:last-child { padding: 60px 16px 64px !important; align-items: center !important; }
-  body.page-index section#news > div:last-child > div:first-child { flex-direction: column !important; gap: 16px !important; align-items: center !important; text-align: center !important; width: 100% !important; }
+  /* 2026-08-30: SPも200px前後まで削る。上下124pxのpaddingが最大の要因だった */
+  body.page-index section#news > div:last-child { padding: 24px 16px 20px !important; align-items: center !important; gap: 14px !important; }
+  body.page-index section#news > div:last-child > div:first-child { flex-direction: column !important; gap: 6px !important; align-items: center !important; text-align: center !important; width: 100% !important; }
   body.page-index section#news > div:last-child > div:first-child > div:last-child { white-space: normal !important; text-align: center !important; }
   body.page-index section#news > div:last-child > div:last-child { width: 100% !important; align-items: center !important; }
-  body.page-index section#news > div:last-child > div:last-child > div:first-child { flex-direction: column !important; width: 100% !important; height: auto !important; gap: 20px !important; align-items: center !important; }
+  body.page-index section#news > div:last-child > div:last-child > div:first-child { flex-direction: column !important; width: 100% !important; height: auto !important; gap: 12px !important; align-items: center !important; }
   body.page-index section#news > div:last-child > div:last-child > div:first-child > div { width: 100% !important; max-width: 400px !important; flex-shrink: unset !important; }
   body.page-index section#news p[style*="white-space:nowrap"],
   body.page-index section#news p[style*="white-space: nowrap"] { white-space: normal !important; overflow: visible !important; text-overflow: unset !important; }
   body.page-index section#news div[style*="font-size:10px"] { font-size: 13px !important; }
+
+  /* 2026-08-30: SPを200px前後に収める。内訳は見出しブロック160px＋カード157pxが大半だった */
+  /* 見出し「とあるの今」を32px→24pxへ。SPではバッジ＋見出しで87px使っていた */
+  body.page-index section#news .news-heading { font-size: 24px !important; letter-spacing: 1.5px !important; }
+  /* リード文2行（65px）はSPでは冗長なので隠す。PCでは残す */
+  body.page-index section#news > div:last-child > div:first-child > div:last-child { display: none !important; }
+  /* カードのタイトルは1行に抑える（SPだけ2行になって157pxまで膨らんでいた） */
+  body.page-index section#news .news-card p[data-note-title] {
+    font-size: 16px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  body.page-index section#news .news-card > div:last-child { padding: 16px !important; gap: 6px !important; }
+  /* カードと記事一覧リンクの間隔40px→20px */
+  body.page-index section#news > div:last-child > div:last-child { gap: 20px !important; }
   /* ===== 「とあるの今」SP軽量化（2026-08-22）=====
      SP直列表示でこの塊が重くファーストビューを侵食していたため、位置は変えず中身を削る。
      写真をなくし、日付＋タイトルだけのプレーンな1枚に絞る。 */
@@ -1607,19 +1635,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#news .news-card:nth-of-type(n+2) { display: none !important; }
   /* 本文を削ったぶんタイトルの高さ固定（Figma由来）が余白として残るので解除する */
   body.page-index section#news .news-card p[data-note-title] { height: auto !important; }
-  /* 記事一覧リンクはボタンの重量感を抜いてテキストリンクにする */
-  body.page-index section#news .btn-s {
-    background-color: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    height: auto !important;
-    padding: 0 !important;
-    width: auto !important;
-    text-decoration: underline !important;
-    text-underline-offset: 4px !important;
-  }
-  body.page-index section#news .btn-s .btn-icon { display: none !important; }
+  /* 記事一覧リンクのテキストリンク化は共通ルールへ移設した（2026-08-30・PCも同じ扱い） */
   body.page-index section#about { height: auto !important; width: 100% !important; margin-top: 40px !important; margin-bottom: 40px !important; overflow: visible !important; }
   body.page-index section#about > div:first-child { display: none !important; }
   body.page-index section#about > div:last-child { position: relative !important; height: auto !important; left: 0 !important; top: 0 !important; width: 100% !important; padding: 0 16px !important; }
