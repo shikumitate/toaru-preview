@@ -180,18 +180,44 @@ nav.site-nav {
   max-width: none;
 }
 
-/* ===== noteカードのタイトル2行表示（2026-08-25・指示書T-1）=====
-   カズキタレビュー「タイトルが全部表示できることを優先して本文・冒頭は消しましょう」
-   「タイトルがもしかしたら2行分あってもいいかもしれない」。
-   インラインの nowrap+ellipsis(1行) を2行clampへ上書きする。PC・SP共通 */
+/* ===== noteカードの軽量化（2026-08-30・T-1やり直し）=====
+   目的は「塊を軽くしてファーストビューへの圧を抜く」。
+   8/25はタイトルを2行clampにしたが、これは高さを増やす方向で目的と逆だった
+   （PC実測 415px のまま変化なし）。PC・SP共通で高さを削る方針に統一する。
+
+   1. 写真欄を消す（PC 185px → 0）
+   2. タイトルは1行（インラインの nowrap+ellipsis をそのまま活かす）
+   3. カードの縦パディングを詰める
+   目標: PC 415px → 140〜200px（1/2〜1/3） */
+.news-card .news-card-thumb,
+.note-article .note-thumb-frame {
+  display: none !important;
+}
+/* PC用の固定高（Figma由来の415px）を解除して中身なりの高さにする */
+.news-list,
+body.page-service .note-list {
+  height: auto !important;
+}
+.news-card,
+.note-article {
+  height: auto !important;
+}
+/* 写真を消したぶん余白を調整。詰めすぎると薄い帯になって読みにくいので、
+   カード全体で140px前後（元の約1/3）に収まるようにする */
+.news-card > div:last-child,
+.note-article > div:last-child {
+  padding: 28px 24px !important;
+  gap: 12px !important;
+  /* カードの高さ固定を外したことで、この親の min-height:1px が効いて
+     中身（タイトル）が潰れてしまうため解除する */
+  min-height: auto !important;
+  flex: 0 0 auto !important;
+}
+/* タイトルは1行のまま。文字は本文より大きくして主役にする（カズキタ「タイトルを優先表示」） */
 .news-card p[data-note-title],
 .note-article p[data-note-title] {
-  white-space: normal !important;
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden !important;
+  font-size: 20px !important;
+  line-height: 1.6 !important;
 }
 
 /* ===== body.page-service 固有クラス（PCのみ）===== */
@@ -1238,7 +1264,7 @@ body.page-recruit .sp-section-badge { display: none; }
   /* ===== 「最新のこころみ」SP軽量化（2026-08-22）=====
      トップの「とあるの今」と同じ扱いに揃える（同じデータ源・同じdata-noteフックだが
      ガワが2実装のため、片方だけ直すと見え方が食い違う）。 */
-  body.page-service .note-thumb-frame { display: none !important; }
+  /* 写真欄の非表示は共通ルール（上部 noteカードの軽量化）へ集約した（2026-08-30） */
   body.page-service .note-article:nth-of-type(n+2) { display: none !important; }
   body.page-service .note-article p[data-note-title] { height: auto !important; }
   body.page-service .note-list-link {
@@ -1577,7 +1603,7 @@ body.page-recruit .sp-section-badge { display: none; }
   /* PC用の min-height:897px がSPでも下限として効き、中身を削っても高さが縮まないため解除する */
   body.page-index section#news { min-height: 0 !important; }
   body.page-index section#news .news-list { height: auto !important; width: 100% !important; }
-  body.page-index section#news .news-card-thumb { display: none !important; }
+  /* 写真欄の非表示は共通ルールへ集約した（2026-08-30） */
   body.page-index section#news .news-card:nth-of-type(n+2) { display: none !important; }
   /* 本文を削ったぶんタイトルの高さ固定（Figma由来）が余白として残るので解除する */
   body.page-index section#news .news-card p[data-note-title] { height: auto !important; }

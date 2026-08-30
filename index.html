@@ -143,7 +143,9 @@
     </section>
 
     <!-- ===== 2. News & Events ===== -->
-    <section id="news" style="position:relative; min-height:897px; width:1440px;">
+    <!-- 2026-08-30: min-height:897px（Figma由来の固定高）を解除。
+         カードを軽くしても高さが縮まず、軽量化の効果が出ていなかった -->
+    <section id="news" style="position:relative; width:1440px; padding-bottom:40px;">
       <!-- bg layer（フルブリード） -->
       <div style="position:absolute; bottom:0; top:0; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw));">
         <!-- bottom wave (rotated 180deg) -->
@@ -166,23 +168,17 @@
         </div>
       </div>
       <!-- inner content -->
-      <div style="position:relative; z-index:1; display:flex; flex-direction:column; gap:64px; align-items:center; padding:100px 0 60px 82px;">
+      <!-- 2026-08-30: カード軽量化に合わせて余白も縮める（gap64→40 / padding100,60→64,40） -->
+      <div style="position:relative; z-index:1; display:flex; flex-direction:column; gap:40px; align-items:center; padding:64px 0 40px 82px;">
         <!-- title row -->
         <div style="display:flex; gap:40px; align-items:center; position:relative; flex-shrink:0; width:100%;">
-          <!-- mainTitle composite (「今」「とあるの」images) -->
-          <div style="height:122px; position:relative; flex-shrink:0; width:294px;">
-            <!-- 「今」image -->
-            <div style="position:absolute; height:122px; left:173px; top:0; width:120px; overflow:hidden;">
-              <img alt="" src="images/a34247a6-8326-4225-b03b-c8a361314963.png" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover;" />
+          <!-- mainTitle（2026-08-30: 画像2枚の組み合わせ122pxをテキスト見出しに置き換え。
+               「見出しのデザイン的重みが大きすぎてファーストビューを侵食している」への対応 -->
+          <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-start; flex-shrink:0;">
+            <div style="background-color:#c55c47; border:1px solid #0e2349; border-radius:16px; height:28px; width:170px; display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:'Roboto',sans-serif; font-weight:500; font-size:11px; color:#0e2349; letter-spacing:3.3px; text-transform:uppercase; white-space:nowrap;">News &amp; Events</span>
             </div>
-            <!-- subTitle badge -->
-            <div style="position:absolute; background-color:#c55c47; border:1px solid #0e2349; border-radius:16px; height:28px; left:0; top:10px; width:170px; overflow:hidden;">
-              <div style="position:absolute; top:14px; left:calc(50% - 61px); transform:translateY(-50%); font-family:'Roboto',sans-serif; font-weight:500; font-size:11px; color:#0e2349; letter-spacing:3.3px; text-transform:uppercase; white-space:nowrap;">News &amp; Events</div>
-            </div>
-            <!-- 「とあるの」image -->
-            <div style="position:absolute; height:114px; left:-7px; top:33px; width:200px; overflow:hidden;">
-              <img alt="" src="images/943cf5b7-1c00-4e5a-94f0-4c49999aad06.png" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover;" />
-            </div>
+            <h2 class="news-heading" style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:32px; color:#0e2349; line-height:1.6; letter-spacing:2.56px; white-space:nowrap; margin:0; font-feature-settings:'pkna' 1,'palt' 1;">とあるの今</h2>
           </div>
           <!-- catchcopy -->
           <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; color:#0e2349; letter-spacing:1.44px; white-space:nowrap; font-feature-settings:'pkna' 1,'palt' 1; flex-shrink:0;">
