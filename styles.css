@@ -1,3 +1,21 @@
+/* ===== 見出しタグの初期化（2026-08-30・見出し構造設計）=====
+   h1〜h4 を意味づけのために付けた。見た目はインラインstyleが担うので、
+   ブラウザ既定の余白・サイズ・太さは無効化して現状の見え方を変えない */
+h1, h2, h3, h4 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+/* 画像でしか表現されていないページタイトル等に、読み上げ・検索用の実テキストを持たせる */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { min-width: 1440px; background-color: #fff; font-family: 'Noto Sans JP', sans-serif; }
 img { display: block; max-width: 100%; }
@@ -686,7 +704,8 @@ body.page-recruit .cat-badge {
   justify-content: center;
   filter: drop-shadow(4px 4px 0px #0e2349);
 }
-body.page-recruit .cat-badge p {
+body.page-recruit .cat-badge p,
+body.page-recruit .cat-badge h2 {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
   font-size: 40px;
@@ -1334,7 +1353,8 @@ body.page-recruit .sp-section-badge { display: none; }
     position: relative !important; left: auto !important; top: auto !important;
     width: auto !important; height: auto !important; padding: 10px 20px !important; flex-direction: row !important;
   }
-  body.page-about .concept-section > div[style*="left:0; top:100px; width:240px"] > div:last-child p {
+  body.page-about .concept-section > div[style*="left:0; top:100px; width:240px"] > div:last-child p,
+  body.page-about .concept-section > div[style*="left:0; top:100px; width:240px"] > div:last-child h2 {
     writing-mode: horizontal-tb !important; font-size: 20px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
   }
   body.page-about .concept-section > div[style*="left:245px"] {
@@ -1368,7 +1388,8 @@ body.page-recruit .sp-section-badge { display: none; }
     position: relative !important; left: auto !important; top: auto !important;
     width: auto !important; height: auto !important; padding: 10px 20px !important; flex-direction: row !important;
   }
-  body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] > div:last-child p {
+  body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] > div:last-child p,
+  body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] > div:last-child h2 {
     writing-mode: horizontal-tb !important; font-size: 20px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
   }
   body.page-about .company-section > div[style*="margin-left:240px"] {
@@ -1415,7 +1436,8 @@ body.page-recruit .sp-section-badge { display: none; }
     position: relative !important; left: auto !important; top: auto !important;
     width: auto !important; height: auto !important; padding: 10px 20px !important; flex-direction: row !important;
   }
-  body.page-about .location-section > div[style*="left:80px; top:100px; width:200px"] > div:last-child p {
+  body.page-about .location-section > div[style*="left:80px; top:100px; width:200px"] > div:last-child p,
+  body.page-about .location-section > div[style*="left:80px; top:100px; width:200px"] > div:last-child h2 {
     writing-mode: horizontal-tb !important; font-size: 20px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
   }
   body.page-about .location-section > div[style*="left:280px; top:100px"] {
