@@ -233,69 +233,55 @@ nav.site-nav {
   max-width: none;
 }
 
-/* ===== noteカードの軽量化（2026-08-30・T-1やり直し）=====
-   目的は「塊を軽くしてファーストビューへの圧を抜く」。
-   8/25はタイトルを2行clampにしたが、これは高さを増やす方向で目的と逆だった
-   （PC実測 415px のまま変化なし）。PC・SP共通で高さを削る方針に統一する。
-
-   1. 写真欄を消す（PC 185px → 0）
-   2. タイトルは1行（インラインの nowrap+ellipsis をそのまま活かす）
-   3. カードの縦パディングを詰める
-   目標: PC 415px → 140〜200px（1/2〜1/3） */
-.news-card .news-card-thumb,
-.note-article .note-thumb-frame {
-  display: none !important;
+/* ===== note記事リスト（2026-09-02・カズキタレビュー）=====
+   「noteのカードが幼い・何のカードか分からない」→ 写真がないと成立しないカード型を
+   やめ、1つの地の上に「日付＋タイトル」を1行ずつ並べて下線で区切る＝リンク一覧として
+   読める形にする。トップ（とあるの今）と事業案内（最新のこころみ）で共用。
+   データ流し込み（js/note.js）は [data-note-card] [data-note-date] [data-note-title]
+   のフックだけを見るので、構造を変えてもそのまま動く */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  width: 1040px;
+  box-sizing: border-box;
+  padding: 8px 40px;
+  border: 1px solid #0e2349;
+  border-radius: 16px;
+  background-image: url('images/18e3d430-6052-41fe-91ae-8a8836f75e1e.png');
+  background-size: 16px 16px;
+  background-position: top left;
+  color: #0e2349;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-feature-settings: 'pkna' 1, 'palt' 1;
 }
-/* PC用の固定高（Figma由来の415px）を解除して中身なりの高さにする */
-.news-list,
-body.page-service .note-list {
-  height: auto !important;
+body.page-service .news-list {
+  background-image: url('images/f8cabe11-f9d6-40be-b35d-9b5cad4b4a53.png');
 }
-.news-card,
-.note-article {
-  height: auto !important;
+.news-row {
+  display: flex;
+  align-items: baseline;
+  gap: 32px;
+  padding: 22px 0;
+  border-bottom: 1px solid #0e2349;
+  cursor: pointer;
 }
-/* タイトルの行数（1行/2行）でカードの高さが揃わないため、行を伸ばして頭を揃える
-   （2026-09-01。PCは3枚横並びなので高さの不揃いが目立つ） */
-.news-list,
-body.page-service .note-list {
-  align-items: stretch !important;
+.news-row-date {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  line-height: 1.6;
 }
-/* 写真を消したぶん余白を調整。詰めすぎると薄い帯になって読みにくいので、
-   カード全体で140px前後（元の約1/3）に収まるようにする */
-.news-card > div:last-child,
-.note-article > div:last-child {
-  padding: 28px 24px !important;
-  gap: 12px !important;
-  /* カードの高さ固定を外したことで、この親の min-height:1px が効いて
-     中身（タイトル）が潰れてしまうため解除する。
-     2026-09-01: カードを stretch で揃えたので、中の面も伸びて隙間を埋めるようにする */
-  min-height: auto !important;
-  flex: 1 0 auto !important;
+.news-row-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1.44px;
+  line-height: 1.6;
+  text-underline-offset: 4px;
 }
-/* タイトルは本文より大きくして主役にする（カズキタ「タイトルを優先表示」）。
-   2026-09-01: PCで途中で切れて読めないという指摘（Saori）に対応し、
-   nowrap+ellipsis をやめて折り返し表示にする。2行までで頭打ちにして
-   カード間の高さのばらつきを抑える */
-.news-card p[data-note-title],
-.note-article p[data-note-title] {
-  font-size: 20px !important;
-  line-height: 1.6 !important;
-  white-space: normal !important;
-  text-overflow: clip !important;
-  display: -webkit-box !important;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden !important;
-}
-/* 日付が10pxで小さすぎるという指摘（2026-09-01 Saori）。PC/SPとも本文並みに上げる */
-.news-card p[data-note-date],
-.note-article p[data-note-date],
-.news-card div:has(> p[data-note-date]),
-.note-article div:has(> p[data-note-date]) {
-  font-size: 14px !important;
-  letter-spacing: 0.8px !important;
-}
+.news-row:hover .news-row-title { text-decoration: underline; }
+/* 最下部の行には線を引かない（2026-09-02 Saori。地の枠と二重になる） */
+.news-row:last-child { border-bottom: none; }
 
 /* 記事一覧リンクはPC・SPともテキストリンクにする（2026-08-30・Saori指示）。
    カズキタレビュー「サイト内コンテンツはボタン、外部に飛ぶものはテキストリンクでもいい」。
@@ -311,10 +297,6 @@ body.page-service .note-list-link {
   width: auto !important;
   text-decoration: underline !important;
   text-underline-offset: 4px !important;
-}
-body.page-index section#news .btn-s .btn-icon,
-body.page-service .note-list-link > div:last-child {
-  display: none !important;
 }
 
 /* ===== body.page-service 固有クラス（PCのみ）===== */
@@ -560,28 +542,6 @@ body.page-service .activities-cards {
   border-radius: 16px;
   flex-shrink: 0;
   width: 100%;
-}
-
-body.page-service .note-list {
-  display: flex;
-  height: 415px;
-  align-items: flex-start;
-  justify-content: space-between;
-  position: relative;
-  flex-shrink: 0;
-  width: 1040px;
-}
-
-body.page-service .note-article {
-  border: 1px solid #0e2349;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow: clip;
-  position: relative;
-  border-radius: 16px;
-  flex-shrink: 0;
-  width: 330px;
 }
 
 body.page-service .info-row {
@@ -1440,21 +1400,6 @@ body.page-recruit .sp-section-badge { display: none; }
   }
   body.page-service .activities-cards .card-item h4,
   body.page-service .activities-cards .card-item div[style*="text-align:center"] { text-align: left !important; }
-  body.page-service .note-list {
-    flex-direction: column !important;
-    height: auto !important;
-    width: 100% !important;
-    gap: 16px !important;
-    justify-content: flex-start !important;
-  }
-  body.page-service .note-article { width: 100% !important; height: auto !important; }
-  /* ===== 「最新のこころみ」SP軽量化（2026-08-22）=====
-     トップの「とあるの今」と同じ扱いに揃える（同じデータ源・同じdata-noteフックだが
-     ガワが2実装のため、片方だけ直すと見え方が食い違う）。 */
-  /* 写真欄の非表示は共通ルール（上部 noteカードの軽量化）へ集約した（2026-08-30） */
-  body.page-service .note-article:nth-of-type(n+2) { display: none !important; }
-  body.page-service .note-article p[data-note-title] { height: auto !important; }
-  /* note-list-link のテキストリンク化は共通ルールへ移設した（2026-08-30） */
   body.page-service .activities-inner div[style*="align-items:flex-end"] { align-items: center !important; }
   body.page-service .activities-inner div[style*="border-radius:32px"] { align-self: center !important; }
   /* 2026-09-01 Saori: 項目と中身が改行になって縦に伸びていたため、SPでも1行に並べる。
@@ -1779,30 +1724,20 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#news > div:first-child > div { width: 100% !important; }
   /* 2026-08-30: SPも200px前後まで削る。上下124pxのpaddingが最大の要因だった */
   body.page-index section#news > div:last-child { padding: 24px 16px 20px !important; align-items: center !important; gap: 14px !important; }
-  /* 2026-08-30 Saori指摘: 見出しブロックがまだ縦に長い → バッジと「とあるの今」を横1行に（事業案内と同じ型） */
+  /* 2026-09-02 カズキタレビュー: SPは上から NEWS&EVENTSラベル → とあるの今 → リード文 の縦積み
+     （8/30の「バッジと見出しを横1行」は取り下げ） */
   body.page-index section#news > div:last-child > div:first-child { flex-direction: column !important; gap: 10px !important; align-items: flex-start !important; text-align: left !important; width: 100% !important; }
-  body.page-index section#news > div:last-child > div:first-child > div:first-child { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
+  body.page-index section#news > div:last-child > div:first-child > div:first-child { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
   body.page-index section#news > div:last-child > div:first-child > div:last-child { white-space: normal !important; text-align: center !important; }
   body.page-index section#news > div:last-child > div:last-child { width: 100% !important; align-items: center !important; }
-  body.page-index section#news > div:last-child > div:last-child > div:first-child { flex-direction: column !important; width: 100% !important; height: auto !important; gap: 12px !important; align-items: center !important; }
-  body.page-index section#news > div:last-child > div:last-child > div:first-child > div { width: 100% !important; max-width: 400px !important; flex-shrink: unset !important; }
   body.page-index section#news p[style*="white-space:nowrap"],
   body.page-index section#news p[style*="white-space: nowrap"] { white-space: normal !important; overflow: visible !important; text-overflow: unset !important; }
-  body.page-index section#news div[style*="font-size:10px"] { font-size: 12px !important; }
 
   /* 2026-08-30: SPを200px前後に収める。内訳は見出しブロック160px＋カード157pxが大半だった */
   /* 見出し「とあるの今」を32px→24pxへ。SPではバッジ＋見出しで87px使っていた */
   body.page-index section#news .news-heading { letter-spacing: 1.5px !important; }
   /* リード文はSPでも1行で出す（Saori: SPだと何の情報か分からない） */
   body.page-index section#news > div:last-child > div:first-child > div:last-child { display: block !important; font-size: 15px !important; line-height: 1.6 !important; text-align: left !important; white-space: normal !important; }
-  /* カードのタイトルは1行に抑える（SPだけ2行になって157pxまで膨らんでいた） */
-  body.page-index section#news .news-card p[data-note-title] {
-    font-size: 18px !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-  }
-  body.page-index section#news .news-card > div:last-child { padding: 16px !important; gap: 6px !important; }
   /* カードと記事一覧リンクの間隔40px→20px */
   body.page-index section#news > div:last-child > div:last-child { gap: 20px !important; }
   /* ===== 「とあるの今」SP軽量化（2026-08-22）=====
@@ -1810,17 +1745,42 @@ body.page-recruit .sp-section-badge { display: none; }
      写真をなくし、日付＋タイトルだけのプレーンな1枚に絞る。 */
   /* PC用の min-height:897px がSPでも下限として効き、中身を削っても高さが縮まないため解除する */
   body.page-index section#news { min-height: 0 !important; }
-  body.page-index section#news .news-list { height: auto !important; width: 100% !important; }
-  /* 写真欄の非表示は共通ルールへ集約した（2026-08-30） */
-  body.page-index section#news .news-card:nth-of-type(n+2) { display: none !important; }
-  /* 本文を削ったぶんタイトルの高さ固定（Figma由来）が余白として残るので解除する */
-  body.page-index section#news .news-card p[data-note-title] { height: auto !important; }
+  /* ===== note記事リスト SP（トップ・事業案内 共用）=====
+     PCと同じリスト型。SPは1件だけ出す（カズキタ「スマホは1行のまま」） */
+  .news-list { width: 100% !important; padding: 4px 16px !important; }
+  .news-row { flex-direction: column !important; gap: 4px !important; padding: 14px 0 !important; }
+  .news-row:nth-child(n+2) { display: none !important; }
+  .news-row:first-child { border-bottom: none !important; }
+  .news-row-date { font-size: 12px !important; }
+  .news-row-title { font-size: 18px !important; }
   /* 記事一覧リンクのテキストリンク化は共通ルールへ移設した（2026-08-30・PCも同じ扱い） */
   body.page-index section#about { height: auto !important; width: 100% !important; margin-top: 40px !important; margin-bottom: 40px !important; overflow: visible !important; }
   body.page-index section#about > div:first-of-type { display: none !important; }
   body.page-index section#about > div:last-child { position: relative !important; height: auto !important; left: 0 !important; top: 0 !important; width: 100% !important; padding: 0 16px !important; }
   body.page-index section#about > div:last-child > div:first-child { position: relative !important; height: auto !important; left: 0 !important; top: 0 !important; width: 100% !important; display: none !important; }
-  body.page-index section#about > div:last-child > div:nth-child(2) { position: relative !important; height: 240px !important; left: 0 !important; top: 0 !important; width: 100% !important; overflow: hidden !important; border-radius: 16px !important; }
+  /* 2026-09-02 Saori: SPは「みんなが写っている真四角の写真」だけにする。
+     背面の縦写真（2人・回転）は消し、前面の正方形写真を全幅の正方形で出す */
+  body.page-index section#about > div:last-child > div:nth-child(2) { position: relative !important; height: auto !important; aspect-ratio: 1 / 1 !important; left: 0 !important; top: 0 !important; width: 100% !important; overflow: hidden !important; border-radius: 16px !important; }
+  body.page-index section#about > div:last-child > div:nth-child(2) > div:first-child { display: none !important; }
+  body.page-index section#about > div:last-child > div:nth-child(2) > div:last-child { position: absolute !important; inset: 0 !important; left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; border-radius: 16px !important; }
+  /* 2026-09-02 Saori: SPの並びを タイトル → 写真 → 文章 → ボタン にする。
+     PCではテキスト領域（タイトル＋文章＋ボタン）が1つの箱なので、SPでは箱をほどいて
+     （display:contents）カード直下のflexアイテムにし、order で並べ替える */
+  body.page-index section#about > div:last-child > div:last-child { display: contents !important; }
+  body.page-index section#about > div:last-child > div:last-child > div:first-child { display: contents !important; }
+  /* タイトル画像 */
+  body.page-index section#about > div:last-child > div:last-child > div:first-child > div:first-child {
+    order: 1; position: relative !important; width: 320px !important; max-width: 100% !important; height: 132px !important;
+    margin: 24px auto 20px !important;
+  }
+  /* 写真 */
+  body.page-index section#about > div:last-child > div:nth-child(2) { order: 2; }
+  /* 文章 */
+  body.page-index section#about > div:last-child > div:last-child > div:first-child > div:last-child {
+    order: 3; width: 100% !important; margin: 24px 0 0 !important; padding: 0 4px !important;
+  }
+  /* ボタン */
+  body.page-index section#about a.btn-s { order: 4; margin: 24px 0 28px !important; }
   body.page-index section#about > div:last-child > div:last-child { position: relative !important; left: 0 !important; top: 0 !important; width: 100% !important; padding: 24px 20px !important; align-items: center !important; margin-top: 16px !important; }
   body.page-index section#about > div:last-child > div:last-child div[style*="text-align:center"],
   body.page-index section#about > div:last-child > div:last-child div[style*="text-align: center"] { text-align: left !important; width: 100% !important; }
@@ -1911,13 +1871,7 @@ body.page-recruit .sp-section-badge { display: none; }
   /* --- 段から外す例外 --- */
   /* noteカードのタイトルは「とあるの今／最新のこころみ」の主役。中(18px)を保つ
      （共通層で20px指定しているのをSPの段に合わせる） */
-  .news-card p[data-note-title],
-  .note-article p[data-note-title] { font-size: 18px !important; }
-  /* noteカードの日付は小 */
-  .news-card p[data-note-date],
-  .note-article p[data-note-date],
-  .news-card div:has(> p[data-note-date]),
-  .note-article div:has(> p[data-note-date]) { font-size: 12px !important; }
+
   /* 巨大な装飾英字（Apply / Activities 等・PC 90px）は装飾なので段の外 */
   body [style*="font-size:90px"] { font-size: 32px !important; }
 
