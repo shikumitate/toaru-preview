@@ -354,7 +354,7 @@ body.page-service .service-section {
   flex-shrink: 0;
 }
 body.page-service .service--01 {
-  min-height: 2346px;
+  min-height: 2900px; /* 2026-09-01: 施設概要をサービス別に増行（中身の底2782px＋余白） */
   width: 1440px;
 }
 body.page-service .service--02 {
