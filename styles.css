@@ -1,12 +1,21 @@
-/* ===== 見出しタグの初期化（2026-08-30・見出し構造設計）=====
-   h1〜h4 を意味づけのために付けた。見た目はインラインstyleが担うので、
-   ブラウザ既定の余白・サイズ・太さは無効化して現状の見え方を変えない */
+/* ===== 見出しの階層とサイズ（2026-09-01改訂）=====
+   2026-08-30版はタグだけ付けてサイズはインラインstyle任せだったため、
+   同じ階層でもページごとにサイズがバラバラだった（H2が40/32/24px、
+   recruitのH3(32px)がserviceのH2(32px)と同サイズで階層が逆転）。
+   → サイズだけを階層で共通化する。**揃え（中央/左）はページの
+   デザインの考え方が異なるため統一しない**（2026-09-01 Saori判断）。
+
+   PC:  H1 40 / H2 40 / H3 32 / H4 20
+   SP:  H1 28 / H2 24 / H3 20 / H4 18   */
 h1, h2, h3, h4 {
   margin: 0;
-  font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
 }
+h1 { font-size: 40px; }
+h2 { font-size: 40px; }
+h3 { font-size: 32px; }
+h4 { font-size: 20px; }
 .sp-dot { display: none; }
 /* 画像でしか表現されていないページタイトル等に、読み上げ・検索用の実テキストを持たせる */
 .visually-hidden {
@@ -221,6 +230,12 @@ body.page-service .note-list {
 .note-article {
   height: auto !important;
 }
+/* タイトルの行数（1行/2行）でカードの高さが揃わないため、行を伸ばして頭を揃える
+   （2026-09-01。PCは3枚横並びなので高さの不揃いが目立つ） */
+.news-list,
+body.page-service .note-list {
+  align-items: stretch !important;
+}
 /* 写真を消したぶん余白を調整。詰めすぎると薄い帯になって読みにくいので、
    カード全体で140px前後（元の約1/3）に収まるようにする */
 .news-card > div:last-child,
@@ -228,15 +243,33 @@ body.page-service .note-list {
   padding: 28px 24px !important;
   gap: 12px !important;
   /* カードの高さ固定を外したことで、この親の min-height:1px が効いて
-     中身（タイトル）が潰れてしまうため解除する */
+     中身（タイトル）が潰れてしまうため解除する。
+     2026-09-01: カードを stretch で揃えたので、中の面も伸びて隙間を埋めるようにする */
   min-height: auto !important;
-  flex: 0 0 auto !important;
+  flex: 1 0 auto !important;
 }
-/* タイトルは1行のまま。文字は本文より大きくして主役にする（カズキタ「タイトルを優先表示」） */
+/* タイトルは本文より大きくして主役にする（カズキタ「タイトルを優先表示」）。
+   2026-09-01: PCで途中で切れて読めないという指摘（Saori）に対応し、
+   nowrap+ellipsis をやめて折り返し表示にする。2行までで頭打ちにして
+   カード間の高さのばらつきを抑える */
 .news-card p[data-note-title],
 .note-article p[data-note-title] {
   font-size: 20px !important;
   line-height: 1.6 !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden !important;
+}
+/* 日付が10pxで小さすぎるという指摘（2026-09-01 Saori）。PC/SPとも本文並みに上げる */
+.news-card p[data-note-date],
+.note-article p[data-note-date],
+.news-card div:has(> p[data-note-date]),
+.note-article div:has(> p[data-note-date]) {
+  font-size: 14px !important;
+  letter-spacing: 0.8px !important;
 }
 
 /* 記事一覧リンクはPC・SPともテキストリンクにする（2026-08-30・Saori指示）。
@@ -470,15 +503,17 @@ body.page-service .horei-columns {
   width: 100%;
 }
 
+/* 2026-09-01: 絶対配置＋親の min-height:1371px で高さを固定していたため、
+   noteカードを軽量化したぶんがそのまま下の余白になっていた（Saori指摘）。
+   通常フローに戻して中身なりの高さにする */
 body.page-service .activities-inner {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 64px;
   align-items: flex-end;
   justify-content: center;
-  left: 82px;
-  top: 100px;
+  margin: 100px 0 100px 82px;
   width: 1040px;
 }
 
@@ -1033,6 +1068,9 @@ body.page-recruit .sp-section-badge { display: none; }
 
 /* ===== SP（max-width: 768px）===== */
 @media (max-width: 768px) {
+  /* 見出しサイズSPの正本はこのメディアクエリ末尾の「SP文字サイズの段」ブロック。
+     ここには置かない（2026-09-01に段の設計へ統合） */
+
   /* ===== グローバルSP ===== */
   body { min-width: unset; overflow-x: hidden; padding-top: 100px; }
   nav.site-nav, div.site-nav, nav#site-nav, #site-nav { display: none !important; }
@@ -1154,7 +1192,7 @@ body.page-recruit .sp-section-badge { display: none; }
     top: auto !important;
     width: 100% !important;
   }
-  body.page-service .fv-headline { font-size: 26px !important; white-space: normal !important; }
+  body.page-service .fv-headline { font-size: 30px !important; white-space: normal !important; }
   /* FVコラージュ: 固定サイズの2枚（縦横比1:1維持・ビューポート幅に依存しない） */
   body.page-service .fv-media {
     position: relative !important;
@@ -1195,7 +1233,7 @@ body.page-recruit .sp-section-badge { display: none; }
     margin: 20px auto 0;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 26px;
     color: #0e2349;
     letter-spacing: 2px;
     text-align: center;
@@ -1212,7 +1250,9 @@ body.page-recruit .sp-section-badge { display: none; }
     gap: 32px !important;
   }
   body.page-service .intro-headline {
-    font-size: 22px !important;
+    /* セクションのリード文。22pxだとH2(22px)と同格に見えて階層が読めないため中(18px)へ
+       （2026-09-01・SP文字サイズの段） */
+    font-size: 21px !important;
     white-space: normal !important;
     text-align: center !important;
     align-self: center !important;
@@ -1282,6 +1322,7 @@ body.page-recruit .sp-section-badge { display: none; }
     position: relative !important;
     left: auto !important;
     top: auto !important;
+    margin: 0 !important;
     width: 100% !important;
     padding: 32px 16px 32px !important;
     align-items: flex-start !important;
@@ -1328,9 +1369,9 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-service .activities-inner div[style*="border-radius:32px"] { align-self: center !important; }
   body.page-service .info-row { flex-direction: column; align-items: flex-start; gap: 4px; }
   body.page-service .info-label { width: auto; }
-  body.page-service .section-content ul[style*="white-space:nowrap"] { white-space: normal !important; font-size: 16px !important; }
+  body.page-service .section-content ul[style*="white-space:nowrap"] { white-space: normal !important; font-size: 15px !important; }
   body.page-service .horei-columns { flex-direction: column !important; gap: 8px !important; }
-  body.page-service .horei-columns ul { flex: none !important; width: 100% !important; font-size: 16px !important; }
+  body.page-service .horei-columns ul { flex: none !important; width: 100% !important; font-size: 15px !important; }
   body.page-service .section-content div[style*="white-space:nowrap"][style*="letter-spacing:1.44px"] { white-space: normal !important; }
   body.page-service .services-root div[style*="flex:1 0 0; height:0; min-width:1px"] { display: none !important; }
 
@@ -1350,7 +1391,7 @@ body.page-recruit .sp-section-badge { display: none; }
   /* FV: コピー（文章）→ 画像の順。写真はビューポート幅に依存しない固定サイズ */
   body.page-about .fv-inner { flex-direction: column !important; width: 100% !important; gap: 0 !important; padding: 0 !important; align-items: center !important; }
   body.page-about .fv-inner > div:first-child { width: 100% !important; padding: 24px 20px 8px !important; order: 1; }
-  body.page-about .fv-inner > div:first-child > div:first-child { width: 100% !important; font-size: 28px !important; }
+  body.page-about .fv-inner > div:first-child > div:first-child { width: 100% !important; font-size: 30px !important; }
   body.page-about .fv-inner > div:first-child > div:last-child { width: 100% !important; }
   body.page-about .fv-inner > div:last-child {
     width: 320px !important; height: 320px !important; flex-shrink: 0 !important;
@@ -1372,7 +1413,7 @@ body.page-recruit .sp-section-badge { display: none; }
   }
   body.page-about .concept-section > div[style*="left:0; top:100px; width:240px"] > div:last-child p,
   body.page-about .concept-section > div[style*="left:0; top:100px; width:240px"] > div:last-child h2 {
-    writing-mode: horizontal-tb !important; font-size: 20px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
+    writing-mode: horizontal-tb !important; font-size: 26px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
   }
   body.page-about .concept-section > div[style*="left:245px"] {
     position: relative !important; left: auto !important; top: auto !important;
@@ -1407,7 +1448,7 @@ body.page-recruit .sp-section-badge { display: none; }
   }
   body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] > div:last-child p,
   body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] > div:last-child h2 {
-    writing-mode: horizontal-tb !important; font-size: 20px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
+    writing-mode: horizontal-tb !important; font-size: 26px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
   }
   body.page-about .company-section > div[style*="margin-left:240px"] {
     margin-left: 0 !important; margin-top: 0 !important; width: 100% !important; padding: 24px 20px !important;
@@ -1435,11 +1476,11 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .company-section div[style*="display:flex; align-items:flex-start; flex-shrink:0; color:white; width:100%"] {
     flex-direction: column !important; gap: 4px !important; align-items: flex-start !important;
   }
-  body.page-about .company-section div[style*="width:160px"] { width: 100% !important; font-weight: 600 !important; font-size: 14px !important; }
+  body.page-about .company-section div[style*="width:160px"] { width: 100% !important; font-weight: 600 !important; font-size: 15px !important; }
   body.page-about .company-section div[style*="display:flex; align-items:center; flex-shrink:0; color:white; width:100%"] > p,
   body.page-about .company-section div[style*="display:flex; align-items:flex-start; flex-shrink:0; color:white; width:100%"] > p,
   body.page-about .company-section div[style*="display:flex; align-items:flex-start; flex-shrink:0; color:white; width:100%"] > ul {
-    flex: none !important; width: 100% !important; font-size: 16px !important;
+    flex: none !important; width: 100% !important; font-size: 15px !important;
   }
   body.page-about .location-section { width: 100% !important; height: auto !important; margin-top: 0 !important; }
   body.page-about .location-section [style*="rotate(90deg)"] { display: none !important; }
@@ -1455,7 +1496,7 @@ body.page-recruit .sp-section-badge { display: none; }
   }
   body.page-about .location-section > div[style*="left:80px; top:100px; width:200px"] > div:last-child p,
   body.page-about .location-section > div[style*="left:80px; top:100px; width:200px"] > div:last-child h2 {
-    writing-mode: horizontal-tb !important; font-size: 20px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
+    writing-mode: horizontal-tb !important; font-size: 26px !important; width: auto !important; letter-spacing: 4px !important; line-height: 1.4 !important;
   }
   body.page-about .location-section > div[style*="left:280px; top:100px"] {
     position: relative !important; left: auto !important; top: auto !important; width: 100% !important; padding: 24px 20px !important;
@@ -1489,9 +1530,9 @@ body.page-recruit .sp-section-badge { display: none; }
     position: relative !important; top: 0 !important; left: 0 !important; right: 0 !important;
     width: 100% !important; transform: none !important; padding: 32px 20px 0 !important; gap: 24px !important;
   }
-  body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:40px"] { font-size: 28px !important; }
+  body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:40px"] { font-size: 30px !important; }
   body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:20px"] { font-size: 15px !important; line-height: 1.8 !important; }
-  body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:18px"] { font-size: 14px !important; }
+  body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:18px"] { font-size: 15px !important; }
   body.page-recruit .sp-section-badge {
     display: flex;
     align-items: center;
@@ -1502,7 +1543,7 @@ body.page-recruit .sp-section-badge { display: none; }
     padding: 8px 20px;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 26px;
     color: #0e2349;
     letter-spacing: 2px;
     align-self: flex-start;
@@ -1535,11 +1576,8 @@ body.page-recruit .sp-section-badge { display: none; }
      L2: 左の色帯でL1に従属していることを示す */
   body.page-recruit .section-heading {
     white-space: normal !important;
-    font-size: 24px !important;
     line-height: 1.5 !important;
     width: 100% !important;
-    padding-top: 24px !important;
-    border-top: 2px solid currentColor !important;
     margin-bottom: 4px !important;
   }
   /* グループ見出し（自分らしくいられるようになった／学びの面白さに気づいた）。
@@ -1547,6 +1585,7 @@ body.page-recruit .sp-section-badge { display: none; }
      色帯を足すとアイコンの隣に出て意図とずれる。折り返し許可と字上げのみに留める */
   body.page-recruit .group-heading {
     white-space: normal !important;
+    /* H4相当の小見出し（2026-09-01・一度21pxへ上げたのを差し戻し） */
     font-size: 18px !important;
   }
   /* OJTボックス内の見出し（入社後のイメージ）。
@@ -1554,7 +1593,6 @@ body.page-recruit .sp-section-badge { display: none; }
      section-heading のような上の区切り線は付けない（箱自体が区切りになっている） */
   body.page-recruit .box-heading {
     white-space: normal !important;
-    font-size: 24px !important;
     line-height: 1.5 !important;
     width: 100% !important;
   }
@@ -1650,16 +1688,16 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#news > div:last-child > div:last-child > div:first-child > div { width: 100% !important; max-width: 400px !important; flex-shrink: unset !important; }
   body.page-index section#news p[style*="white-space:nowrap"],
   body.page-index section#news p[style*="white-space: nowrap"] { white-space: normal !important; overflow: visible !important; text-overflow: unset !important; }
-  body.page-index section#news div[style*="font-size:10px"] { font-size: 13px !important; }
+  body.page-index section#news div[style*="font-size:10px"] { font-size: 12px !important; }
 
   /* 2026-08-30: SPを200px前後に収める。内訳は見出しブロック160px＋カード157pxが大半だった */
   /* 見出し「とあるの今」を32px→24pxへ。SPではバッジ＋見出しで87px使っていた */
-  body.page-index section#news .news-heading { font-size: 24px !important; letter-spacing: 1.5px !important; }
+  body.page-index section#news .news-heading { letter-spacing: 1.5px !important; }
   /* リード文はSPでも1行で出す（Saori: SPだと何の情報か分からない） */
-  body.page-index section#news > div:last-child > div:first-child > div:last-child { display: block !important; font-size: 14px !important; line-height: 1.6 !important; text-align: left !important; white-space: normal !important; }
+  body.page-index section#news > div:last-child > div:first-child > div:last-child { display: block !important; font-size: 15px !important; line-height: 1.6 !important; text-align: left !important; white-space: normal !important; }
   /* カードのタイトルは1行に抑える（SPだけ2行になって157pxまで膨らんでいた） */
   body.page-index section#news .news-card p[data-note-title] {
-    font-size: 16px !important;
+    font-size: 18px !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
@@ -1720,4 +1758,89 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#contact div[style*="white-space:nowrap"] { white-space: normal !important; }
   body.page-index section#contact > div:last-child > div:last-child { width: 100% !important; flex-shrink: unset !important; }
   body.page-index section#contact button.btn-m { align-self: center !important; }
+
+  /* =====================================================================
+     SP文字サイズの段（2026-09-01・Saori指示）
+     =====================================================================
+     問題: SPで 26/24/22/20/18/16/15/14/13/12 が2px刻みで並び、
+     「段」ではなく「ほぼ同じサイズの塊」に見えていた。しかも見出しでない
+     要素（Value項目名・Episode 01等の飾り・リード文）が見出しと同じ帯に
+     居座り、階層が読めなくなっていた（事業案内・採用で特に顕著）。
+
+     対策: 段そのものを5つに減らし、各段の差を3px以上とる。
+     PC側のサイズを入力として、SPの段へ写像する（HTMLは触らない）。
+
+       特大   30px … H1・ページのキャッチコピー      ← PC 40px
+       大     26px … H2（セクション名・バッジ）      ← PC 32px
+       中     21px … H3（セクション内の見出し）      ← PC 32px相当の見出し
+       小見出 18px … H4（カード名・箱の見出し）      ← PC 24/20px
+       本文   15px … 本文・リスト                    ← PC 18/16px
+       極小   12px … 肩書き・日付・英字ラベル・飾り  ← PC 14/13/12/11/10px
+
+     H1〜H4の4階層をSPでも保つ（2026-09-01 Saori）。差は 4/5/3/3px。
+     ※2026-09-01の初版で h3,h4 をまとめて21pxにしていたのは誤り。
+       「段を減らす」判断でH4を潰してしまい、階層が3段になっていた。
+
+     PCの 40/32/20 は現状で階層が立っているため触らない。
+     ここは末尾に置き、前段の個別 !important より後勝ちさせる。          */
+
+  /* --- 見出しタグ（上部の共通層をSPの段で上書き） --- */
+  h1 { font-size: 30px !important; }
+  h2 { font-size: 26px !important; }
+  h3 { font-size: 21px !important; }
+  h4 { font-size: 18px !important; }
+
+  /* --- PCサイズを入力にした写像（インラインstyleを持つ要素） --- */
+  body [style*="font-size:40px"] { font-size: 30px !important; }
+  body [style*="font-size:32px"] { font-size: 26px !important; }
+  body [style*="font-size:24px"],
+  body [style*="font-size:20px"] { font-size: 18px !important; }
+  body [style*="font-size:18px"],
+  body [style*="font-size:16px"] { font-size: 15px !important; }
+  body [style*="font-size:14px"],
+  body [style*="font-size:13px"],
+  body [style*="font-size:12px"],
+  body [style*="font-size:10px"] { font-size: 12px !important; }
+
+  /* 英字の飾りラベル（Services / Concept / Recruit 等）は11pxのまま小さく置く。
+     ただし Episode 01 / Step01 / Value / Concept のような大きい飾り文字は
+     PCで24〜32pxあり、上の写像で18〜22pxに落ちてなお見出しと張り合うため、
+     装飾の身分（小）まで下げる */
+  body.page-service .service-section p[style*="Yesteryear"],
+
+  /* --- 段から外す例外 --- */
+  /* noteカードのタイトルは「とあるの今／最新のこころみ」の主役。中(18px)を保つ
+     （共通層で20px指定しているのをSPの段に合わせる） */
+  .news-card p[data-note-title],
+  .note-article p[data-note-title] { font-size: 18px !important; }
+  /* noteカードの日付は小 */
+  .news-card p[data-note-date],
+  .note-article p[data-note-date],
+  .news-card div:has(> p[data-note-date]),
+  .note-article div:has(> p[data-note-date]) { font-size: 12px !important; }
+  /* 巨大な装飾英字（Apply / Activities 等・PC 90px）は装飾なので段の外 */
+  body [style*="font-size:90px"] { font-size: 32px !important; }
+
+  /* 飾りの英字（Episode 01 / Step01 / Value / Activities）。
+     写像より後ろに置いて後勝ちさせる（同じ要素が font-size:24px も持つため） */
+  body [style*="Yesteryear"] { font-size: 20px !important; }
+  /* Step01 / Step02（OJTのステップ番号）。読ませる要素なので小さくしすぎない
+     （2026-09-01・一度14pxまで落として読めなくなっていたのを差し戻し） */
+  body.page-recruit .ojt-step-label { font-size: 20px !important; }
+  /* Value 01 は「Value」(20px)＋「01」(32px)がセットの意匠。片方だけ縮めると
+     組が壊れるため、2つの比を保ったまま装飾の大きさへ落とす */
+  body.page-recruit .value-num .vn-label { font-size: 16px !important; }
+  body.page-recruit .value-num .vn-num { font-size: 26px !important; }
+
+  /* ボタン内のラベルは本文の段に置く（見出しと張り合わせない） */
+  body .btn-s span,
+  body .btn-s span,
+  body .btn-m span,
+  body .btn-m span { font-size: 15px !important; }
+  /* 「気になったら、ここから」等、PC32pxの誘導文。H2(22px)と同格に見えないよう中へ */
+  /* 「気になったら、ここから」の誘導文。飾り英字(Apply)は除く */
+  body.page-recruit #apply div[style*="font-size:32px"]:not([style*="Yesteryear"]) { font-size: 21px !important; }
+  body.page-recruit #apply div[style*="Yesteryear"] { font-size: 26px !important; }
+  /* Service02のリード文（PC20px）。H2(22px)の直下に来るため中(18px)へ */
+  body.page-service .s02-intro-text { font-size: 21px !important; }
 }
