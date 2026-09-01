@@ -769,7 +769,7 @@ body.page-recruit .avatar-placeholder {
   position: relative;
   overflow: hidden;
 }
-body.page-recruit .avatar-placeholder img { object-position: center top; }
+body.page-recruit .avatar-placeholder img { object-position: center; }
 body.page-recruit .avatar-placeholder-text {
   position: absolute;
   top: 50%;
@@ -794,7 +794,7 @@ body.page-recruit .avatar-sm {
   position: relative;
   overflow: hidden;
 }
-body.page-recruit .avatar-sm img { object-position: center top; }
+body.page-recruit .avatar-sm img { object-position: center; }
 body.page-recruit .avatar-sm-text {
   position: absolute;
   top: 50%;
@@ -1209,15 +1209,15 @@ body.page-recruit .sp-section-badge { display: none; }
     height: auto !important;
     min-height: unset !important;
   }
-  /* 写真カード: 絶対配置imgのみ内包するためheight:autoだと高さ0に潰れる。縦横比固定で幅に追従させる */
-  body.page-service .photo-card { height: auto !important; aspect-ratio: 5 / 3; }
+  /* 写真カード: 絶対配置imgのみ内包するためheight:autoだと高さ0に潰れる。縦横比固定で幅に追従させる（2026-09-01: 素材が縦長化し正方形へ変更） */
+  body.page-service .photo-card { height: auto !important; aspect-ratio: 1 / 1; }
   /* SPでは写真2・3を段落ごとの .sp-inline-photo 側で表示する（1枚目だけ説明文直後に残す） */
   body.page-service .photo-card-2, body.page-service .photo-card-3 { display: none !important; }
   .sp-inline-photo {
     display: block !important;
     position: relative;
     width: 100%;
-    aspect-ratio: 5 / 3;
+    aspect-ratio: 1 / 1;
     border-radius: 16px;
     overflow: hidden;
     background-color: white;
