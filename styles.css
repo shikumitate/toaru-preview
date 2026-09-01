@@ -18,6 +18,15 @@ h3 { font-size: 32px; }
 h4 { font-size: 20px; }
 .sp-dot { display: none; }
 
+/* ===== 写真の加工ルール（2026-09-02・カズキタレビュー 9/1）=====
+   各ページのFV（メインビジュアル）＝色付き（現状のデュオトーンのまま）
+   FV以外の事業所写真＝カラーのまま「色褪せ」フィルター（グレースケールにも
+   色スクリーンにもしない）。スタッフ写真＝無加工（鮮明）。
+   対象の img に .photo-faded を付ける */
+.photo-faded {
+  filter: saturate(0.55) contrast(0.92) brightness(1.06) sepia(0.15);
+}
+
 /* ===== 飾り英字（Yesteryear）の縁取り・2026-09-01 Saori =====
    Episode 01 / Apply / Concept など、紺色の飾り文字に白い縁を入れて立体的に見せる。
    背景の透かし（opacity:0.2 の大きな Service / Activities / Recruit）は対象外。
