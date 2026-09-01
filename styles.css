@@ -750,6 +750,22 @@ body.page-recruit .staff-card-wide-media {
   width: 260px;
   flex-shrink: 0;
 }
+/* 採用担当者メッセージカード（仲吉さん）専用: 顔写真を大きく・下に名前と肩書き（2026-09-01 Saori指示） */
+body.page-recruit .staff-card-wide-media.staff-card-wide-media-portrait {
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 200px;
+  text-align: center;
+}
+body.page-recruit .staff-card-wide-media-portrait .avatar-placeholder {
+  width: 120px;
+  height: 120px;
+}
+body.page-recruit .staff-card-wide-media-portrait > div {
+  align-items: center;
+  text-align: center;
+}
 body.page-recruit .staff-card-wide-body {
   flex: 1 0 0;
   min-width: 0;
@@ -1548,6 +1564,7 @@ body.page-recruit .sp-section-badge { display: none; }
   /* 横長カードはSPでは縦積みに戻す（写真行→本文の順）。左の仕切り線も横罫に置き換える */
   body.page-recruit .staff-card-wide { flex-direction: column !important; gap: 16px !important; padding: 16px 24px !important; }
   body.page-recruit .staff-card-wide-media { width: 100% !important; }
+  body.page-recruit .staff-card-wide-media-portrait { width: 100% !important; }
   body.page-recruit .staff-card-wide-body { border-left: none !important; border-top: 1px solid #0e2349 !important; padding-left: 0 !important; padding-top: 16px !important; }
   body.page-recruit #staff-voice > div:last-child { flex: none !important; width: 100% !important; padding: 0 !important; align-items: flex-start !important; }
   body.page-recruit #staff-voice .btn-s { align-self: center !important; }
