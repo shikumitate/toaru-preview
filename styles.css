@@ -17,6 +17,31 @@ h2 { font-size: 40px; }
 h3 { font-size: 32px; }
 h4 { font-size: 20px; }
 .sp-dot { display: none; }
+
+/* ===== 飾り英字（Yesteryear）の縁取り・2026-09-01 Saori =====
+   Episode 01 / Apply / Concept など、紺色の飾り文字に白い縁を入れて立体的に見せる。
+   背景の透かし（opacity:0.2 の大きな Service / Activities / Recruit）は対象外。
+   Value 01 と Step01 はそれぞれ個別のクラスで指定済み。 */
+[style*="Yesteryear"]:not([style*="opacity:0.2"]) {
+  text-shadow:
+     2.0px 0.0px 0 #fff,
+     1.8px 0.8px 0 #fff,
+     1.4px 1.4px 0 #fff,
+     0.8px 1.8px 0 #fff,
+     0.0px 2.0px 0 #fff,
+     -0.8px 1.8px 0 #fff,
+     -1.4px 1.4px 0 #fff,
+     -1.8px 0.8px 0 #fff,
+     -2.0px 0.0px 0 #fff,
+     -1.8px -0.8px 0 #fff,
+     -1.4px -1.4px 0 #fff,
+     -0.8px -1.8px 0 #fff,
+     -0.0px -2.0px 0 #fff,
+     0.8px -1.8px 0 #fff,
+     1.4px -1.4px 0 #fff,
+     1.8px -0.8px 0 #fff,
+     3px 3px 0 rgba(14,35,73,0.35);
+}
 /* 画像でしか表現されていないページタイトル等に、読み上げ・検索用の実テキストを持たせる */
 .visually-hidden {
   position: absolute !important;
@@ -354,11 +379,12 @@ body.page-service .service-section {
   flex-shrink: 0;
 }
 body.page-service .service--01 {
-  min-height: 2900px; /* 2026-09-01: 施設概要をサービス別に増行（中身の底2782px＋余白） */
+  /* 2026-09-01: min-height:2900px の手当てをやめ、section-content を通常フローに
+     戻して中身なりの高さにした（中身が増えるたび数値を追う運用をやめる） */
   width: 1440px;
+  position: relative;
 }
 body.page-service .service--02 {
-  min-height: 1000px;
   width: 1440px;
   position: relative;
 }
@@ -370,14 +396,16 @@ body.page-service .sp-title-br {
   display: none;
 }
 
+/* 2026-09-01: 絶対配置＋親の min-height 固定で高さを決めていたため、中身が
+   増えたぶん（法定研修のリスト）が下の帯にめり込んで切れていた。
+   通常フローに戻して中身なりの高さにする */
 body.page-service .section-content {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 64px;
   align-items: flex-start;
-  left: 240px;
-  top: 100px;
+  margin: 100px 0 100px 240px;
   width: 880px;
 }
 
@@ -458,10 +486,15 @@ body.page-service .service02-photo-box {
   width: 340px;
 }
 
+body.page-service .s02-intro-text h3 { font-size: 32px; }
+body.page-service .s02-intro-body { font-size: 18px; font-weight: 400; }
+/* H3と本文の間だけ空け、本文どうしは詰める（container の gap:12px を打ち消す） */
+body.page-service .s02-intro-body + .s02-intro-body { margin-top: -12px; }
 body.page-service .s02-intro-text {
   word-break: break-word;
   display: flex;
   flex-direction: column;
+  gap: 12px;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 600;
   justify-content: center;
@@ -943,7 +976,26 @@ body.page-recruit .value-num {
   font-family: 'Yesteryear', cursive;
   color: #0e2349;
   text-align: center;
-  text-shadow: 1px 1px 0px #0e2349;
+  /* 濃い色の文字は白い縁で立体的に（2026-09-01 Saori）。
+     -webkit-text-stroke は字が痩せるため、4方向のtext-shadowで縁取る */
+  text-shadow:
+     2.0px 0.0px 0 #fff,
+     1.8px 0.8px 0 #fff,
+     1.4px 1.4px 0 #fff,
+     0.8px 1.8px 0 #fff,
+     0.0px 2.0px 0 #fff,
+     -0.8px 1.8px 0 #fff,
+     -1.4px 1.4px 0 #fff,
+     -1.8px 0.8px 0 #fff,
+     -2.0px 0.0px 0 #fff,
+     -1.8px -0.8px 0 #fff,
+     -1.4px -1.4px 0 #fff,
+     -0.8px -1.8px 0 #fff,
+     -0.0px -2.0px 0 #fff,
+     0.8px -1.8px 0 #fff,
+     1.4px -1.4px 0 #fff,
+     1.8px -0.8px 0 #fff,
+     3px 3px 0 rgba(14,35,73,0.35);
   background-size: 110px 110px;
   background-position: top left;
 }
@@ -993,7 +1045,25 @@ body.page-recruit .ojt-step-label {
   font-size: 24px;
   color: #c55c47;
   text-align: center;
-  text-shadow: 1px 1px 0px #0e2349;
+  /* Stepは紺の縁で立体的に（2026-09-01 Saori） */
+  text-shadow:
+     2.0px 0.0px 0 #0e2349,
+     1.8px 0.8px 0 #0e2349,
+     1.4px 1.4px 0 #0e2349,
+     0.8px 1.8px 0 #0e2349,
+     0.0px 2.0px 0 #0e2349,
+     -0.8px 1.8px 0 #0e2349,
+     -1.4px 1.4px 0 #0e2349,
+     -1.8px 0.8px 0 #0e2349,
+     -2.0px 0.0px 0 #0e2349,
+     -1.8px -0.8px 0 #0e2349,
+     -1.4px -1.4px 0 #0e2349,
+     -0.8px -1.8px 0 #0e2349,
+     -0.0px -2.0px 0 #0e2349,
+     0.8px -1.8px 0 #0e2349,
+     1.4px -1.4px 0 #0e2349,
+     1.8px -0.8px 0 #0e2349,
+     3px 3px 0 rgba(14,35,73,0.3);
   letter-spacing: 0.96px;
   white-space: nowrap;
   font-feature-settings: "pkna" 1, "palt" 1;
@@ -1384,8 +1454,10 @@ body.page-recruit .sp-section-badge { display: none; }
   /* note-list-link のテキストリンク化は共通ルールへ移設した（2026-08-30） */
   body.page-service .activities-inner div[style*="align-items:flex-end"] { align-items: center !important; }
   body.page-service .activities-inner div[style*="border-radius:32px"] { align-self: center !important; }
-  body.page-service .info-row { flex-direction: column; align-items: flex-start; gap: 4px; }
-  body.page-service .info-label { width: auto; font-size: 15px !important; }
+  /* 2026-09-01 Saori: 項目と中身が改行になって縦に伸びていたため、SPでも1行に並べる。
+     ラベルは幅を固定して値の頭を揃える */
+  body.page-service .info-row { flex-direction: row !important; align-items: baseline !important; gap: 12px !important; }
+  body.page-service .info-label { width: 84px !important; flex-shrink: 0 !important; font-size: 15px !important; }
   body.page-service .section-content ul[style*="white-space:nowrap"] { white-space: normal !important; font-size: 15px !important; }
   body.page-service .horei-columns { flex-direction: column !important; gap: 8px !important; }
   body.page-service .horei-columns ul { flex: none !important; width: 100% !important; font-size: 15px !important; }
@@ -1489,15 +1561,20 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .company-section div[style*="left:-13.56px"] > div > div {
     width: 280px !important; max-width: 100% !important; height: auto !important; min-height: 280px !important;
   }
+  /* 2026-09-01 Saori: 項目と中身が改行になって幅（高さ）を取りすぎていたため1行に戻す */
   body.page-about .company-section div[style*="display:flex; align-items:center; flex-shrink:0; color:white; width:100%"],
   body.page-about .company-section div[style*="display:flex; align-items:flex-start; flex-shrink:0; color:white; width:100%"] {
-    flex-direction: column !important; gap: 4px !important; align-items: flex-start !important;
+    flex-direction: row !important; gap: 12px !important; align-items: baseline !important;
   }
-  body.page-about .company-section div[style*="width:160px"] { width: 100% !important; font-weight: 600 !important; font-size: 15px !important; }
+  body.page-about .company-section div[style*="width:160px"] { width: 84px !important; flex-shrink: 0 !important; font-weight: 600 !important; font-size: 15px !important; }
+  /* 値側は残り幅で折り返す（1行化で右にはみ出していた） */
+  /* 値側。縦積み時代の flex:none / width:100% を、1行化に合わせて
+     「残り幅で折り返す」へ変更（2026-09-01） */
   body.page-about .company-section div[style*="display:flex; align-items:center; flex-shrink:0; color:white; width:100%"] > p,
   body.page-about .company-section div[style*="display:flex; align-items:flex-start; flex-shrink:0; color:white; width:100%"] > p,
   body.page-about .company-section div[style*="display:flex; align-items:flex-start; flex-shrink:0; color:white; width:100%"] > ul {
-    flex: none !important; width: 100% !important; font-size: 15px !important;
+    flex: 1 1 0 !important; min-width: 0 !important; width: auto !important;
+    white-space: normal !important; font-size: 15px !important;
   }
   body.page-about .location-section { width: 100% !important; height: auto !important; margin-top: 0 !important; }
   body.page-about .location-section [style*="rotate(90deg)"] { display: none !important; }
@@ -1618,6 +1695,9 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit .staff-card { flex: none !important; width: 100% !important; min-width: 0; }
   /* 横長カードはSPでは縦積みに戻す（写真行→本文の順）。左の仕切り線も横罫に置き換える */
   body.page-recruit .staff-card-wide { flex-direction: column !important; gap: 16px !important; padding: 16px 24px !important; }
+  /* PCで指定した改行位置はSPの狭い幅だと中途半端に切れるので、SPでは無効化して
+     自然な折り返しに任せる（2026-09-01） */
+  body.page-recruit .staff-card-wide-body br { display: none; }
   body.page-recruit .staff-card-wide-media { width: 100% !important; }
   body.page-recruit .staff-card-wide-media-portrait { width: 100% !important; }
   body.page-recruit .staff-card-wide-body { border-left: none !important; border-top: 1px solid #0e2349 !important; padding-left: 0 !important; padding-top: 16px !important; }
@@ -1861,5 +1941,9 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit #apply div[style*="font-size:32px"]:not([style*="Yesteryear"]) { font-size: 21px !important; }
   body.page-recruit #apply div[style*="Yesteryear"] { font-size: 26px !important; }
   /* Service02のリード文（PC20px）。H2(22px)の直下に来るため中(18px)へ */
-  body.page-service .s02-intro-text { font-size: 18px !important; text-align: left !important; }
+  /* 3行が全部同じ18pxの塊になっていたため、1行目をH3・残り2行を本文に分ける
+     （2026-09-01 Saori指示） */
+  body.page-service .s02-intro-text { text-align: left !important; }
+  body.page-service .s02-intro-text h3 { font-size: 21px !important; }
+  body.page-service .s02-intro-body { font-size: 15px !important; font-weight: 400 !important; }
 }
