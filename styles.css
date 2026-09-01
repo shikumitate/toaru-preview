@@ -1317,6 +1317,9 @@ body.page-recruit .sp-section-badge { display: none; }
     position: relative !important;
     left: auto !important;
     top: auto !important;
+    /* PC側の margin-left:240px（サイドバー分）を打ち消す。
+       打ち消し漏れで本文が右にはみ出していた（2026-09-01） */
+    margin: 0 !important;
     width: 100% !important;
     padding: 16px 16px 32px !important;
     gap: 32px !important;
@@ -1917,6 +1920,10 @@ body.page-recruit .sp-section-badge { display: none; }
   .note-article div:has(> p[data-note-date]) { font-size: 12px !important; }
   /* 巨大な装飾英字（Apply / Activities 等・PC 90px）は装飾なので段の外 */
   body [style*="font-size:90px"] { font-size: 32px !important; }
+
+  /* 会社案内コンセプトの見出し「Concept」。飾り英字の一律16pxだと小さすぎるので
+     カード内の見出しとして一段大きく（2026-09-01 Saori） */
+  body.page-about .concept-section div[style*="font-size:24px"][style*="Yesteryear"] { font-size: 22px !important; }
 
   /* 飾りの英字（Episode 01 / Step01 / Value / Activities）。
      写像より後ろに置いて後勝ちさせる（同じ要素が font-size:24px も持つため） */
