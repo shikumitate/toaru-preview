@@ -7,6 +7,7 @@ h1, h2, h3, h4 {
   font-weight: inherit;
   line-height: inherit;
 }
+.sp-dot { display: none; }
 /* 画像でしか表現されていないページタイトル等に、読み上げ・検索用の実テキストを持たせる */
 .visually-hidden {
   position: absolute !important;
@@ -1614,7 +1615,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index .btn-s span,
   body.page-index .btn-m span { white-space: nowrap !important; max-width: none; }
   body.page-index section#mv { width: 100% !important; height: auto !important; min-height: 220px !important; overflow: hidden !important; position: relative !important; padding: 110px 16px 40px !important; }
-  body.page-index section#mv > div:first-child { display: none !important; }
+  body.page-index section#mv > div:first-of-type { display: none !important; }
   body.page-index section#mv > div:last-child { position: relative !important; left: auto !important; top: auto !important; transform: none !important; width: 100% !important; height: auto !important; }
   body.page-index section#mv > div:last-child > div { position: relative !important; width: 100% !important; height: auto !important; overflow: visible !important; }
   body.page-index section#mv > div:last-child img { position: relative !important; width: 100% !important; height: auto !important; max-width: none !important; display: block !important; }
@@ -1623,7 +1624,9 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#news > div:first-child > div { width: 100% !important; }
   /* 2026-08-30: SPも200px前後まで削る。上下124pxのpaddingが最大の要因だった */
   body.page-index section#news > div:last-child { padding: 24px 16px 20px !important; align-items: center !important; gap: 14px !important; }
-  body.page-index section#news > div:last-child > div:first-child { flex-direction: column !important; gap: 6px !important; align-items: center !important; text-align: center !important; width: 100% !important; }
+  /* 2026-08-30 Saori指摘: 見出しブロックがまだ縦に長い → バッジと「とあるの今」を横1行に（事業案内と同じ型） */
+  body.page-index section#news > div:last-child > div:first-child { flex-direction: column !important; gap: 10px !important; align-items: flex-start !important; text-align: left !important; width: 100% !important; }
+  body.page-index section#news > div:last-child > div:first-child > div:first-child { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
   body.page-index section#news > div:last-child > div:first-child > div:last-child { white-space: normal !important; text-align: center !important; }
   body.page-index section#news > div:last-child > div:last-child { width: 100% !important; align-items: center !important; }
   body.page-index section#news > div:last-child > div:last-child > div:first-child { flex-direction: column !important; width: 100% !important; height: auto !important; gap: 12px !important; align-items: center !important; }
@@ -1635,8 +1638,8 @@ body.page-recruit .sp-section-badge { display: none; }
   /* 2026-08-30: SPを200px前後に収める。内訳は見出しブロック160px＋カード157pxが大半だった */
   /* 見出し「とあるの今」を32px→24pxへ。SPではバッジ＋見出しで87px使っていた */
   body.page-index section#news .news-heading { font-size: 24px !important; letter-spacing: 1.5px !important; }
-  /* リード文2行（65px）はSPでは冗長なので隠す。PCでは残す */
-  body.page-index section#news > div:last-child > div:first-child > div:last-child { display: none !important; }
+  /* リード文はSPでも1行で出す（Saori: SPだと何の情報か分からない） */
+  body.page-index section#news > div:last-child > div:first-child > div:last-child { display: block !important; font-size: 14px !important; line-height: 1.6 !important; text-align: left !important; white-space: normal !important; }
   /* カードのタイトルは1行に抑える（SPだけ2行になって157pxまで膨らんでいた） */
   body.page-index section#news .news-card p[data-note-title] {
     font-size: 16px !important;
@@ -1659,7 +1662,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#news .news-card p[data-note-title] { height: auto !important; }
   /* 記事一覧リンクのテキストリンク化は共通ルールへ移設した（2026-08-30・PCも同じ扱い） */
   body.page-index section#about { height: auto !important; width: 100% !important; margin-top: 40px !important; margin-bottom: 40px !important; overflow: visible !important; }
-  body.page-index section#about > div:first-child { display: none !important; }
+  body.page-index section#about > div:first-of-type { display: none !important; }
   body.page-index section#about > div:last-child { position: relative !important; height: auto !important; left: 0 !important; top: 0 !important; width: 100% !important; padding: 0 16px !important; }
   body.page-index section#about > div:last-child > div:first-child { position: relative !important; height: auto !important; left: 0 !important; top: 0 !important; width: 100% !important; display: none !important; }
   body.page-index section#about > div:last-child > div:nth-child(2) { position: relative !important; height: 240px !important; left: 0 !important; top: 0 !important; width: 100% !important; overflow: hidden !important; border-radius: 16px !important; }
@@ -1682,9 +1685,12 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#services div[style*="height:64px"][style*="border-left"] { display: none !important; }
   body.page-index section#services p[style*="flex:1 0 0"] { flex: 0 0 100% !important; white-space: normal !important; font-size: 15px !important; }
   body.page-index section#services div[style*="width:130px"] { width: auto !important; }
+  /* カード名はSPでは1行（PCは幅130pxで2行に折るデザインのまま）2026-08-30 Saori指摘 */
+  body.page-index section#services h3 br { display: none !important; }
+  body.page-index section#services h3 .sp-dot { display: inline !important; }
   /* SPでもPCと同じ青背景を出す（bg wrapを消すと地模様が透けて黄色く見えるため、セクション自体に青を付与） */
   body.page-index section#recruit-top { height: auto !important; width: 100% !important; background-color: #546895 !important; border-top: 1px solid #0e2349 !important; }
-  body.page-index section#recruit-top > div:first-child { position: relative !important; inset: unset !important; width: 100% !important; height: auto !important; display: none !important; }
+  body.page-index section#recruit-top > div:first-of-type { position: relative !important; inset: unset !important; width: 100% !important; height: auto !important; display: none !important; }
   body.page-index section#recruit-top > div:last-child { position: relative !important; left: 0 !important; top: 0 !important; width: 100% !important; padding: 60px 16px 40px !important; border-radius: 0 !important; align-items: center !important; }
   body.page-index section#recruit-top div[style*="white-space:nowrap"],
   body.page-index section#recruit-top div[style*="white-space: nowrap"] { white-space: normal !important; text-align: center !important; width: 100% !important; }
