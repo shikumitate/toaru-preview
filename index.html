@@ -78,6 +78,7 @@
 
     <!-- ===== 1. MV ===== -->
     <section id="mv" style="position:relative; height:800px; width:1440px; overflow:hidden;">
+      <h1 class="visually-hidden">とある株式会社｜沖縄県うるま市の介護施設「ここある」「クラシバ」運営・研修事業</h1>
       <!-- ph (photo collage) -->
       <div style="position:absolute; height:926.861px; left:-117px; top:-79.33px; width:1621.046px;">
         <!-- patern-red -->
@@ -135,15 +136,19 @@
         </div>
       </div>
       <!-- mainTitle -->
-      <div style="position:absolute; height:465.946px; left:50%; top:161.53px; transform:translateX(-50%); width:800px;">
-        <div style="position:absolute; height:466.307px; left:0; top:0; width:778.378px; overflow:hidden;">
-          <img alt="" src="images/da1e65f0-e332-46e9-98f0-63d66a3c0d58.png" style="position:absolute; left:0; top:0; width:100%; height:100%; max-width:none;" />
+      <!-- 2026-09-02: FVタイトル画像を差し替え（サブコピーを右下へ寄せた横長版・892×438）。
+           枠も新画像の縦横比 2.04 に合わせ、contain の余白で本文が縮まないようにする -->
+      <div style="position:absolute; height:382px; left:50%; top:200px; transform:translateX(-50%); width:800px;">
+        <div style="position:absolute; height:382px; left:0; top:0; width:778.378px; overflow:hidden;">
+          <img alt="人生という物語に伴走する。その物語は、とあるところから。" src="images/top-fv-title.png" style="position:absolute; left:0; top:0; width:100%; height:100%; max-width:none; object-fit:contain;" />
         </div>
       </div>
     </section>
 
     <!-- ===== 2. News & Events ===== -->
-    <section id="news" style="position:relative; min-height:897px; width:1440px;">
+    <!-- 2026-08-30: min-height:897px（Figma由来の固定高）を解除。
+         カードを軽くしても高さが縮まず、軽量化の効果が出ていなかった -->
+    <section id="news" style="position:relative; width:1440px; padding-bottom:40px;">
       <!-- bg layer（フルブリード） -->
       <div style="position:absolute; bottom:0; top:0; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw));">
         <!-- bottom wave (rotated 180deg) -->
@@ -166,74 +171,38 @@
         </div>
       </div>
       <!-- inner content -->
-      <div style="position:relative; z-index:1; display:flex; flex-direction:column; gap:64px; align-items:center; padding:100px 0 60px 82px;">
+      <!-- 2026-08-30: カード軽量化に合わせて余白も縮める（gap64→40 / padding100,60→64,40） -->
+      <div style="position:relative; z-index:1; display:flex; flex-direction:column; gap:40px; align-items:center; padding:64px 0 40px 82px;">
         <!-- title row -->
         <div style="display:flex; gap:40px; align-items:center; position:relative; flex-shrink:0; width:100%;">
-          <!-- mainTitle composite (「今」「とあるの」images) -->
-          <div style="height:122px; position:relative; flex-shrink:0; width:294px;">
-            <!-- 「今」image -->
-            <div style="position:absolute; height:122px; left:173px; top:0; width:120px; overflow:hidden;">
-              <img alt="" src="images/a34247a6-8326-4225-b03b-c8a361314963.png" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover;" />
+          <!-- mainTitle（2026-08-30: 画像2枚の組み合わせ122pxをテキスト見出しに置き換え。
+               「見出しのデザイン的重みが大きすぎてファーストビューを侵食している」への対応 -->
+          <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-start; flex-shrink:0;">
+            <div style="background-color:#c55c47; border:1px solid #0e2349; border-radius:16px; height:28px; width:170px; display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:'Roboto',sans-serif; font-weight:500; font-size:11px; color:#0e2349; letter-spacing:3.3px; text-transform:uppercase; white-space:nowrap;">News &amp; Events</span>
             </div>
-            <!-- subTitle badge -->
-            <div style="position:absolute; background-color:#c55c47; border:1px solid #0e2349; border-radius:16px; height:28px; left:0; top:10px; width:170px; overflow:hidden;">
-              <div style="position:absolute; top:14px; left:calc(50% - 61px); transform:translateY(-50%); font-family:'Roboto',sans-serif; font-weight:500; font-size:11px; color:#0e2349; letter-spacing:3.3px; text-transform:uppercase; white-space:nowrap;">News &amp; Events</div>
-            </div>
-            <!-- 「とあるの」image -->
-            <div style="position:absolute; height:114px; left:-7px; top:33px; width:200px; overflow:hidden;">
-              <img alt="" src="images/943cf5b7-1c00-4e5a-94f0-4c49999aad06.png" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover;" />
-            </div>
+            <h2 class="news-heading" style="font-family:'Noto Sans JP',sans-serif; font-weight:600; color:#0e2349; line-height:1.6; letter-spacing:2.56px; white-space:nowrap; margin:0; font-feature-settings:'pkna' 1,'palt' 1;">とあるの今</h2>
           </div>
           <!-- catchcopy -->
           <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; color:#0e2349; letter-spacing:1.44px; white-space:nowrap; font-feature-settings:'pkna' 1,'palt' 1; flex-shrink:0;">
-            <p style="line-height:1.8;">note最新記事＋イベント出演・登壇情報。</p>
-            <p style="line-height:1.8;">日々の動きはここから。</p>
+            <p style="line-height:1.8;">イベント出演・登壇情報やnoteなど、日々の動きはここから。</p>
           </div>
         </div>
         <!-- list + button -->
         <div style="display:flex; flex-direction:column; gap:40px; align-items:center; position:relative; flex-shrink:0; width:100%;">
-          <!-- card list -->
-          <div style="display:flex; height:415px; align-items:flex-start; justify-content:space-between; position:relative; flex-shrink:0; width:1040px;">
-            <!-- card 1 -->
-            <div data-note-card="0" style="border:1px solid #0e2349; display:flex; flex-direction:column; height:100%; align-items:flex-start; overflow:hidden; position:relative; border-radius:16px; flex-shrink:0; width:330px;">
-              <div style="aspect-ratio:330/186; background-color:#0e2349; overflow:hidden; position:relative; flex-shrink:0; width:100%;">
-                <div style="position:absolute; height:186px; left:0; top:0; width:330px; overflow:hidden; pointer-events:none;">
-                  <img data-note-thumb alt="とある株式会社" src="images/045fe9c1-6d6a-4776-a452-a813eab86640.jpg" style="position:absolute; height:100%; left:0; top:0; width:100%; max-width:none; object-fit:contain; padding:8px; box-sizing:border-box; background-color:#ffffff;" />
-                </div>
-              </div>
-              <div style="background-image:url('images/18e3d430-6052-41fe-91ae-8a8836f75e1e.png'); background-size:16px 16px; background-position:top left; display:flex; flex:1 0 0; flex-direction:column; gap:8px; align-items:flex-start; min-height:1px; padding:24px; position:relative; color:#0e2349; width:100%;">
-                <div data-note-date style="font-family:'Noto Sans JP',sans-serif; font-weight:500; font-size:10px; letter-spacing:0.5475px; line-height:1.8; width:100%;">2026.08.20</div>
-                <p data-note-title style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; letter-spacing:1.44px; line-height:1.8; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:100%; font-feature-settings:'pkna' 1;">「普通の暮らし」は、誰が決めるのか</p>
-                <p data-note-excerpt style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; letter-spacing:1.28px; line-height:1.8; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:100%; font-feature-settings:'pkna' 1,'palt' 1;">自分の常識を疑うことから、介護は始まる…</p>
-              </div>
+          <!-- 記事リスト（2026-09-02 カズキタレビュー: カードをやめ、日付＋タイトルの行を下線で並べる） -->
+          <div class="news-list">
+            <div class="news-row" data-note-card="0">
+              <span class="news-row-date" data-note-date>2026.08.20</span>
+              <span class="news-row-title" data-note-title>「普通の暮らし」は、誰が決めるのか</span>
             </div>
-            <!-- card 2 -->
-            <div data-note-card="1" style="border:1px solid #0e2349; display:flex; flex-direction:column; align-items:flex-start; overflow:hidden; position:relative; border-radius:16px; flex-shrink:0; width:330px;">
-              <div style="aspect-ratio:330/185; background-color:#0e2349; overflow:hidden; position:relative; flex-shrink:0; width:100%;">
-                <div style="position:absolute; top:50%; left:0; right:0; transform:translateY(-50%); aspect-ratio:338.80517578125/190.5809326171875; overflow:hidden; pointer-events:none;">
-                  <img data-note-thumb alt="とある株式会社" src="images/045fe9c1-6d6a-4776-a452-a813eab86640.jpg" style="position:absolute; height:100%; left:0; top:0; width:100%; max-width:none; object-fit:contain; padding:8px; box-sizing:border-box; background-color:#ffffff;" />
-                </div>
-              </div>
-              <div style="background-image:url('images/18e3d430-6052-41fe-91ae-8a8836f75e1e.png'); background-size:16px 16px; background-position:top left; display:flex; flex-direction:column; gap:8px; align-items:flex-start; padding:24px; position:relative; flex-shrink:0; color:#0e2349; width:100%;">
-                <div data-note-date style="font-family:'Noto Sans JP',sans-serif; font-weight:500; font-size:10px; letter-spacing:0.5475px; line-height:1.8; width:100%;">2026.08.15</div>
-                <p data-note-title style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; letter-spacing:1.44px; line-height:1.8; overflow:hidden; height:64px; text-overflow:ellipsis; width:100%; font-feature-settings:'pkna' 1,'palt' 1;">支援は、ゴールではない</p>
-                <p data-note-excerpt style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; letter-spacing:1.28px; line-height:1.8; overflow:hidden; height:87px; text-overflow:ellipsis; width:100%; font-feature-settings:'pkna' 1,'palt' 1;">熊本の被災地で考えた、介護現場の自走力。熊本県内の被災地に、介護現場の支援として入らせていただきました。…</p>
-              </div>
+            <div class="news-row" data-note-card="1">
+              <span class="news-row-date" data-note-date>2026.08.15</span>
+              <span class="news-row-title" data-note-title>支援は、ゴールではない</span>
             </div>
-            <!-- card 3 -->
-            <div data-note-card="2" style="border:1px solid #0e2349; display:flex; flex-direction:column; height:100%; align-items:flex-start; overflow:hidden; position:relative; border-radius:16px; flex-shrink:0; width:330px;">
-              <div style="aspect-ratio:330/185; background-color:#0e2349; overflow:hidden; position:relative; flex-shrink:0; width:100%;">
-                <div style="position:absolute; top:50%; left:0; right:0; transform:translateY(-50%); aspect-ratio:338.7954406738281/190.56150817871094; overflow:hidden; pointer-events:none;">
-                  <img data-note-thumb alt="とある株式会社" src="images/045fe9c1-6d6a-4776-a452-a813eab86640.jpg" style="position:absolute; height:100%; left:0; top:0; width:100%; max-width:none; object-fit:contain; padding:8px; box-sizing:border-box; background-color:#ffffff;" />
-                </div>
-              </div>
-              <div style="background-image:url('images/18e3d430-6052-41fe-91ae-8a8836f75e1e.png'); background-size:16px 16px; background-position:top left; display:flex; flex:1 0 0; flex-direction:column; gap:8px; align-items:flex-start; min-height:1px; padding:24px; position:relative; color:#0e2349; width:100%;">
-                <div data-note-date style="font-family:'Noto Sans JP',sans-serif; font-weight:500; font-size:10px; letter-spacing:0.5475px; line-height:1.8; width:100%;">2026.08.10</div>
-                <p data-note-title style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; letter-spacing:1.44px; line-height:1.8; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; width:100%; font-feature-settings:'pkna' 1;">観察したものを、言葉にする</p>
-                <div data-note-excerpt style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; letter-spacing:1.28px; line-height:1.8; overflow:hidden; height:87px; text-overflow:ellipsis; width:100%; font-feature-settings:'pkna' 1,'palt' 1;">
-                  <p>見たものを、共有するために…</p>
-                </div>
-              </div>
+            <div class="news-row" data-note-card="2">
+              <span class="news-row-date" data-note-date>2026.08.10</span>
+              <span class="news-row-title" data-note-title>観察したものを、言葉にする</span>
             </div>
           </div>
           <!-- button -->
@@ -249,6 +218,7 @@
 
     <!-- ===== 3. About ===== -->
     <section id="about" style="position:relative; height:560px; width:1440px; overflow:visible; margin-top:100px; margin-bottom:100px;">
+      <h2 class="visually-hidden">とあるについて</h2>
       <!-- loopAnimation (opacity:0.5, behind white card) -->
       <div style="position:absolute; top:539px; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw)); opacity:0.5; display:flex; gap:16px; align-items:center; overflow:hidden; height:97px;">
         <div style="height:97px; overflow:hidden; position:relative; flex-shrink:0; width:452px;">
@@ -313,19 +283,17 @@
       <div style="position:absolute; height:560px; left:170px; top:0; width:1100px;">
         <!-- white card bg -->
         <div style="position:absolute; background-color:white; border:1px solid #0e2349; border-radius:16px; height:560px; left:60px; top:0; width:1040px;"></div>
-        <!-- ph (photo composite) -->
+        <!-- ph (photo composite): 2枚とも見える構成に変更（2026-09-01・背面=縦写真を左上へ大きくずらす） -->
         <div style="position:absolute; height:460.526px; left:0.74px; top:49.74px; width:638.524px;">
-          <div style="position:absolute; display:flex; height:460.526px; align-items:center; justify-content:center; left:0; top:0; width:638.524px;">
-            <div style="transform:rotate(-6deg); flex:none;">
-              <div style="height:400px; position:relative; border-radius:16px; width:600px; overflow:hidden;">
-                <img alt="" src="images/photo-top-about.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:16px;" />
-                <div style="position:absolute; inset:0; background:#632c21; mix-blend-mode:screen; border-radius:16px;"></div>
-              </div>
+          <!-- 背面カード（縦写真・-6度回転・茶スクリーン） -->
+          <div style="position:absolute; left:0; top:0; transform:rotate(-6deg); transform-origin:top left;">
+            <div style="height:340px; position:relative; border-radius:16px; width:255px; overflow:hidden;">
+              <img class="photo-faded" alt="" src="images/photo-top-about-2.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:16px;" />
             </div>
           </div>
-          <div style="position:absolute; height:400px; left:19.26px; border-radius:16px; top:30.26px; width:600px; overflow:hidden;">
-            <img alt="" src="images/photo-top-about.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:16px;" />
-            <div style="position:absolute; inset:0; background:#0c1d45; mix-blend-mode:screen; border-radius:16px;"></div>
+          <!-- 前面カード（横写真・傾きなし・紺スクリーン） -->
+          <div style="position:absolute; height:400px; left:230px; border-radius:16px; top:60px; width:400px; overflow:hidden;">
+            <img class="photo-faded" alt="" src="images/photo-top-about.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:16px;" />
           </div>
         </div>
         <!-- text area -->
@@ -354,6 +322,7 @@
 
     <!-- ===== 4. Services ===== -->
     <section id="services" style="position:relative; min-height:600px; width:1440px;">
+      <h2 class="visually-hidden">事業案内</h2>
       <!-- bg -->
       <div style="position:absolute; top:0; bottom:0; left:min(0px, calc(50% - 50vw)); right:min(0px, calc(50% - 50vw)); background-color:#476b4a; border-top:1px solid #0e2349;"></div>
       <!-- inner content -->
@@ -398,13 +367,12 @@
             </div>
             <!-- h4 -->
             <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:20px; color:white; letter-spacing:0.8px; width:130px; font-feature-settings:'pkna' 1,'palt' 1;">
-              <p style="line-height:1.6;">ここある</p>
-              <p style="line-height:1.6;">クラシバ</p>
+              <h4 style="line-height:1.6;">ここある<span class="sp-dot">・</span><br>クラシバ</h4>
             </div>
             <!-- vertical divider -->
             <div style="height:64px; position:relative; flex-shrink:0; width:1px; border-left:1px solid rgba(255,255,255,0.5);"></div>
             <!-- description -->
-            <p style="flex:1 0 0; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:white; letter-spacing:1.28px; line-height:1.8; min-width:1px; font-feature-settings:'pkna' 1,'palt' 1;">うるま市のデイサービス＋老人ホーム。地域に開いた暮らしの場。</p>
+            <p style="flex:1 0 0; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:white; letter-spacing:1.28px; line-height:1.8; min-width:1px; font-feature-settings:'pkna' 1,'palt' 1;">うるま市のデイサービス＋住宅型有料老人ホーム。地域に開いた暮らしの場。</p>
           </div>
           <!-- horizontal divider 1 -->
           <div style="height:1px; background-color:rgba(255,255,255,0.5); width:100%;"></div>
@@ -419,8 +387,7 @@
               </div>
             </div>
             <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:20px; color:white; letter-spacing:0.8px; width:130px; font-feature-settings:'pkna' 1,'palt' 1;">
-              <p style="line-height:1.6;">研修・講義・</p>
-              <p style="line-height:1.6;">トレーニング</p>
+              <h4 style="line-height:1.6;">研修・講義・<br>トレーニング</h4>
             </div>
             <div style="height:64px; position:relative; flex-shrink:0; width:1px; border-left:1px solid rgba(255,255,255,0.5);"></div>
             <p style="flex:1 0 0; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:white; letter-spacing:1.28px; line-height:1.8; min-width:1px; font-feature-settings:'pkna' 1,'palt' 1;">介護観の問い直しから、実技・法定研修まで。県内外で実施。</p>
@@ -438,10 +405,10 @@
               </div>
             </div>
             <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:20px; color:white; letter-spacing:0.8px; width:130px; font-feature-settings:'pkna' 1,'palt' 1;">
-              <p style="line-height:1.6;">その他の活動</p>
+              <h4 style="line-height:1.6;">その他の活動</h4>
             </div>
             <div style="height:64px; position:relative; flex-shrink:0; width:1px; border-left:1px solid rgba(255,255,255,0.5);"></div>
-            <p style="flex:1 0 0; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:white; letter-spacing:1.28px; line-height:1.8; min-width:1px; font-feature-settings:'pkna' 1,'palt' 1;">ものがたり珈琲店、駄菓子屋、地域イベントなど。介護を地域に開く取り組み。</p>
+            <p style="flex:1 0 0; font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; color:white; letter-spacing:1.28px; line-height:1.8; min-width:1px; font-feature-settings:'pkna' 1,'palt' 1;">ものがたり珈琲店、駄菓子屋かみよし商店、地域イベントなど。介護を地域に開く取り組み。</p>
           </div>
         </div>
       </div>
@@ -449,6 +416,7 @@
 
     <!-- ===== 5. Recruit ===== -->
     <section id="recruit-top" style="position:relative; height:596px; width:1440px;">
+      <h2 class="visually-hidden">採用情報</h2>
       <!-- bg wrap (inset 0 0 80px 0) -->
       <div style="position:absolute; inset:0 0 80px 0;">
         <!-- blue card -->
@@ -457,15 +425,13 @@
         <div style="position:absolute; background-image:url('images/b2e409eb-a803-452d-b629-9e6e27465ac6.png'); background-size:220px 220px; background-position:top left; height:140px; left:240px; border-radius:16px; top:60px; width:160px;"></div>
         <!-- left photo -->
         <div style="position:absolute; border:8px solid #ececec; left:80px; border-radius:16px; box-shadow:1px 1px 0px 0px #0e2349; width:320px; height:320px; top:216px; overflow:hidden;">
-          <img alt="" src="images/photo-top-recruit-l.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; filter:grayscale(1); border-radius:8px;" />
-          <div style="position:absolute; inset:0; background:#0c1d45; mix-blend-mode:screen; border-radius:8px;"></div>
+          <img class="photo-faded" alt="" src="images/photo-top-recruit-l.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:8px;" />
         </div>
         <!-- patern-red -->
         <div style="position:absolute; background-image:url('images/eb0d0748-56de-4b0e-aada-62e65544f6bb.png'); background-size:220px 220px; background-position:top left; height:140px; left:800px; border-radius:16px; top:396px; width:160px;"></div>
         <!-- right photo -->
         <div style="position:absolute; border:8px solid #ececec; left:801px; border-radius:16px; box-shadow:1px 1px 0px 0px #0e2349; width:320px; height:320px; top:60px; overflow:hidden;">
-          <img alt="" src="images/photo-top-recruit-r.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; filter:grayscale(1); border-radius:8px;" />
-          <div style="position:absolute; inset:0; background:#103012; mix-blend-mode:screen; border-radius:8px;"></div>
+          <img class="photo-faded" alt="" src="images/photo-top-recruit-r.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:8px;" />
         </div>
       </div>
       <!-- center text card -->
@@ -523,7 +489,7 @@
               <img alt="" src="images/5ad36957-9634-44c5-8555-5eae6832cdc3.svg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none;" />
             </div>
             <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:32px; color:#0e2349; letter-spacing:2.56px; width:320px; font-feature-settings:'pkna' 1;">
-              <p style="line-height:1;">お問い合わせ</p>
+              <h2 style="line-height:1;">お問い合わせ</h2>
             </div>
           </div>
           <!-- description text -->
