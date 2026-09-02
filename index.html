@@ -498,7 +498,7 @@
           </div>
         </div>
         <!-- right: form -->
-        <div style="display:flex; flex-direction:column; gap:40px; align-items:center; position:relative; flex-shrink:0; width:640px;">
+        <form action="https://ssgform.com/s/RSkAz9wzFN9D" method="post" style="display:flex; flex-direction:column; gap:40px; align-items:center; position:relative; flex-shrink:0; width:640px; margin:0;">
           <!-- input fields -->
           <div style="display:flex; flex-direction:column; gap:24px; align-items:center; position:relative; flex-shrink:0; width:100%;">
             <!-- お名前 -->
@@ -506,25 +506,27 @@
               <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; color:#0e2349; letter-spacing:1.44px; width:100%; font-feature-settings:'pkna' 1,'palt' 1;">
                 <p style="line-height:1.8;">お名前</p>
               </div>
-              <input type="text" style="background-color:white; border:1px solid #0e2349; border-radius:8px; height:48px; width:100%; padding:0 12px; font-family:'Noto Sans JP',sans-serif; font-size:16px; outline:none;" />
+              <input type="text" name="お名前" required style="background-color:white; border:1px solid #0e2349; border-radius:8px; height:48px; width:100%; padding:0 12px; font-family:'Noto Sans JP',sans-serif; font-size:16px; outline:none;" />
             </div>
             <!-- メールアドレス -->
             <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-start; position:relative; flex-shrink:0; width:100%;">
               <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; color:#0e2349; letter-spacing:1.44px; width:100%; font-feature-settings:'pkna' 1,'palt' 1;">
                 <p style="line-height:1.8;">メールアドレス</p>
               </div>
-              <input type="email" style="background-color:white; border:1px solid #0e2349; border-radius:8px; height:48px; width:100%; padding:0 12px; font-family:'Noto Sans JP',sans-serif; font-size:16px; outline:none;" />
+              <input type="email" name="メールアドレス" required style="background-color:white; border:1px solid #0e2349; border-radius:8px; height:48px; width:100%; padding:0 12px; font-family:'Noto Sans JP',sans-serif; font-size:16px; outline:none;" />
             </div>
             <!-- お問い合わせ内容 -->
             <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-start; position:relative; flex-shrink:0; width:100%;">
               <div style="font-family:'Noto Sans JP',sans-serif; font-weight:600; font-size:18px; color:#0e2349; letter-spacing:1.44px; width:100%; font-feature-settings:'pkna' 1,'palt' 1;">
                 <p style="line-height:1.8;">お問い合わせ内容</p>
               </div>
-              <textarea style="background-color:white; border:1px solid #0e2349; border-radius:8px; height:160px; width:100%; padding:12px; font-family:'Noto Sans JP',sans-serif; font-size:16px; outline:none; resize:none;"></textarea>
+              <textarea name="お問い合わせ内容" required style="background-color:white; border:1px solid #0e2349; border-radius:8px; height:160px; width:100%; padding:12px; font-family:'Noto Sans JP',sans-serif; font-size:16px; outline:none; resize:none;"></textarea>
             </div>
           </div>
+          <!-- honeypot（スパムbotおとり欄・SSGform公式仕様。人間には見えない） -->
+          <input type="text" name="wana" tabindex="-1" autocomplete="off" style="display:none;" />
           <!-- send button -->
-          <button class="btn-m" style="border:1px solid #0e2349; cursor:pointer; width:auto;">
+          <button type="submit" class="btn-m" style="border:1px solid #0e2349; cursor:pointer; width:auto;">
             <span>送信する</span>
           </button>
           <!-- privacy notice -->
@@ -532,7 +534,7 @@
             ご入力いただいた個人情報は，お問い合わせへの対応のみに利用します。<br />
             詳しくは<a href="privacy.pdf" target="_blank" rel="noopener" style="color:#0e2349; text-decoration:underline;">プライバシーポリシー</a>をご覧ください。
           </p>
-        </div>
+        </form>
       </div>
     </section>
 

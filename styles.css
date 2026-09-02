@@ -1827,7 +1827,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#contact > div:last-child { flex-direction: column !important; padding: 60px 16px 40px !important; gap: 40px !important; }
   body.page-index section#contact > div:last-child > div:first-child { width: 100% !important; flex: unset !important; min-width: unset !important; }
   body.page-index section#contact div[style*="white-space:nowrap"] { white-space: normal !important; }
-  body.page-index section#contact > div:last-child > div:last-child { width: 100% !important; flex-shrink: unset !important; }
+  body.page-index section#contact > div:last-child > :last-child { width: 100% !important; flex-shrink: unset !important; }
   body.page-index section#contact button.btn-m { align-self: center !important; }
 
   /* =====================================================================
