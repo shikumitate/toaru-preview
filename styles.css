@@ -838,11 +838,13 @@ body.page-recruit .avatar-placeholder-text {
   font-feature-settings: "pkna" 1, "palt" 1;
 }
 
+/* 「働いてみてわかったこと」パートの顔写真。大悟さん「表情が伝わってない」を受けて
+   64→96pxに拡大（2026-09-02）。丸を保つため border-radius は width の半分にする */
 body.page-recruit .avatar-sm {
   background-color: #ccc;
-  border-radius: 32px;
-  width: 64px;
-  height: 64px;
+  border-radius: 48px;
+  width: 96px;
+  height: 96px;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
