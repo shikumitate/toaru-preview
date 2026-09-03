@@ -160,7 +160,7 @@ nav.site-nav {
 }
 .btn-s span {
   font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 400;
+  font-weight: 600; /* ボタンは太字に統一（btn-mと揃える・2026-09-03 Saori） */
   font-size: 16px;
   color: #0e2349;
   letter-spacing: 1.28px;
@@ -623,7 +623,8 @@ body.page-about .header-bg-wave-wrap {
 body.page-about .header-bg-rect {
   position: absolute;
   background-color: #c55c47;
-  inset: 0 0 24px 0;
+  /* 波と1px重ねる（ズーム80%等の端数丸めで境目に線が出るのを防ぐ・2026-09-03） */
+  inset: 0 0 23px 0;
 }
 body.page-about .header-title {
   position: absolute;
@@ -1018,25 +1019,25 @@ body.page-recruit .ojt-step-label {
   font-size: 24px;
   color: #c55c47;
   text-align: center;
-  /* Stepは紺の縁で立体的に（2026-09-01 Saori） */
+  /* Stepも白縁に統一（2026-09-03 Saori。他の飾り英字と同じ白枠） */
   text-shadow:
-     2.0px 0.0px 0 #0e2349,
-     1.8px 0.8px 0 #0e2349,
-     1.4px 1.4px 0 #0e2349,
-     0.8px 1.8px 0 #0e2349,
-     0.0px 2.0px 0 #0e2349,
-     -0.8px 1.8px 0 #0e2349,
-     -1.4px 1.4px 0 #0e2349,
-     -1.8px 0.8px 0 #0e2349,
-     -2.0px 0.0px 0 #0e2349,
-     -1.8px -0.8px 0 #0e2349,
-     -1.4px -1.4px 0 #0e2349,
-     -0.8px -1.8px 0 #0e2349,
-     -0.0px -2.0px 0 #0e2349,
-     0.8px -1.8px 0 #0e2349,
-     1.4px -1.4px 0 #0e2349,
-     1.8px -0.8px 0 #0e2349,
-     3px 3px 0 rgba(14,35,73,0.3);
+     2.0px 0.0px 0 #fff,
+     1.8px 0.8px 0 #fff,
+     1.4px 1.4px 0 #fff,
+     0.8px 1.8px 0 #fff,
+     0.0px 2.0px 0 #fff,
+     -0.8px 1.8px 0 #fff,
+     -1.4px 1.4px 0 #fff,
+     -1.8px 0.8px 0 #fff,
+     -2.0px 0.0px 0 #fff,
+     -1.8px -0.8px 0 #fff,
+     -1.4px -1.4px 0 #fff,
+     -0.8px -1.8px 0 #fff,
+     -0.0px -2.0px 0 #fff,
+     0.8px -1.8px 0 #fff,
+     1.4px -1.4px 0 #fff,
+     1.8px -0.8px 0 #fff,
+     3px 3px 0 rgba(14,35,73,0.35);
   letter-spacing: 0.96px;
   white-space: nowrap;
   font-feature-settings: "pkna" 1, "palt" 1;
@@ -1111,6 +1112,29 @@ body.page-recruit .sp-section-badge { display: none; }
 
 /* ===== SP（max-width: 768px）===== */
 @media (max-width: 768px) {
+  /* ===== SPセクションバッジ 共通定義（2026-09-03・壁打ち確定）=====
+     左端16px・直下16pxの距離はバッジ自身が所有する（ページごとの下要素padding頼みをやめる）。
+     見た目はrecruit準拠に統一（radius 8・box-shadow 3px）。左端はコンテナのpaddingと
+     合算で16になるよう各ページ側でmargin-leftを持つ（recruit=コンテナ16→0／service=コンテナ0→16） */
+  .sp-section-badge {
+    background-color: #edebbf;
+    border: 3px solid #0e2349;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0px #0e2349;
+    padding: 8px 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: #0e2349;
+    letter-spacing: 2px;
+    width: fit-content;
+    align-self: flex-start;
+    flex-shrink: 0;
+    margin: 0 0 16px 0;
+  }
+  /* aboutのバッジは縦書きh2のSP変換（インラインstyle＋構造セレクタが視覚を所有）。
+     クラスは参加のみで、直下距離は既存の親子padding構造が持つため上書きしない（2026-09-03） */
+  body.page-about .sp-section-badge { margin: 0; }
   /* 見出しサイズSPの正本はこのメディアクエリ末尾の「SP文字サイズの段」ブロック。
      ここには置かない（2026-09-01に段の設計へ統合） */
 
@@ -1270,25 +1294,14 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-service .service--02 { margin-top: 0 !important; }
   body.page-service .service-sidebar { display: none !important; }
   body.page-service .sp-section-badge {
-    /* 1行バジェット: 11字@375px＝(375−40−6)÷(26+2)。超過は文言側で解く（2026-09-03） */
+    /* 1行バジェット: 11字@375px＝(375−40−6)÷(26+2)。超過は文言側で解く（2026-09-03）
+       視覚定義は上の共通 .sp-section-badge へ統合（2026-09-03）。ここは位置指定のみ */
     display: block !important;
     position: relative; /* 絶対配置の帯背景divより上に描画する（非positionedだと背景に隠れる） */
-    background-color: #edebbf;
-    border: 3px solid #0e2349;
-    box-shadow: 3px 3px 0px #0e2349;
-    border-radius: 12px;
-    padding: 8px 20px;
-    margin: 20px auto 0;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 600;
-    font-size: 26px;
-    color: #0e2349;
-    letter-spacing: 2px;
     /* 2026-09-01 Saori: 事業案内SPはH2含めて全部左揃えに統一 */
     text-align: left;
-    width: fit-content;
-    align-self: flex-start;
-    margin: 20px 0 0;
+    /* コンテナpadding=0のため左端16pxはバッジ自身が持つ */
+    margin: 20px 0 16px 16px;
   }
   body.page-service .sp-title-br { display: block !important; }
   body.page-service .section-content {
@@ -1458,7 +1471,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .concept-section [style*="rotate(90deg)"] { display: none !important; }
   body.page-about .concept-section > div[style*="left:0; top:100px; width:240px"] {
     display: flex !important; position: relative !important; left: auto !important; top: auto !important;
-    width: 100% !important; height: auto !important; padding: 20px 20px 0 !important;
+    width: 100% !important; height: auto !important; padding: 20px 20px 0 16px !important; /* 左端16px統一（2026-09-03） */
     justify-content: flex-start !important; align-items: flex-start !important;
   }
   body.page-about .concept-section > div[style*="left:0; top:100px; width:240px"] > div:first-child { display: none !important; }
@@ -1493,7 +1506,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .company-bg-outer { inset: 0 !important; }
   body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] {
     display: flex !important; position: relative !important; left: auto !important; top: auto !important;
-    width: 100% !important; height: auto !important; padding: 20px 20px 0 !important;
+    width: 100% !important; height: auto !important; padding: 20px 20px 0 16px !important; /* 左端16px統一（2026-09-03） */
     justify-content: flex-start !important; align-items: flex-start !important;
   }
   body.page-about .company-section > div[style*="left:0; top:64px; width:240px"] > div:first-child { display: none !important; }
@@ -1546,7 +1559,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-about .location-section [style*="rotate(90deg)"] { display: none !important; }
   body.page-about .location-section > div[style*="left:80px; top:100px; width:200px"] {
     display: flex !important; position: relative !important; left: auto !important; top: auto !important;
-    width: 100% !important; height: auto !important; padding: 20px 20px 0 !important;
+    width: 100% !important; height: auto !important; padding: 20px 20px 0 16px !important; /* 左端16px統一（2026-09-03） */
     justify-content: flex-start !important; align-items: flex-start !important;
   }
   body.page-about .location-section > div[style*="left:80px; top:100px; width:200px"] > div:first-child { display: none !important; }
@@ -1591,25 +1604,17 @@ body.page-recruit .sp-section-badge { display: none; }
     width: 100% !important; transform: none !important; padding: 32px 20px 0 !important; gap: 24px !important;
   }
   body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:40px"] { font-size: 30px !important; }
+  /* SPはFV本文のパラグラフ内改行（p分割）を解除して自然折返しにする（2026-09-03 Saori）。見出し40pxは対象外 */
+  body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:20px"] p,
+  body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:18px"] p { display: inline; }
   body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:20px"] { font-size: 15px !important; line-height: 1.8 !important; }
   body.page-recruit #fv > div[style*="left:640px"] div[style*="font-size:18px"] { font-size: 15px !important; }
   body.page-recruit .sp-section-badge {
+    /* 視覚定義は共通 .sp-section-badge へ統合（2026-09-03）。ここは表示切替と配置のみ。
+       コンテナが padding 16px を持つため左マージンは0（合算で左端16px） */
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #edebbf;
-    border: 3px solid #0e2349;
-    border-radius: 8px;
-    padding: 8px 20px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 700;
-    font-size: 26px;
-    color: #0e2349;
-    letter-spacing: 2px;
-    align-self: flex-start;
-    flex-shrink: 0;
-    margin-bottom: 8px;
-    filter: drop-shadow(3px 3px 0px #0e2349);
   }
   body.page-recruit #culture { flex-direction: column !important; padding: 40px 16px 60px !important; gap: 0; }
   body.page-recruit .cat-sidebar { display: none !important; }
@@ -1805,6 +1810,8 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#about > div:last-child > div:last-child div[style*="text-align:center"],
   body.page-index section#about > div:last-child > div:last-child div[style*="text-align: center"] { text-align: left !important; width: 100% !important; }
   body.page-index section#about a.btn-s { align-self: center !important; }
+  /* 締めコピーのSP行間: line-height:2 は広すぎるため本文標準の1.8へ（2026-09-03 Saori） */
+  body.page-index section#about p[style*="line-height:2"] { line-height: 1.8 !important; }
   body.page-index section#about > div:last-child { background-color: white !important; border: 1px solid #0e2349 !important; border-radius: 16px !important; display: flex !important; flex-direction: column !important; gap: 0 !important; overflow: hidden !important; }
   body.page-index section#services { width: 100% !important; border-radius: 24px 24px 0 0 !important; }
   body.page-index section#services > div:last-child { flex-direction: column !important; padding: 60px 16px 40px !important; gap: 40px !important; }
@@ -1820,9 +1827,11 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#services div[style*="height:64px"][style*="border-left"] { display: none !important; }
   body.page-index section#services p[style*="flex:1 0 0"] { flex: 0 0 100% !important; white-space: normal !important; font-size: 15px !important; }
   body.page-index section#services div[style*="width:130px"] { width: auto !important; }
-  /* カード名はSPでは1行（PCは幅130pxで2行に折るデザインのまま）2026-08-30 Saori指摘 */
-  body.page-index section#services h3 br { display: none !important; }
-  body.page-index section#services h3 .sp-dot { display: inline !important; }
+  /* カード名はSPでは1行（PCは幅130pxで2行に折るデザインのまま）2026-08-30 Saori指摘
+     2026-09-03: 見出し階層変更(h3→h4)でセレクタ外れしていたのを追従。ラベルはアイコンと天地中央に */
+  body.page-index section#services h4 br { display: none !important; }
+  body.page-index section#services h4 .sp-dot { display: inline !important; }
+  body.page-index section#services div[style*="gap:24px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:nth-child(2) { align-self: center !important; }
   /* SPでもPCと同じ青背景を出す（bg wrapを消すと地模様が透けて黄色く見えるため、セクション自体に青を付与） */
   body.page-index section#recruit-top { height: auto !important; width: 100% !important; background-color: #546895 !important; border-top: 1px solid #0e2349 !important; }
   body.page-index section#recruit-top > div:first-of-type { position: relative !important; inset: unset !important; width: 100% !important; height: auto !important; display: none !important; }
