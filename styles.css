@@ -412,10 +412,12 @@ body.page-service .intro-headline {
   font-feature-settings: 'pkna' 1, 'palt' 1;
 }
 
+/* 左右のカードの高さを揃える（9/2 Saori指摘）。
+   flex-start だと中身の量でカードの丈が変わり、並びが不揃いに見える */
 body.page-service .card-list {
   display: flex;
   gap: 16px;
-  align-items: flex-start;
+  align-items: stretch;
   position: relative;
   border-radius: 16px;
   flex-shrink: 0;
