@@ -1116,6 +1116,9 @@ body.page-recruit .sp-section-badge { display: none; }
 
   /* ===== グローバルSP ===== */
   body { min-width: unset; overflow-x: hidden; padding-top: 100px; }
+  /* PC専用の改行。PCの改行設計をSPに持ち込まず、SPは自然折り返しに任せる
+     （sp-title-brの逆向き。2026-09-03 Saori: FV見出しの「し、」孤立の解消で導入） */
+  .pc-title-br { display: none; }
   nav.site-nav, div.site-nav, nav#site-nav, #site-nav { display: none !important; }
   /* ===== site-footer SP（全ページ共通）===== */
   .site-footer { width: 100% !important; margin-left: 0 !important; padding-top: 80px !important; padding-left: 20px !important; padding-right: 20px !important; gap: 24px !important; align-items: center !important; }
@@ -1235,6 +1238,7 @@ body.page-recruit .sp-section-badge { display: none; }
     top: auto !important;
     width: 100% !important;
   }
+  /* 1行バジェット: 約11字@375px（30px＋余白）。改行はPC専用（.pc-title-br）でSPは自然折り */
   body.page-service .fv-headline { font-size: 30px !important; white-space: normal !important; }
   /* FVコラージュ: 固定サイズの2枚（縦横比1:1維持・ビューポート幅に依存しない） */
   body.page-service .fv-media {
@@ -1266,6 +1270,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-service .service--02 { margin-top: 0 !important; }
   body.page-service .service-sidebar { display: none !important; }
   body.page-service .sp-section-badge {
+    /* 1行バジェット: 11字@375px＝(375−40−6)÷(26+2)。超過は文言側で解く（2026-09-03） */
     display: block !important;
     position: relative; /* 絶対配置の帯背景divより上に描画する（非positionedだと背景に隠れる） */
     background-color: #edebbf;
