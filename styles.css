@@ -1319,14 +1319,14 @@ body.page-recruit .sp-section-badge { display: none; }
     min-height: unset !important;
   }
   /* 写真カード: 絶対配置imgのみ内包するためheight:autoだと高さ0に潰れる。縦横比固定で幅に追従させる（2026-09-01: 素材が縦長化→正方形を試作したが、Saori判断で元の横長比率に確定・object-positionのみ再調整） */
-  body.page-service .photo-card { height: auto !important; aspect-ratio: 5 / 3; }
+  body.page-service .photo-card { height: auto !important; aspect-ratio: 3 / 2; }
   /* SPでは写真2・3を段落ごとの .sp-inline-photo 側で表示する（1枚目だけ説明文直後に残す） */
   body.page-service .photo-card-2, body.page-service .photo-card-3 { display: none !important; }
   .sp-inline-photo {
     display: block !important;
     position: relative;
     width: 100%;
-    aspect-ratio: 5 / 3;
+    aspect-ratio: 3 / 2;
     border-radius: 16px;
     overflow: hidden;
     background-color: white;
@@ -1623,7 +1623,7 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-recruit .quote-card-wrap { flex: none !important; width: 100% !important; min-width: 0; align-self: auto !important; }
   body.page-recruit .quote-card { flex: none !important; min-height: 60px !important; }
   body.page-recruit #culture div[style*="display:flex; gap:16px; align-items:flex-start; width:100%"] { flex-direction: column !important; gap: 16px !important; }
-  body.page-recruit #culture div[style*="min-height:526px"] { display: none !important; }
+  body.page-recruit #culture div[style*="min-height:465px"] { display: none !important; }
   body.page-recruit #culture div[style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; gap: 24px !important; }
   body.page-recruit #culture div[style*="grid-column:2"] { grid-column: 1 !important; }
   body.page-recruit #culture div[style*="background-color:#c3a369"] { padding: 24px 16px !important; }
