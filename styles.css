@@ -1657,13 +1657,15 @@ body.page-recruit .sp-section-badge { display: none; }
     width: 100% !important;
   }
   body.page-recruit #staff-voice { flex-direction: column !important; padding: 40px 16px 60px !important; }
-  body.page-recruit #staff-voice div[style*="display:flex; gap:16px; align-items:flex-start; width:100%"] { flex-direction: column !important; gap: 16px !important; }
+  body.page-recruit #staff-voice div[style*="display:flex; gap:16px; align-items:stretch; width:100%"] { flex-direction: column !important; gap: 16px !important; }
   body.page-recruit .staff-card { flex: none !important; width: 100% !important; min-width: 0; }
   /* 横長カードはSPでは縦積みに戻す（写真行→本文の順）。左の仕切り線も横罫に置き換える */
   body.page-recruit .staff-card-wide { flex-direction: column !important; gap: 16px !important; padding: 16px 24px !important; }
   /* PCで指定した改行位置はSPの狭い幅だと中途半端に切れるので、SPでは無効化して
      自然な折り返しに任せる（2026-09-01） */
   body.page-recruit .staff-card-wide-body br { display: none; }
+  /* Staff Voice 2枚のPC用改行指定はSPでは解除し自然折返しに任せる（2026-09-03） */
+  body.page-recruit .staff-card p br { display: none; }
   body.page-recruit .staff-card-wide-media { width: 100% !important; }
   body.page-recruit .staff-card-wide-media-portrait { width: 100% !important; }
   body.page-recruit .staff-card-wide-body { border-left: none !important; border-top: 1px solid #0e2349 !important; padding-left: 0 !important; padding-top: 16px !important; }
