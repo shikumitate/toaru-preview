@@ -1117,6 +1117,9 @@ body.page-recruit .sp-section-badge { display: none; }
      見た目はrecruit準拠に統一（radius 8・box-shadow 3px）。左端はコンテナのpaddingと
      合算で16になるよう各ページ側でmargin-leftを持つ（recruit=コンテナ16→0／service=コンテナ0→16） */
   .sp-section-badge {
+    /* 絶対配置の帯背景divより上に描画する（非positionedだと背景に隠れる。
+       旧recruitはfilter:drop-shadowの副作用で偶然浮いていた＝box-shadow化で露呈・2026-09-03） */
+    position: relative;
     background-color: #edebbf;
     border: 3px solid #0e2349;
     border-radius: 8px;
