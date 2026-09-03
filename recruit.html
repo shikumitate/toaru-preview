@@ -381,14 +381,14 @@
             </div>
             <!-- inner grid -->
             <div style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:40px; width:100%;">
-              <!-- photos（上=正方形240×240, 下=横長300×225。下段は9/3差し替え=屋外イベント写真が横長のため縦長枠から変更） -->
-              <div style="justify-self:end; position:relative; width:360px; min-height:465px;">
-                <!-- photo 1 (top, square) -->
-                <div style="position:absolute; top:0; left:118px; width:240px; height:240px; border:8px solid #ececec; border-radius:16px; box-shadow:1px 1px 0px 0px #0e2349; overflow:hidden;">
+              <!-- photos（2枚とも同サイズ横長4:3・列幅いっぱい。上=Step01上端／下=Step02下端に揃える。9/3統一=固定幅360pxが列からはみ出していたため流動化） -->
+              <div style="display:flex; flex-direction:column; justify-content:space-between; gap:40px; min-height:465px;">
+                <!-- photo 1 (top) -->
+                <div style="position:relative; width:100%; aspect-ratio:4/3; border:8px solid #ececec; border-radius:16px; box-shadow:1px 1px 0px 0px #0e2349; overflow:hidden;">
                   <img class="photo-faded" alt="" src="images/photo-recruit-life1.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:8px;" />
                 </div>
-                <!-- photo 2 (bottom, landscape) -->
-                <div style="position:absolute; bottom:0; left:0; width:300px; height:225px; border:8px solid #ececec; border-radius:16px; box-shadow:1px 1px 0px 0px #0e2349; overflow:hidden;">
+                <!-- photo 2 (bottom) -->
+                <div style="position:relative; width:100%; aspect-ratio:4/3; border:8px solid #ececec; border-radius:16px; box-shadow:1px 1px 0px 0px #0e2349; overflow:hidden;">
                   <img class="photo-faded" alt="" src="images/photo-recruit-life2.jpg" style="position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; border-radius:8px;" />
                 </div>
               </div>
@@ -536,13 +536,6 @@
             </div>
           </div>
 
-          <!-- note button -->
-          <a href="https://note.com/toallinc" target="_blank" rel="noopener" class="btn-s" style="text-decoration:none;">
-            <span>noteでもっと読む</span>
-            <div class="btn-icon">
-              <img alt="" src="images/a4283ab4-ed09-4003-a513-501b8e26e47b.png" />
-            </div>
-          </a>
         </div>
       </div>
     </section>
@@ -687,7 +680,7 @@
 
         <!-- title -->
         <div style="position:relative; display:flex; flex-direction:column; gap:24px; align-items:center; text-align:center; color:#0e2349; width:100%;">
-          <div style="font-family:'Yesteryear',cursive; font-size:32px; line-height:1; text-shadow:1px 1px 0px #0e2349; white-space:nowrap; font-feature-settings:'pkna' 1,'palt' 1;">Apply</div>
+          <div style="font-family:'Yesteryear',cursive; font-size:32px; line-height:1; white-space:nowrap; font-feature-settings:'pkna' 1,'palt' 1;">Apply</div>
           <div style="display:flex; flex-direction:column; gap:8px; align-items:center; width:100%;">
             <div style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:32px; letter-spacing:2.56px; line-height:1.6; width:100%; font-feature-settings:'pkna' 1,'palt' 1;">気になったら、ここから</div>
             <div style="font-family:'Noto Sans JP',sans-serif; font-weight:400; font-size:16px; letter-spacing:1.28px; width:100%; font-feature-settings:'pkna' 1,'palt' 1;">
@@ -699,15 +692,15 @@
 
         <!-- buttons -->
         <div style="position:relative; display:flex; gap:24px; justify-content:center; width:800px;">
-          <div class="btn-m">
+          <a href="https://jp.indeed.com/cmp/%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%EF%BD%93%EF%BD%99%EF%BD%8D%E3%82%B1%E3%82%A2%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88/jobs" target="_blank" rel="noopener" class="btn-m">
             <span>Indeedの求人ページを見る</span>
             <div class="btn-icon-m">
               <img alt="" src="images/fba9ce33-e86f-446a-a069-1521091b4195.png" />
             </div>
-          </div>
-          <div class="btn-m">
+          </a>
+          <a href="index.html#contact" class="btn-m">
             <span>直接問い合わせる</span>
-          </div>
+          </a>
         </div>
       </div>
     </section>
