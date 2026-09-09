@@ -582,6 +582,75 @@ body.page-service .service-sidebar {
   /* PC: visible */
 }
 
+/* index事業案内カード: 見出し列を104pxに詰めた（説明文の改行位置を指定に合わせるため）ぶん、
+   「トレーニング」が3行に割れる。<br>で指定した2行を保つため折返しを禁止する（2026-09-09） */
+body.page-index section#services h4 {
+  white-space: nowrap;
+}
+
+/* ===== 事業案内 セクション導線（2026-09-09 MTG: 下部セクションへ飛べるように）===== */
+/* 装飾はページ上部の「Services」ラベルと同じピル型（背景#b4b6a7・紺1px枠・角丸16px）を踏襲 */
+body.page-service .service-nav-label {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 32px 20px 0;
+  text-align: center;
+  line-height: 1;
+}
+body.page-service .service-nav-label span {
+  display: inline-block;
+  background-color: #b4b6a7;
+  border: 1px solid #0e2349;
+  border-radius: 16px;
+  padding: 7px 20px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 1.6px;
+  color: #0e2349;
+  font-feature-settings: "pkna" 1, "palt" 1;
+}
+/* 番号はセクション側のService 01/02/03と呼応させる */
+body.page-service .service-nav-num {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 1px;
+  opacity: 0.6;
+  margin-right: 2px;
+}
+body.page-service .service-nav {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  padding: 16px 20px 32px;
+  width: 100%;
+}
+body.page-service .service-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #0e2349;
+  letter-spacing: 1.28px;
+  line-height: 1.8;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  font-feature-settings: "pkna" 1, "palt" 1;
+}
+body.page-service .service-nav a:hover {
+  opacity: 0.7;
+}
+body.page-service .service-nav-arrow {
+  font-size: 14px;
+  line-height: 1;
+}
+
 /* ===== body.page-about 固有クラス（PCのみ）===== */
 
 body.page-about {
@@ -756,6 +825,9 @@ body.page-recruit .cat-badge h2 {
   line-height: 1.16;
   width: 40px;
   font-feature-settings: "pkna" 1;
+  /* 長音符を縦向きにする（2026-09-09 MTG指摘・だいごさん） */
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 body.page-recruit .staff-card {
@@ -1296,6 +1368,28 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-service .service-section { width: 100% !important; min-height: unset !important; }
   body.page-service .service--02 { margin-top: 0 !important; }
   body.page-service .service-sidebar { display: none !important; }
+  /* 事業案内 セクション導線（2026-09-09）
+     3項目=27字は375px幅に1行で入らない（11pxまで縮めても340px必要＝実測）。
+     可読性を優先し2行の自然折返しにする。高さ約60pxで、ボタン型の縦積み190pxより軽い */
+  body.page-service .service-nav-label {
+    padding: 24px 12px 0;
+  }
+  body.page-service .service-nav-label span { font-size: 13px; padding: 6px 16px; }
+  body.page-service .service-nav-num { font-size: 11px; }
+  body.page-service .service-nav {
+    gap: 8px 20px;
+    padding: 12px 12px 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  body.page-service .service-nav a {
+    font-size: 14px;
+    letter-spacing: 0;
+    gap: 2px;
+    text-underline-offset: 4px;
+  }
+  body.page-service .service-nav-arrow { font-size: 12px; }
+
   body.page-service .sp-section-badge {
     /* 1行バジェット: 11字@375px＝(375−40−6)÷(26+2)。超過は文言側で解く（2026-09-03）
        視覚定義は上の共通 .sp-section-badge へ統合（2026-09-03）。ここは位置指定のみ */
@@ -1720,7 +1814,8 @@ body.page-recruit .sp-section-badge { display: none; }
     border-bottom: 11px solid #ececec !important;
   }
   body.page-recruit .qa-avatar div[style*="align-items:center; text-align:center"] { align-items: flex-start !important; text-align: left !important; }
-  body.page-recruit .qa-avatar div[style*="width:75px"] { width: auto !important; }
+  /* 2026-09-09: 本音対談の話者表記変更（肩書き行を削除・width:75px→nowrap）に追従 */
+  body.page-recruit .qa-avatar div[style*="white-space:nowrap"] { width: auto !important; }
   body.page-recruit #want > div[style*="flex:1"],
   body.page-recruit #want > div:last-child:not(.sp-section-badge) { flex: none !important; width: 100% !important; padding: 0 !important; }
   body.page-recruit #apply { padding: 60px 16px !important; }
@@ -1822,19 +1917,20 @@ body.page-recruit .sp-section-badge { display: none; }
   body.page-index section#services > div:last-child > div:first-child > div:first-child > div:last-child { text-align: center !important; width: 100% !important; white-space: normal !important; }
   body.page-index section#services a.btn-s { align-self: center !important; }
   body.page-index section#services > div:last-child > div:last-child { width: 100% !important; flex-shrink: unset !important; }
-  body.page-index section#services div[style*="gap:24px; align-items:center; position:relative; flex-shrink:0; width:100%"] { flex-direction: row !important; flex-wrap: wrap !important; align-items: flex-start !important; gap: 12px 12px !important; }
-  body.page-index section#services div[style*="gap:24px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:first-child { flex-shrink: 0 !important; width: 64px !important; height: 64px !important; }
-  body.page-index section#services div[style*="gap:24px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:nth-child(2) { flex: 1 !important; min-width: 0 !important; }
-  body.page-index section#services div[style*="gap:24px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:first-child div[style*="border-radius:40px"] { width: 64px !important; height: 64px !important; }
-  body.page-index section#services div[style*="gap:24px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:first-child div[style*="width:48px; height:48px"] { width: 38px !important; height: 38px !important; }
+  body.page-index section#services div[style*="gap:20px; align-items:center; position:relative; flex-shrink:0; width:100%"] { flex-direction: row !important; flex-wrap: wrap !important; align-items: flex-start !important; gap: 12px 12px !important; }
+  body.page-index section#services div[style*="gap:20px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:first-child { flex-shrink: 0 !important; width: 64px !important; height: 64px !important; }
+  body.page-index section#services div[style*="gap:20px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:nth-child(2) { flex: 1 !important; min-width: 0 !important; }
+  body.page-index section#services div[style*="gap:20px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:first-child div[style*="border-radius:40px"] { width: 64px !important; height: 64px !important; }
+  body.page-index section#services div[style*="gap:20px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:first-child div[style*="width:48px; height:48px"] { width: 38px !important; height: 38px !important; }
   body.page-index section#services div[style*="height:64px"][style*="border-left"] { display: none !important; }
   body.page-index section#services p[style*="flex:1 0 0"] { flex: 0 0 100% !important; white-space: normal !important; font-size: 15px !important; }
-  body.page-index section#services div[style*="width:130px"] { width: auto !important; }
-  /* カード名はSPでは1行（PCは幅130pxで2行に折るデザインのまま）2026-08-30 Saori指摘
+  body.page-index section#services div[style*="width:104px"] { width: auto !important; }
+  /* カード名はSPでは1行（PCは幅104pxで2行に折るデザインのまま）2026-08-30 Saori指摘
      2026-09-03: 見出し階層変更(h3→h4)でセレクタ外れしていたのを追従。ラベルはアイコンと天地中央に */
+  body.page-index section#services h4 { white-space: normal !important; }
   body.page-index section#services h4 br { display: none !important; }
   body.page-index section#services h4 .sp-dot { display: inline !important; }
-  body.page-index section#services div[style*="gap:24px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:nth-child(2) { align-self: center !important; }
+  body.page-index section#services div[style*="gap:20px; align-items:center; position:relative; flex-shrink:0; width:100%"] > div:nth-child(2) { align-self: center !important; }
   /* SPでもPCと同じ青背景を出す（bg wrapを消すと地模様が透けて黄色く見えるため、セクション自体に青を付与） */
   body.page-index section#recruit-top { height: auto !important; width: 100% !important; background-color: #546895 !important; border-top: 1px solid #0e2349 !important; }
   body.page-index section#recruit-top > div:first-of-type { position: relative !important; inset: unset !important; width: 100% !important; height: auto !important; display: none !important; }
