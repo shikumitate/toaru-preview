@@ -330,7 +330,8 @@ body.page-service .fv-inner {
   align-self: center;
   flex-shrink: 0;
   margin-top: 0;
-  margin-bottom: 64px;
+  /* 2026-09-09: 直下に導線を追加。導線側paddingと合算で空きすぎるため64→24（Saori指摘の「半分に」） */
+  margin-bottom: 24px;
 }
 body.page-service .fv-text {
   position: absolute;
@@ -589,50 +590,42 @@ body.page-index section#services h4 {
 }
 
 /* ===== 事業案内 セクション導線（2026-09-09 MTG: 下部セクションへ飛べるように）===== */
-/* 装飾はページ上部の「Services」ラベルと同じピル型（背景#b4b6a7・紺1px枠・角丸16px）を踏襲 */
+/* 装飾はセクションの縦書きバッジと同じ（背景#edebbf・紺4px枠・影4px・角丸16px。9/9カズキタ＆Saori） */
 body.page-service .service-nav-label {
   display: block;
   width: 100%;
   margin: 0;
-  padding: 32px 20px 0;
+  padding: 16px 20px 0;
   text-align: center;
   line-height: 1;
 }
 body.page-service .service-nav-label span {
   display: inline-block;
-  background-color: #b4b6a7;
-  border: 1px solid #0e2349;
+  background-color: #edebbf;
+  border: 4px solid #0e2349;
+  box-shadow: 4px 4px 0px #0e2349;
   border-radius: 16px;
-  padding: 7px 20px;
+  padding: 12px 28px;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.4;
-  letter-spacing: 1.6px;
+  letter-spacing: 3.2px;
   color: #0e2349;
-  font-feature-settings: "pkna" 1, "palt" 1;
-}
-/* 番号はセクション側のService 01/02/03と呼応させる */
-body.page-service .service-nav-num {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  font-size: 13px;
-  letter-spacing: 1px;
-  opacity: 0.6;
-  margin-right: 2px;
+  font-feature-settings: "pkna" 1;
 }
 body.page-service .service-nav {
   display: flex;
   justify-content: center;
   gap: 48px;
   flex-wrap: wrap;
-  padding: 16px 20px 32px;
+  padding: 24px 20px 32px;
   width: 100%;
 }
 body.page-service .service-nav a {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 0;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 600;
   font-size: 16px;
@@ -645,10 +638,6 @@ body.page-service .service-nav a {
 }
 body.page-service .service-nav a:hover {
   opacity: 0.7;
-}
-body.page-service .service-nav-arrow {
-  font-size: 14px;
-  line-height: 1;
 }
 
 /* ===== body.page-about 固有クラス（PCのみ）===== */
@@ -1327,7 +1316,7 @@ body.page-recruit .sp-section-badge { display: none; }
     display: flex !important;
     flex-direction: column !important;
     gap: 24px !important;
-    padding: 24px 16px 32px !important;
+    padding: 24px 16px 12px !important; /* 2026-09-09: 導線追加に伴い下を32→12 */
     align-self: auto !important;
   }
   body.page-service .fv-text {
@@ -1372,24 +1361,28 @@ body.page-recruit .sp-section-badge { display: none; }
      3項目=27字は375px幅に1行で入らない（11pxまで縮めても340px必要＝実測）。
      可読性を優先し2行の自然折返しにする。高さ約60pxで、ボタン型の縦積み190pxより軽い */
   body.page-service .service-nav-label {
-    padding: 24px 12px 0;
+    padding: 12px 12px 0;
   }
-  body.page-service .service-nav-label span { font-size: 13px; padding: 6px 16px; }
-  body.page-service .service-nav-num { font-size: 11px; }
+  body.page-service .service-nav-label span {
+    font-size: 17px;
+    padding: 10px 22px;
+    border-width: 3px;
+    box-shadow: 3px 3px 0px #0e2349;
+    letter-spacing: 2.4px;
+  }
   body.page-service .service-nav {
     gap: 8px 20px;
-    padding: 12px 12px 24px;
+    padding: 20px 12px 24px;
     justify-content: center;
     flex-wrap: wrap;
   }
   body.page-service .service-nav a {
     font-size: 14px;
     letter-spacing: 0;
-    gap: 2px;
+    gap: 0;
     text-underline-offset: 4px;
   }
-  body.page-service .service-nav-arrow { font-size: 12px; }
-
+  
   body.page-service .sp-section-badge {
     /* 1行バジェット: 11字@375px＝(375−40−6)÷(26+2)。超過は文言側で解く（2026-09-03）
        視覚定義は上の共通 .sp-section-badge へ統合（2026-09-03）。ここは位置指定のみ */
